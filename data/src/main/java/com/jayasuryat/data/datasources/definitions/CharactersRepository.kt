@@ -1,0 +1,9 @@
+package com.jayasuryat.data.datasources.definitions
+
+import com.jayasuryat.data.models.KResult
+import com.jayasuryat.data.models.domain.Character
+
+public interface CharactersRepository {
+
+    public suspend fun getCharacters(page: Int): KResult<List<Character>>
+}
