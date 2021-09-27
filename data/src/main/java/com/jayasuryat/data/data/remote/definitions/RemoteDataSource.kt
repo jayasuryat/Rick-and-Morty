@@ -1,3 +1,5 @@
 package com.jayasuryat.data.data.remote.definitions
 
-internal interface RemoteDataSource : com.jayasuryat.data.data.DataSource
+import com.jayasuryat.data.data.DataSource
+
+internal sealed interface RemoteDataSource : DataSource

@@ -10,7 +10,7 @@ import com.jayasuryat.data.data.local.entities.LocationEntity
 @Database(
     entities = [CharacterEntity::class, EpisodeEntity::class, LocationEntity::class],
     version = 1,
-    exportSchema = true,
+    exportSchema = false,
 )
 @TypeConverters(
     CharacterEntity.Converter::class,

@@ -3,7 +3,7 @@ package com.jayasuryat.data.data.remote.impl
 import com.jayasuryat.data.data.remote.Router
 import com.jayasuryat.data.data.remote.definitions.CharactersRemoteDataSource
 import com.jayasuryat.data.data.remote.definitions.EpisodesRemoteDataSource
-import com.jayasuryat.data.data.remote.definitions.LocationRemoteDataSource
+import com.jayasuryat.data.data.remote.definitions.LocationsRemoteDataSource
 import com.jayasuryat.data.data.remote.dtos.CharacterListResponse
 import com.jayasuryat.data.data.remote.dtos.EpisodesListResponse
 import com.jayasuryat.data.data.remote.dtos.LocationListResponse
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 internal class NetworkClient(
     private val client: HttpClient
-) : CharactersRemoteDataSource, EpisodesRemoteDataSource, LocationRemoteDataSource {
+) : CharactersRemoteDataSource, EpisodesRemoteDataSource, LocationsRemoteDataSource {
 
     override suspend fun getCharacters(page: Int): CharacterListResponse =
         withContext(Dispatchers.IO) { client.get(block = Router.characters(page)) }
