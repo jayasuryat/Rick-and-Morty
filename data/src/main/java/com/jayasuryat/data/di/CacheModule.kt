@@ -2,7 +2,6 @@ package com.jayasuryat.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jayasuryat.data.data.local.definitions.CharactersLocalDataSource
 import com.jayasuryat.data.data.local.impl.CacheClient
 import com.jayasuryat.data.data.local.impl.CacheDao
 import dagger.Module
@@ -29,10 +28,4 @@ internal object CacheModule {
     internal fun providesCacheDao(
         cacheClient: CacheClient
     ): CacheDao = cacheClient.cacheDao()
-
-    @Singleton
-    @Provides
-    internal fun providesCharactersLocalDataSource(
-        cacheDao: CacheDao,
-    ): CharactersLocalDataSource = cacheDao
 }

@@ -1,9 +1,6 @@
 package com.jayasuryat.data.di
 
 import com.jayasuryat.data.data.remote.HttpClientProvider
-import com.jayasuryat.data.data.remote.definitions.CharactersRemoteDataSource
-import com.jayasuryat.data.data.remote.definitions.EpisodesRemoteDataSource
-import com.jayasuryat.data.data.remote.definitions.LocationRemoteDataSource
 import com.jayasuryat.data.data.remote.impl.NetworkClient
 import dagger.Module
 import dagger.Provides
@@ -26,6 +23,7 @@ internal object NetworkModule {
     @Singleton
     @Provides
     internal fun providesHttpClientProvider(): HttpClientProvider = HttpClientProvider {
+
         HttpClient(OkHttp) {
 
             engine {
@@ -59,22 +57,4 @@ internal object NetworkModule {
     internal fun providesNetworkClient(
         httpClient: HttpClientProvider
     ): NetworkClient = NetworkClient(httpClient.getClient())
-
-    @Singleton
-    @Provides
-    internal fun providesCharactersRemoteDataSource(
-        networkClient: NetworkClient
-    ): CharactersRemoteDataSource = networkClient
-
-    @Singleton
-    @Provides
-    internal fun providesLocationsRemoteDataSource(
-        networkClient: NetworkClient
-    ): LocationRemoteDataSource = networkClient
-
-    @Singleton
-    @Provides
-    internal fun providesEpisodesRemoteDataSource(
-        networkClient: NetworkClient
-    ): EpisodesRemoteDataSource = networkClient
 }
