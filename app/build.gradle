@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id "androidx.navigation.safeargs.kotlin"
 }
 
 android {
@@ -58,4 +59,6 @@ dependencies {
     implementation project(path: ":ui:home")
     implementation project(path: ":ui:characterList")
     implementation project(path: ":data")
+
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }

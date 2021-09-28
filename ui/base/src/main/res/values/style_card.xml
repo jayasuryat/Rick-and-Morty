@@ -6,7 +6,7 @@
         <item name="cardCornerRadius">32dp</item>
     </style>
 
-    <style name="RM.Material.Card" parent="@style/Widget.MaterialComponents.CardView">
+    <style name="RM.Card.Material" parent="@style/Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">?attr/background_color_light</item>
         <item name="cardCornerRadius">32dp</item>
     </style>
