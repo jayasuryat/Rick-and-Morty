@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RM.Card" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?attr/background_color_light</item>
+        <item name="cardCornerRadius">32dp</item>
+    </style>
+
+    <style name="RM.Material.Card" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?attr/background_color_light</item>
+        <item name="cardCornerRadius">32dp</item>
+    </style>
+
+</resources>

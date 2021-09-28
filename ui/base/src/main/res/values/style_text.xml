@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RM.Text" parent="" />
+
+    <style name="RM.Text.Title" parent="RM.Text">
+        <item name="android:textColor">?attr/text_title_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/dm_sans_400_regular</item>
+    </style>
+
+    <style name="RM.Text.Value" parent="RM.Text">
+        <item name="android:textColor">?attr/text_value_color</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/dm_sans_500_medium</item>
+    </style>
+
+</resources>
