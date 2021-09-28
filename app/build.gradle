@@ -49,10 +49,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     implementation "com.google.dagger:hilt-android:2.38.1"
     kapt "com.google.dagger:hilt-compiler:2.38.1"
 
+    implementation project(path: ":ui:base")
+    implementation project(path: ":ui:home")
     implementation project(path: ":ui:characterList")
     implementation project(path: ":data")
 }
