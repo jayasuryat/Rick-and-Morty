@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background_color"
@@ -22,15 +23,17 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="32dp">
+                android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tvCharacters"
                     style="@style/RM.Text.Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
                     android:text="@string/characters"
                     android:textSize="32sp"
+                    android:transitionName="firstTransitionName"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -49,13 +52,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="32dp">
+                android:layout_height="match_parent">
 
                 <TextView
                     style="@style/RM.Text.Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
                     android:text="@string/episodes"
                     android:textSize="32sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -76,13 +79,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="32dp">
+                android:layout_height="match_parent">
 
                 <TextView
                     style="@style/RM.Text.Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
                     android:text="@string/locations"
                     android:textSize="32sp"
                     app:layout_constraintBottom_toBottomOf="parent"

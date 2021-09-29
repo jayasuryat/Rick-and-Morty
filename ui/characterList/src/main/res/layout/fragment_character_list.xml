@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -12,7 +13,6 @@
 
     <ImageView
         android:id="@+id/ivBack"
-        android:foreground="@drawable/custom_ripple"
         style="@style/RM.Button.Back"
         android:contentDescription="@string/cd_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:text="@string/characters"
         android:textSize="32sp"
+        android:transitionName="secondTransitionName"
         app:layout_constraintBottom_toBottomOf="@id/ivBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivBack"
@@ -37,9 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:indeterminate="true"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivBack" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBack"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCharactersList"
@@ -48,6 +51,7 @@
         android:layout_marginTop="8dp"
         android:fadingEdge="vertical"
         android:requiresFadingEdge="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

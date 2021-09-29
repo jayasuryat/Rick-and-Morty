@@ -17,6 +17,8 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <!-- Customize your theme here. -->
 
+        <item name="android:windowBackground">?attr/background_color_light</item>
+
         <item name="colorControlHighlight">?attr/colorSecondary</item>
 
         <item name="cardViewStyle">@style/RM.Card</item>
