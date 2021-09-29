@@ -10,7 +10,7 @@ import com.jayasuryat.characterlist.UiUtils.loadImage
 import com.jayasuryat.characterlist.databinding.ItemCharacterBinding
 import com.jayasuryat.data.models.domain.Character
 
-class CharactersListAdapter : ListAdapter<Character,
+internal class CharactersListAdapter : ListAdapter<Character,
         CharactersListAdapter.CharacterViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder =

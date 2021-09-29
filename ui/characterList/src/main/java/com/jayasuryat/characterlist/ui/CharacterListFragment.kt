@@ -1,21 +1,16 @@
 package com.jayasuryat.characterlist.ui
 
 import android.os.Bundle
-import android.view.View
-import android.view.ViewAnimationUtils
-import android.view.animation.LinearInterpolator
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.jayasuryat.base.CircleRevealHelper
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
-import com.jayasuryat.base.toggleVisibility
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.absoluteValue
-import kotlin.math.hypot
 
 
 @AndroidEntryPoint
@@ -60,25 +55,14 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     private fun revealRoot() {
 
-        val animView: View = binding.clRoot
-
         val startX = arguments?.get("x")?.toString()?.toIntOrNull() ?: 0
         val startY = arguments?.get("y")?.toString()?.toIntOrNull() ?: 0
 
-        val endX = animView.width
-        val endY = animView.height
-
-        val length = (endX - startX).absoluteValue.toDouble()
-        val width = (endY - startY).absoluteValue.toDouble()
-
-        val finalRadius = hypot(length, width).toFloat()
-
-        val anim = ViewAnimationUtils
-            .createCircularReveal(animView, startX, startY, 0f, finalRadius)
-
-        anim.duration = 300
-        anim.interpolator = LinearInterpolator()
-
-        anim.start()
+        CircleRevealHelper.Builder(binding.clRoot)
+            .setStartPoint(startX.toDouble(), startY.toDouble())
+            .setFarthestPointFromStartAsEnd()
+            .build()
+            .animation
+            .start()
     }
 }

@@ -7,7 +7,7 @@ sealed interface HomeScreenEvent
 
 class OpenCharacters(
     val extras: Navigator.Extras,
-    val point: Point,
+    val clickPoint: Point,
 ) : HomeScreenEvent
 
 object OpenEpisodes : HomeScreenEvent

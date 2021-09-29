@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.TimeInterpolator
 import android.annotation.SuppressLint
+import android.graphics.Point
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AccelerateInterpolator
@@ -14,6 +15,27 @@ public fun View.shrinkOnClick(onClickListener: () -> Unit) {
     this.setOnClickListener {
         onClickListener()
     }
+}
+
+@SuppressLint("ClickableViewAccessibility")
+public fun View.shrinkOnClickWithPoint(action: (Point) -> Unit) {
+
+    val coordinates = Point()
+    val screenPosition = IntArray(2)
+
+    val shrink = ClickOnShrink(this)
+    setOnTouchListener { v, event ->
+        shrink.onTouch(v, event)
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            v.getLocationOnScreen(screenPosition)
+            coordinates.set(
+                event.x.toInt() + screenPosition[0],
+                event.y.toInt() + screenPosition[1]
+            )
+        }
+        false
+    }
+    setOnClickListener { action.invoke(coordinates) }
 }
 
 private class ClickOnShrink(private val viewToShrink: View) : View.OnTouchListener {
@@ -85,6 +107,6 @@ private class ClickOnShrink(private val viewToShrink: View) : View.OnTouchListen
         private const val ANIM_PROP_SCALE_Y: String = "scaleY"
         private const val ANIM_DURATION: Long = 60
 
-        private const val SHRINK_FACTOR: Float = 0.75f
+        private const val SHRINK_FACTOR: Float = 0.9f
     }
 }

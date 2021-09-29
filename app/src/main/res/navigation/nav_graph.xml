@@ -7,17 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.jayasuryat.home.HomeFragment"
-        android:label="HomeFragment">
-
-        <action
-            android:id="@+id/toCharacterListFragment"
-            app:destination="@id/characterListFragment"
-            app:enterAnim="@anim/enter_from_right"
-            app:exitAnim="@anim/exit_to_left"
-            app:popEnterAnim="@anim/enter_from_left"
-            app:popExitAnim="@anim/exit_to_right" />
-
-    </fragment>
+        android:label="HomeFragment" />
 
     <fragment
         android:id="@+id/characterListFragment"
