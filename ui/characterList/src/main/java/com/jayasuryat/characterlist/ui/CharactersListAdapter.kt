@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jayasuryat.base.shrinkOnClick
+import com.jayasuryat.characterlist.UiUtils.loadImage
 import com.jayasuryat.characterlist.databinding.ItemCharacterBinding
 import com.jayasuryat.data.models.domain.Character
 
@@ -22,9 +24,13 @@ class CharactersListAdapter : ListAdapter<Character,
     inner class CharacterViewHolder(private val item: ItemCharacterBinding) :
         RecyclerView.ViewHolder(item.root) {
 
-        fun bind(data: Character) {
+        init {
+            item.cvRoot.shrinkOnClick { }
+        }
 
+        fun bind(data: Character) {
             item.tvName.text = data.name
+            item.ivAvatar.loadImage(data.image)
         }
     }
 

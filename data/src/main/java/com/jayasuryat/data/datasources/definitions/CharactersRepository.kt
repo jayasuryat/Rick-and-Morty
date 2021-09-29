@@ -6,4 +6,6 @@ import com.jayasuryat.data.models.domain.Character
 public interface CharactersRepository {
 
     public suspend fun getCharacters(page: Int): KResult<List<Character>>
+
+    public suspend fun getAllCharactersInCache(): KResult<List<Character>>
 }

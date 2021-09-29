@@ -32,4 +32,10 @@ internal class CharactersRepoImpl(
         cacheClient.getAllCharacters()
             .map { entity -> characterEntityToDomain(entity) }
     }
+
+    override suspend fun getAllCharactersInCache(): KResult<List<Character>> = wrapAsResult {
+
+        cacheClient.getAllCharacters()
+            .map { entity -> characterEntityToDomain(entity) }
+    }
 }

@@ -4,6 +4,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jayasuryat.base.arch.BaseAbsFragment
+import com.jayasuryat.base.shrinkOnClick
+import com.jayasuryat.base.toggleVisibility
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +20,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     override fun setupViews(): FragmentCharacterListBinding.() -> Unit = {
 
-        ivBack.setOnClickListener { findNavController().popBackStack() }
+        ivBack.shrinkOnClick { findNavController().popBackStack() }
 
         rvCharactersList.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -27,6 +29,10 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
     }
 
     override fun setupObservers(): CharacterListViewModel.() -> Unit = {
+
+        obsIsDataLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.pbLoading.toggleVisibility(isLoading == true)
+        }
 
         obsCharactersList.observe(viewLifecycleOwner) { characters ->
             characterListAdapter.submitList(characters)

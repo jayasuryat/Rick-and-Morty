@@ -24,6 +24,10 @@ class CharacterListViewModel @Inject constructor(
     private suspend fun loadCharacters() {
 
         doWhileLoading {
+
+            val cachedCharacters = charactersRepository.getAllCharactersInCache().getOrNull()
+            _obsCharactersList.postValue(cachedCharacters)
+
             val characters = charactersRepository.getCharacters(0).getOrNull()
             _obsCharactersList.postValue(characters)
         }
