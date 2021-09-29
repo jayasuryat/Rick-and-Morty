@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:padding="24dp">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/mcvCharacters"
             style="@style/RM.Card"
             android:layout_width="match_parent"
@@ -36,9 +36,9 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/mcvEpisodes"
             style="@style/RM.Card"
             android:layout_width="match_parent"
@@ -63,9 +63,9 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/mcvLocations"
             style="@style/RM.Card"
             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
