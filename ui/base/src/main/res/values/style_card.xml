@@ -2,11 +2,7 @@
 <resources>
 
     <style name="RM.Card" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">?attr/background_color_light</item>
-        <item name="cardCornerRadius">32dp</item>
-    </style>
-
-    <style name="RM.Card.Material" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
         <item name="cardBackgroundColor">?attr/background_color_light</item>
         <item name="cardCornerRadius">32dp</item>
     </style>
