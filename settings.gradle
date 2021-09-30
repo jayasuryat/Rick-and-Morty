@@ -6,9 +6,16 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
+
 rootProject.name = "RickAndMorty"
+
 include ':app'
-include ':ui:characterList'
+
 include ':data'
+
 include ':ui:base'
+
 include ':ui:home'
+
+include ':ui:character:characterList'
+include ':ui:character:characterDetails'
