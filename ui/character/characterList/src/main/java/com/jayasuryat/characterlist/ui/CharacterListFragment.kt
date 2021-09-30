@@ -2,25 +2,33 @@ package com.jayasuryat.characterlist.ui
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.TranslateAnimation
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.jayasuryat.base.CircleRevealHelper
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
+import com.jayasuryat.characterlist.NavigateBack
+import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.greenrobot.eventbus.EventBus
 
 
 @AndroidEntryPoint
 class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
         FragmentCharacterListBinding>(FragmentCharacterListBinding::inflate) {
 
-    private val characterListAdapter: CharactersListAdapter by lazy { CharactersListAdapter() }
+    private val characterListAdapter: CharactersListAdapter by lazy {
+        CharactersListAdapter(::openCharacter)
+    }
 
     override val viewModel: CharacterListViewModel by viewModels()
 
@@ -28,7 +36,15 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         postponeEnterTransition()
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun setupViews(): FragmentCharacterListBinding.() -> Unit = {
@@ -36,7 +52,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
         binding.clRoot.post(::revealRoot)
         animateViews()
 
-        ivBack.shrinkOnClick { findNavController().popBackStack() }
+        ivBack.shrinkOnClick(::navigateBack)
 
         rvCharactersList.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -98,5 +114,17 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
                 duration = animDuration
                 interpolator = animInterpolator
             }.run { binding.rvCharactersList.startAnimation(this) }
+    }
+
+    private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
+
+    private fun openCharacter(character: CharacterDef, sharedView: View) {
+
+        val extras = FragmentNavigatorExtras(sharedView to "characterAvatar")
+
+        viewModel.onItemClicked(character)
+
+        EventBus.getDefault()
+            .post(OpenCharacter(characterId = character.id, extras))
     }
 }

@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="@string/characters"
         android:textSize="32sp"
-        android:transitionName="secondTransitionName"
+        android:transitionName="charListTitle"
         app:layout_constraintBottom_toBottomOf="@id/ivBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivBack"

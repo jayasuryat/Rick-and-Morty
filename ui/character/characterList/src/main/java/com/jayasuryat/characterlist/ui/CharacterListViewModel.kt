@@ -14,8 +14,8 @@ class CharacterListViewModel @Inject constructor(
     private val charactersRepository: CharactersRepository
 ) : BaseViewModel() {
 
-    private val _obsCharactersList: MutableLiveData<List<Character>> = MutableLiveData()
-    val obsCharactersList: LiveData<List<Character>> = _obsCharactersList
+    private val _obsCharactersList: MutableLiveData<List<CharacterDef>> = MutableLiveData()
+    internal val obsCharactersList: LiveData<List<CharacterDef>> = _obsCharactersList
 
     init {
         ioScope.launch { loadCharacters() }
@@ -25,11 +25,34 @@ class CharacterListViewModel @Inject constructor(
 
         doWhileLoading {
 
-            val cachedCharacters = charactersRepository.getAllCharactersInCache().getOrNull()
-            _obsCharactersList.postValue(cachedCharacters)
+            charactersRepository.getAllCharactersInCache()
+                .getOrNull()
+                .mapToDef()
+                .let(_obsCharactersList::postValue)
 
-            val characters = charactersRepository.getCharacters(0).getOrNull()
-            _obsCharactersList.postValue(characters)
+            charactersRepository.getCharacters(0)
+                .getOrNull()
+                .mapToDef()
+                .let(_obsCharactersList::postValue)
         }
+    }
+
+    private fun List<Character>?.mapToDef(): List<CharacterDef>? {
+        return if (this.isNullOrEmpty()) null
+        else this.map { character ->
+            CharacterDef(
+                id = character.id,
+                name = character.name,
+                imageUrl = character.image,
+                false
+            )
+        }
+    }
+
+    internal fun onItemClicked(item: CharacterDef) {
+        val data = _obsCharactersList.value
+        if (data.isNullOrEmpty()) return
+        val mapped = data.map { it.copy(lastSelectedCharacter = item.id == it.id) }
+        _obsCharactersList.postValue(mapped)
     }
 }
