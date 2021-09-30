@@ -75,7 +75,7 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
     // endregion
 
     private fun navigateToCharacters(point: Point) {
-        val extras = FragmentNavigatorExtras(binding.tvCharacters to "secondTransitionName")
+        val extras = FragmentNavigatorExtras(binding.tvCharacters to "charListTitle")
         OpenCharacters(extras = extras, clickPoint = point).let(::postEvent)
     }
 
