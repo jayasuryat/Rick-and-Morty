@@ -27,6 +27,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_rick"
+                    android:contentDescription="@string/cd_characters_image" />
+
                 <TextView
                     android:id="@+id/tvCharacters"
                     style="@style/RM.Text.Value"
@@ -55,6 +62,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_episode"
+                    android:contentDescription="@string/cd_episode_image" />
 
                 <TextView
                     style="@style/RM.Text.Value"

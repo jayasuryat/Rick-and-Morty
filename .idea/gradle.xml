@@ -13,7 +13,11 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/ui" />
-            <option value="$PROJECT_DIR$/ui/characterList" />
+            <option value="$PROJECT_DIR$/ui/base" />
+            <option value="$PROJECT_DIR$/ui/character" />
+            <option value="$PROJECT_DIR$/ui/character/characterDetails" />
+            <option value="$PROJECT_DIR$/ui/character/characterList" />
+            <option value="$PROJECT_DIR$/ui/home" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

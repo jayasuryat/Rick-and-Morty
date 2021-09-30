@@ -3,7 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2692307692307692" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2578125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2692307692307692" />
+        <entry key="ui/base/src/main/res/drawable/custom_ripple.xml" value="0.2692307692307692" />
+        <entry key="ui/base/src/main/res/drawable/drawable_left.xml" value="0.2734375" />
+        <entry key="ui/base/src/main/res/drawable/drawable_right.xml" value="0.2734375" />
+        <entry key="ui/base/src/main/res/drawable/drawable_up.xml" value="0.2734375" />
+        <entry key="ui/base/src/main/res/drawable/icon_back.xml" value="0.2692307692307692" />
+        <entry key="ui/character/characterDetails/src/main/res/layout/fragment_character_details.xml" value="0.25" />
+        <entry key="ui/character/characterList/src/main/res/layout/fragment_character_list.xml" value="0.25729166666666664" />
+        <entry key="ui/character/characterList/src/main/res/layout/item_character.xml" value="0.25729166666666664" />
+        <entry key="ui/characterList/src/main/res/drawable/ic_launcher_background.xml" value="0.2692307692307692" />
+        <entry key="ui/characterList/src/main/res/drawable/icon_back.xml" value="0.2692307692307692" />
+        <entry key="ui/characterList/src/main/res/layout/fragment_character_list.xml" value="0.25333333333333335" />
+        <entry key="ui/characterList/src/main/res/layout/item_character.xml" value="0.25" />
+        <entry key="ui/characterList/src/main/res/layout/item_character_shimmer.xml" value="0.25333333333333335" />
+        <entry key="ui/home/src/main/res/drawable/icon_back.xml" value="0.2734375" />
+        <entry key="ui/home/src/main/res/layout/fragment_home.xml" value="0.25" />
       </map>
     </option>
   </component>
