@@ -4,8 +4,8 @@ import android.animation.Animator
 import android.graphics.Point
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
-import android.view.animation.LinearInterpolator
 import kotlin.math.hypot
 
 public class CircleRevealHelper private constructor(
@@ -23,7 +23,7 @@ public class CircleRevealHelper private constructor(
         private var endY: Double = 0.0
 
         private var duration: Long = 300
-        private var interpolator: Interpolator = LinearInterpolator()
+        private var interpolator: Interpolator = DecelerateInterpolator()
 
         public fun setStartPoint(x: Double, y: Double): Builder {
             startX = x
@@ -81,7 +81,10 @@ public class CircleRevealHelper private constructor(
                     startY.toInt(),
                     0f,
                     radius.toFloat()
-                )
+                ).apply {
+                    interpolator = this@Builder.interpolator
+                    duration = this@Builder.duration
+                }
 
             return CircleRevealHelper(animation = anim)
         }

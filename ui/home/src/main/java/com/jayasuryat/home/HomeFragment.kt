@@ -2,6 +2,8 @@ package com.jayasuryat.home
 
 import android.graphics.Point
 import android.view.View
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.TranslateAnimation
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.jayasuryat.base.CircleRevealHelper
@@ -40,11 +42,17 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
         val animView: View = binding.clRoot
 
         CircleRevealHelper.Builder(animView)
-            .setStartPoint(x = (animView.width / 2).toDouble(), y = 0.0)
-            .setEndPoint(x = (animView.width / 2).toDouble(), y = animView.height.toDouble())
+            .setStartPoint(x = (animView.width / 2).toDouble(), y = animView.height.toDouble())
+            .setEndPoint(x = (animView.width / 2).toDouble(), y = 0.0)
             .build()
             .animation
             .start()
+
+        TranslateAnimation(0f, 0f, 100f, 0f)
+            .apply {
+                duration = 300
+                interpolator = DecelerateInterpolator()
+            }.run { binding.clContainer.startAnimation(this) }
     }
 
     private fun revealRoot() {
@@ -57,6 +65,12 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
             .build()
             .animation
             .start()
+
+        TranslateAnimation(0f, 0f, -100f, 0f)
+            .apply {
+                duration = 300
+                interpolator = DecelerateInterpolator()
+            }.run { binding.clContainer.startAnimation(this) }
     }
     // endregion
 
