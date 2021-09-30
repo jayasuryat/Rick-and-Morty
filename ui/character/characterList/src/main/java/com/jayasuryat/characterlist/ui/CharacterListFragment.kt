@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.TranslateAnimation
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,11 +21,14 @@ import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 @AndroidEntryPoint
 class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
         FragmentCharacterListBinding>(FragmentCharacterListBinding::inflate) {
+
+    private val hasLanded: AtomicBoolean = AtomicBoolean(false)
 
     private val characterListAdapter: CharactersListAdapter by lazy {
         CharactersListAdapter(::openCharacter)
@@ -50,7 +54,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
     override fun setupViews(): FragmentCharacterListBinding.() -> Unit = {
 
         binding.clRoot.post(::revealRoot)
-        animateViews()
+        binding.clRoot.post(::handleAnimation)
 
         ivBack.shrinkOnClick(::navigateBack)
 
@@ -62,21 +66,23 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     override fun setupObservers(): CharacterListViewModel.() -> Unit = {
 
-        obsIsDataLoading.observe(viewLifecycleOwner) { isLoading ->
-            //binding.pbLoading.toggleVisibility(isLoading == true)
-        }
-
         obsCharactersList.observe(viewLifecycleOwner) { characters ->
             characterListAdapter.submitList(characters)
             binding.rvCharactersList.show()
-            startPostponedEnterTransition()
+            (view?.parent as? ViewGroup)
+                ?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 
     private fun revealRoot() {
 
-        val startX = arguments?.get("x")?.toString()?.toIntOrNull() ?: 0
-        val startY = arguments?.get("y")?.toString()?.toIntOrNull() ?: 0
+        val argsX = arguments?.get("x")?.toString()?.toIntOrNull() ?: 0
+        val argsY = arguments?.get("y")?.toString()?.toIntOrNull() ?: 0
+
+        val hasLanded = hasLanded.get()
+
+        val startX = if (hasLanded) 64 else argsX
+        val startY = if (hasLanded) 154 else argsY
 
         CircleRevealHelper.Builder(binding.clRoot)
             .setStartPoint(startX.toDouble(), startY.toDouble())
@@ -86,41 +92,65 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
             .start()
     }
 
-    private fun animateViews() {
+    private fun handleAnimation() {
 
         val animDuration: Long = 300
         val animInterpolator = DecelerateInterpolator()
 
-        ObjectAnimator.ofFloat(binding.ivBack, "alpha", 0f, 0.0f, 1f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.start()
+        fun defaultAnimation() {
 
-        ObjectAnimator.ofFloat(binding.rvCharactersList, "alpha", 0f, 0.0f, 1f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.start()
+            ObjectAnimator.ofFloat(binding.ivBack, "alpha", 0f, 0.0f, 1f)
+                .apply {
+                    duration = animDuration
+                    interpolator = animInterpolator
+                }.start()
 
-        TranslateAnimation(-100f, 0f, 0f, 0f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.run { binding.ivBack.startAnimation(this) }
+            ObjectAnimator.ofFloat(binding.rvCharactersList, "alpha", 0f, 0.0f, 1f)
+                .apply {
+                    duration = animDuration
+                    interpolator = animInterpolator
+                }.start()
 
-        TranslateAnimation(0f, 0f, 200f, 0f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.run { binding.rvCharactersList.startAnimation(this) }
+            TranslateAnimation(-100f, 0f, 0f, 0f)
+                .apply {
+                    duration = animDuration
+                    interpolator = animInterpolator
+                }.run { binding.ivBack.startAnimation(this) }
+
+            TranslateAnimation(0f, 0f, 200f, 0f)
+                .apply {
+                    duration = animDuration
+                    interpolator = animInterpolator
+                }.run { binding.rvCharactersList.startAnimation(this) }
+        }
+
+        fun backAnimation() {
+
+            ObjectAnimator.ofFloat(binding.rvCharactersList, "alpha", 0f, 0.0f, 1f)
+                .apply {
+                    duration = animDuration
+                    interpolator = animInterpolator
+                }.start()
+
+            TranslateAnimation(0f, 0f, -200f, 0f)
+                .apply {
+                    duration = animDuration
+                    interpolator = animInterpolator
+                }.run { binding.rvCharactersList.startAnimation(this) }
+        }
+
+        if (hasLanded.compareAndSet(false, true)) defaultAnimation()
+        else backAnimation()
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
 
-    private fun openCharacter(character: CharacterDef, sharedView: View) {
+    private fun openCharacter(character: CharacterDef, image: View, name: View) {
 
-        val extras = FragmentNavigatorExtras(sharedView to "characterAvatar")
+        val extras = FragmentNavigatorExtras(
+            image to "characterAvatar",
+            name to "characterName",
+        )
 
         viewModel.onItemClicked(character)
 

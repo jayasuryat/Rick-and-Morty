@@ -23,6 +23,7 @@
         style="@style/RM.Text.Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:elevation="32dp"
         android:text="@string/characters"
         android:textSize="32sp"
         android:transitionName="charListTitle"
