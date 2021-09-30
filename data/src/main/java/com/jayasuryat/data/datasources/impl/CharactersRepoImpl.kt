@@ -1,6 +1,5 @@
 package com.jayasuryat.data.datasources.impl
 
-import android.util.Log
 import com.jayasuryat.data.data.local.definitions.CharactersLocalDataSource
 import com.jayasuryat.data.data.local.entities.CharacterEntity
 import com.jayasuryat.data.data.remote.definitions.CharactersRemoteDataSource
@@ -26,9 +25,6 @@ internal class CharactersRepoImpl(
             .map { dto -> characterDtoToEntity(dto) }
             .also { entities -> cacheClient.saveCharacters(entities) }
 
-        val entities = cacheClient.getAllCharacters()
-        Log.d("GotEm", entities.toString())
-
         cacheClient.getAllCharacters()
             .map { entity -> characterEntityToDomain(entity) }
     }
@@ -37,5 +33,12 @@ internal class CharactersRepoImpl(
 
         cacheClient.getAllCharacters()
             .map { entity -> characterEntityToDomain(entity) }
+    }
+
+    override suspend fun getCharacterFromCache(characterId: Long):
+            KResult<Character> = wrapAsResult {
+
+        val entity = cacheClient.getCharacterById(characterId)
+        characterEntityToDomain(entity)
     }
 }

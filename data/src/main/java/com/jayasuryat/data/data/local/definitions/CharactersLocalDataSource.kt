@@ -12,4 +12,7 @@ internal interface CharactersLocalDataSource : LocalDataSource {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveCharacters(characters: List<CharacterEntity>)
+
+    @Query("SELECT * FROM character WHERE id=:characterId")
+    suspend fun getCharacterById(characterId: Long): CharacterEntity
 }

@@ -14,4 +14,9 @@
         android:name="com.jayasuryat.characterlist.ui.CharacterListFragment"
         android:label="CharacterListFragment" />
 
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.jayasuryat.characterdetails.CharacterDetailsFragment"
+        android:label="CharacterDetailsFragment" />
+
 </navigation>

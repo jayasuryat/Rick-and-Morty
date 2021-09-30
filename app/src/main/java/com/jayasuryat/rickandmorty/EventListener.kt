@@ -10,6 +10,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.findNavController
+import com.jayasuryat.characterdetails.CharacterDetailsEvent
+import com.jayasuryat.characterlist.CharacterListEvent
+import com.jayasuryat.characterlist.NavigateBack
+import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.home.HomeScreenEvent
 import com.jayasuryat.home.OpenCharacters
 import com.jayasuryat.home.OpenEpisodes
@@ -72,12 +76,43 @@ class EventListener private constructor(
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: CharacterListEvent) {
+
+        when (event) {
+
+            is OpenCharacter -> {
+
+                val args = Bundle().apply {
+                    putLong("id", event.characterId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.characterDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+
+            is NavigateBack -> navigationHelper.popBackStack()
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: CharacterDetailsEvent) {
+
+        when (event) {
+
+            com.jayasuryat.characterdetails.NavigateBack -> navigationHelper.popBackStack()
+        }
+    }
+
     private inner class NavigationHelper {
 
         private val defaultNavOptions: NavOptions by lazy {
             NavOptions.Builder()
                 .setEnterAnim(R.anim.enter_from_right)
-                .setExitAnim(R.anim.exit_to_right)
+                .setExitAnim(R.anim.exit_to_left)
                 .setPopEnterAnim(R.anim.enter_from_left)
                 .setPopExitAnim(R.anim.exit_to_right).build()
         }
@@ -90,7 +125,13 @@ class EventListener private constructor(
         ) {
 
             activity.findNavController(R.id.fcvMainContainer)
-                .navigate(R.id.characterListFragment, arguments, navOptions, extras)
+                .navigate(destinationId, arguments, null /*navOptions*/, extras)
+        }
+
+        fun popBackStack() {
+
+            activity.findNavController(R.id.fcvMainContainer)
+                .popBackStack()
         }
     }
 
