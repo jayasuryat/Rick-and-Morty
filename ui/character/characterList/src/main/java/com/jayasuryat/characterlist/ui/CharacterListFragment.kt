@@ -53,7 +53,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     override fun setupViews(): FragmentCharacterListBinding.() -> Unit = {
 
-        binding.clRoot.post(::revealRoot)
+        //binding.clRoot.post(::revealRoot)
         binding.clRoot.post(::handleAnimation)
 
         ivBack.shrinkOnClick(::navigateBack)
@@ -132,7 +132,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
                     interpolator = animInterpolator
                 }.start()
 
-            TranslateAnimation(0f, 0f, -200f, 0f)
+            TranslateAnimation(0f, 0f, -164f, 0f)
                 .apply {
                     duration = animDuration
                     interpolator = animInterpolator

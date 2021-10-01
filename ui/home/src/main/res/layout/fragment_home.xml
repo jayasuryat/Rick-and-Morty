@@ -28,11 +28,18 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
+                    android:id="@+id/ivCharacter"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:background="?attr/background_color_light"
+                    android:contentDescription="@string/cd_characters_image"
+                    android:scaleType="fitEnd"
                     android:src="@drawable/img_rick"
-                    android:contentDescription="@string/cd_characters_image" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvCharacters"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvCharacters"
@@ -64,13 +71,20 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
+                    android:id="@+id/ivEpisodes"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="@string/cd_episode_image"
+                    android:scaleType="fitEnd"
                     android:src="@drawable/img_episode"
-                    android:contentDescription="@string/cd_episode_image" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvEpisodes"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tvEpisodes"
                     style="@style/RM.Text.Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,7 +111,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/ivLocations"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:contentDescription="@string/cd_location_image"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/img_location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.65"
+                    app:layout_constraintStart_toEndOf="@+id/tvLocation" />
+
                 <TextView
+                    android:id="@+id/tvLocation"
                     style="@style/RM.Text.Value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

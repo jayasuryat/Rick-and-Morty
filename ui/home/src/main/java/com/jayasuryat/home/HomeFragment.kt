@@ -44,6 +44,7 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
         CircleRevealHelper.Builder(animView)
             .setStartPoint(x = (animView.width / 2).toDouble(), y = animView.height.toDouble())
             .setEndPoint(x = (animView.width / 2).toDouble(), y = 0.0)
+            .setDuration(300)
             .build()
             .animation
             .start()
@@ -53,6 +54,16 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
                 duration = 300
                 interpolator = DecelerateInterpolator()
             }.run { binding.clContainer.startAnimation(this) }
+
+        TranslateAnimation(0f, 0f, 200f, 0f)
+            .apply {
+                duration = 300
+                interpolator = DecelerateInterpolator()
+            }.run {
+                binding.ivCharacter.startAnimation(this)
+                binding.ivEpisodes.startAnimation(this)
+                binding.ivLocations.startAnimation(this)
+            }
     }
 
     private fun revealRoot() {
@@ -64,13 +75,23 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
             .setFarthestPointFromStartAsEnd()
             .build()
             .animation
-            .start()
+        //.start()
 
         TranslateAnimation(0f, 0f, -100f, 0f)
             .apply {
                 duration = 300
                 interpolator = DecelerateInterpolator()
             }.run { binding.clContainer.startAnimation(this) }
+
+        TranslateAnimation(0f, 0f, -50f, 0f)
+            .apply {
+                duration = 300
+                interpolator = DecelerateInterpolator()
+            }.run {
+                binding.ivCharacter.startAnimation(this)
+                binding.ivEpisodes.startAnimation(this)
+                binding.ivLocations.startAnimation(this)
+            }
     }
     // endregion
 
