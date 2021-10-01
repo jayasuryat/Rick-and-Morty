@@ -2,5 +2,7 @@
 
     <string name="cd_back">Back</string>
     <string name="cd_character_image">Character image</string>
+    <string name="cd_gender">Gender</string>
+    <string name="cd_species">Species</string>
 
 </resources>

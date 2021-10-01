@@ -30,70 +30,176 @@
         app:layout_constraintBottom_toBottomOf="@id/ivBack"
         app:layout_constraintEnd_toEndOf="@id/ivBack"
         app:layout_constraintStart_toStartOf="@id/ivBack"
-        app:layout_constraintTop_toTopOf="@id/ivBack" />
+        app:layout_constraintTop_toTopOf="@id/ivBack"
+        app:strokeColor="?text_value_color"
+        app:strokeWidth="1dp" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cvAvatar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/ivCharacter"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/cd_character_image"
-            android:elevation="0dp"
-            android:scaleType="centerCrop"
-            android:transitionName="characterAvatar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/dune" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Space
-        android:id="@+id/sAvatarBottom"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cvAvatar" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvInfo"
-        style="@style/RM.Card"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="32dp"
-        android:transitionName="characterContainer"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sAvatarBottom">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="32dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvName"
-                style="@style/RM.Text.Value"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cvAvatar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:elevation="32dp"
-                android:textSize="32sp"
-                android:transitionName="characterName"
+                android:layout_height="0dp"
+                android:elevation="0dp"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rick Sanchez" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivCharacter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_character_image"
+                    android:elevation="0dp"
+                    android:scaleType="centerCrop"
+                    android:transitionName="characterAvatar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/dune" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvInfo"
+                style="@style/RM.Card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:transitionName="characterContainer"
+                app:layout_constraintBottom_toBottomOf="@+id/cvAvatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAvatar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/RM.Text.Value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:elevation="32dp"
+                        android:gravity="center"
+                        android:textSize="32sp"
+                        android:transitionName="characterName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Rick Sanchez" />
+
+                    <View
+                        android:id="@+id/vDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:alpha="0.1"
+                        android:background="?text_value_color"
+                        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+                    <ImageView
+                        android:id="@+id/ivSpecies"
+                        android:layout_width="30dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:contentDescription="@string/cd_species"
+                        android:src="@drawable/icon_alien"
+                        app:layout_constraintDimensionRatio="h,1:1"
+                        app:layout_constraintEnd_toStartOf="@+id/cvStatus"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vDivider" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvStatus"
+                        style="@style/RM.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardBackgroundColor="@color/green"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivSpecies"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toStartOf="@+id/ivGender"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/ivSpecies"
+                        app:layout_constraintTop_toTopOf="@+id/ivSpecies" />
+
+                    <ImageView
+                        android:id="@+id/ivGender"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:contentDescription="@string/cd_gender"
+                        android:src="@drawable/icon_gender_male"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivSpecies"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/cvStatus"
+                        app:layout_constraintTop_toTopOf="@+id/ivSpecies" />
+
+                    <TextView
+                        android:id="@+id/tvSpecies"
+                        style="@style/RM.Text.Value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:alpha="0.5"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/ivSpecies"
+                        app:layout_constraintStart_toStartOf="@+id/ivSpecies"
+                        app:layout_constraintTop_toBottomOf="@+id/ivSpecies"
+                        tools:text="Human" />
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        style="@style/RM.Text.Value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.5"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/cvStatus"
+                        app:layout_constraintStart_toStartOf="@+id/cvStatus"
+                        app:layout_constraintTop_toTopOf="@+id/tvSpecies"
+                        tools:text="Active" />
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        style="@style/RM.Text.Value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.5"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/ivGender"
+                        app:layout_constraintStart_toStartOf="@+id/ivGender"
+                        app:layout_constraintTop_toTopOf="@+id/tvSpecies"
+                        tools:text="Male" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                app:layout_constraintTop_toBottomOf="@+id/cvInfo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
