@@ -24,6 +24,10 @@ internal object Router {
         url.takeFrom(base() + "episode".paged(page))
     }
 
+    fun episodes(episodes: List<Long>): HttpRequestBuilder.() -> Unit = {
+        url.takeFrom(base() + "episode/" + episodes.joinToString())
+    }
+
     private fun String.paged(page: Int): String =
         if (this.last() != '/') "$this/?page=$page" else "$this?page=$page"
 }

@@ -5,6 +5,7 @@ import com.jayasuryat.data.data.remote.definitions.CharactersRemoteDataSource
 import com.jayasuryat.data.data.remote.definitions.EpisodesRemoteDataSource
 import com.jayasuryat.data.data.remote.definitions.LocationsRemoteDataSource
 import com.jayasuryat.data.data.remote.dtos.CharacterListResponse
+import com.jayasuryat.data.data.remote.dtos.EpisodeDto
 import com.jayasuryat.data.data.remote.dtos.EpisodesListResponse
 import com.jayasuryat.data.data.remote.dtos.LocationListResponse
 import io.ktor.client.*
@@ -21,6 +22,9 @@ internal class NetworkClient(
 
     override suspend fun getEpisodes(page: Int): EpisodesListResponse =
         withContext(Dispatchers.IO) { client.get(block = Router.episodes(page)) }
+
+    override suspend fun getEpisodesFor(episodeNumbers: List<Long>): List<EpisodeDto> =
+        withContext(Dispatchers.IO) { client.get(block = Router.episodes(episodeNumbers)) }
 
     override suspend fun getLocations(page: Int): LocationListResponse =
         withContext(Dispatchers.IO) { client.get(block = Router.locations(page)) }
