@@ -145,11 +145,12 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
 
-    private fun openCharacter(character: CharacterDef, image: View, name: View) {
+    private fun openCharacter(character: CharacterDef, image: View, name: View, container: View) {
 
         val extras = FragmentNavigatorExtras(
             image to "characterAvatar",
             name to "characterName",
+            container to "characterContainer",
         )
 
         viewModel.onItemClicked(character)

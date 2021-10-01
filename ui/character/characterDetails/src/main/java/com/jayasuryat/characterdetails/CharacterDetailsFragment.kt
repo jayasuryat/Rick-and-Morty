@@ -1,6 +1,5 @@
 package com.jayasuryat.characterdetails
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.TranslateAnimation
@@ -49,34 +48,10 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         val animDuration: Long = 300
         val animInterpolator = DecelerateInterpolator()
 
-        ObjectAnimator.ofFloat(binding.cvInfo, "alpha", 0f, 0.0f, 1f)
+        TranslateAnimation(-100f, 0f, 0f, 0f)
             .apply {
                 duration = animDuration
                 interpolator = animInterpolator
-            }.start()
-
-        ObjectAnimator.ofFloat(binding.ivCharacter, "alpha", 0f, 0.0f, 1f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.start()
-
-        TranslateAnimation(0f, 0f, 400f, 0f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.run { binding.cvInfo.startAnimation(this) }
-
-        ObjectAnimator.ofFloat(binding.cvBack, "scaleX", 0f, 1f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.start()
-
-        ObjectAnimator.ofFloat(binding.cvBack, "scaleY", 0f, 1f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.start()
+            }.run { binding.cvBack.startAnimation(this) }
     }
 }

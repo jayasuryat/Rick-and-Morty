@@ -11,7 +11,7 @@ import com.jayasuryat.characterlist.UiUtils.loadImage
 import com.jayasuryat.characterlist.databinding.ItemCharacterBinding
 
 internal class CharactersListAdapter(
-    private val onItemSelected: (character: CharacterDef, image: View, name: View) -> Unit,
+    private val onItemSelected: (character: CharacterDef, image: View, name: View, container: View) -> Unit,
 ) : ListAdapter<CharacterDef, CharactersListAdapter.CharacterViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder =
@@ -28,7 +28,8 @@ internal class CharactersListAdapter(
         init {
             item.cvRoot.shrinkOnClick {
                 val position = bindingAdapterPosition
-                if (position >= 0) onItemSelected(getItem(position), item.ivAvatar, item.tvName)
+                if (position >= 0)
+                    onItemSelected(getItem(position), item.ivAvatar, item.tvName, item.cvRoot)
             }
         }
 
@@ -37,6 +38,7 @@ internal class CharactersListAdapter(
             item.ivAvatar.loadImage(data.imageUrl)
             item.ivAvatar.transitionName = "avatar_#${data.id}"
             item.tvName.transitionName = "name_#${data.id}"
+            item.cvRoot.transitionName = "container_#${data.id}"
         }
     }
 
