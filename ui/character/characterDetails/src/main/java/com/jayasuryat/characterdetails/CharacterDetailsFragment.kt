@@ -38,6 +38,8 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         animateViews()
 
         cvBack.shrinkOnClick(::navigateBack)
+
+        cvLocation.shrinkOnClick { }
     }
 
     override fun setupObservers(): CharacterDetailsViewModel.() -> Unit = {
@@ -78,6 +80,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             tvSpecies.text = character.species.name
             tvGender.text = character.gender.name
             tvStatus.text = character.status.name
+            tvLocationValue.text = character.location.name
         }
     }
 
@@ -93,5 +96,11 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
                 duration = animDuration
                 interpolator = animInterpolator
             }.run { binding.cvBack.startAnimation(this) }
+
+        TranslateAnimation(0f, 0f, 200f, 0f)
+            .apply {
+                duration = animDuration
+                interpolator = animInterpolator
+            }.run { binding.cvLocation.startAnimation(this) }
     }
 }

@@ -82,6 +82,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:padding="16dp">
 
                     <TextView
@@ -194,9 +195,72 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clExtraInfo"
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
-                app:layout_constraintTop_toBottomOf="@+id/cvInfo" />
+                android:layout_height="200dp"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/cvInfo">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvLocation"
+                    style="@style/RM.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="24dp">
+
+                        <TextView
+                            android:id="@+id/tvLocationTitle"
+                            style="@style/RM.Text.Value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="Location"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvLocationValue"
+                            style="@style/RM.Text.Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="center"
+                            app:layout_constraintEnd_toStartOf="@+id/ivOpen"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvLocationTitle"
+                            tools:text="Earth (Replacement Dimension)" />
+
+                        <ImageView
+                            android:id="@+id/ivOpen"
+                            android:layout_width="18dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:alpha="0.7"
+                            android:src="@drawable/icon_link"
+                            app:layout_constraintBottom_toBottomOf="@id/tvLocationValue"
+                            app:layout_constraintDimensionRatio="h,1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/tvLocationValue"
+                            app:layout_constraintTop_toTopOf="@+id/tvLocationValue"
+                            app:tint="?text_value_color" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
