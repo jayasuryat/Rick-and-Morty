@@ -12,16 +12,33 @@
     <ImageView
         android:id="@+id/ivBack"
         style="@style/RM.Button.Back"
-        android:layout_margin="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/cd_back"
         android:elevation="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvBack"
+        style="@style/RM.Card"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        android:elevation="32dp"
+        app:cardCornerRadius="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivBack"
+        app:layout_constraintEnd_toEndOf="@id/ivBack"
+        app:layout_constraintStart_toStartOf="@id/ivBack"
+        app:layout_constraintTop_toTopOf="@id/ivBack"
+        app:strokeColor="?text_value_color"
+        app:strokeWidth="1dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cvAvatar"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:elevation="0dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/cd_character_image"
+            android:elevation="0dp"
             android:scaleType="centerCrop"
             android:transitionName="characterAvatar"
             app:layout_constraintTop_toTopOf="parent"

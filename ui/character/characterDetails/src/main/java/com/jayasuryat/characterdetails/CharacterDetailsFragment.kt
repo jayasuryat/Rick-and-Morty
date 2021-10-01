@@ -30,7 +30,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
 
         animateViews()
 
-        ivBack.shrinkOnClick(::navigateBack)
+        cvBack.shrinkOnClick(::navigateBack)
     }
 
     override fun setupObservers(): CharacterDetailsViewModel.() -> Unit = {
@@ -66,5 +66,17 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
                 duration = animDuration
                 interpolator = animInterpolator
             }.run { binding.cvInfo.startAnimation(this) }
+
+        ObjectAnimator.ofFloat(binding.cvBack, "scaleX", 0f, 1f)
+            .apply {
+                duration = animDuration
+                interpolator = animInterpolator
+            }.start()
+
+        ObjectAnimator.ofFloat(binding.cvBack, "scaleY", 0f, 1f)
+            .apply {
+                duration = animDuration
+                interpolator = animInterpolator
+            }.start()
     }
 }
