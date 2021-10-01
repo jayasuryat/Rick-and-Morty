@@ -1,14 +1,19 @@
 package com.jayasuryat.characterdetails
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.TranslateAnimation
 import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.jayasuryat.base.arch.BaseAbsFragment
+import com.jayasuryat.base.hide
+import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
+import com.jayasuryat.base.toggleVisibility
 import com.jayasuryat.characterdetails.UiUtils.loadImage
 import com.jayasuryat.characterdetails.databinding.FragmentCharacterDetailsBinding
 import com.jayasuryat.data.models.domain.Character
@@ -25,6 +30,8 @@ import org.greenrobot.eventbus.EventBus
 class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         FragmentCharacterDetailsBinding>(FragmentCharacterDetailsBinding::inflate) {
 
+    private val episodesAdapter: EpisodeListAdapter by lazy { EpisodeListAdapter() }
+
     override val viewModel: CharacterDetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,16 +42,32 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
 
     override fun setupViews(): FragmentCharacterDetailsBinding.() -> Unit = {
 
-        animateViews()
+        binding.root.postDelayed(::animateViews, 300)
+
+        rvEpisodes.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = episodesAdapter
+        }
 
         cvBack.shrinkOnClick(::navigateBack)
 
         cvLocation.shrinkOnClick { }
+
+        cvEpisodes.setOnClickListener {
+            cvEpisodes.isClickable = false
+            rvEpisodes.show()
+            ivExpand.hide()
+        }
     }
 
     override fun setupObservers(): CharacterDetailsViewModel.() -> Unit = {
 
         obsCharacter.observe(viewLifecycleOwner, ::loadUi)
+
+        obsEpisodes.observe(viewLifecycleOwner) { episodes ->
+            episodesAdapter.submitList(episodes)
+            binding.cvEpisodes.toggleVisibility(!episodes.isNullOrEmpty())
+        }
     }
 
     private fun loadUi(character: Character?) {
@@ -91,16 +114,20 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         val animDuration: Long = 300
         val animInterpolator = DecelerateInterpolator()
 
-        TranslateAnimation(-100f, 0f, 0f, 0f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.run { binding.cvBack.startAnimation(this) }
+        val view = nullableBinding?.clExtraInfo ?: return
 
         TranslateAnimation(0f, 0f, 200f, 0f)
             .apply {
                 duration = animDuration
                 interpolator = animInterpolator
-            }.run { binding.cvLocation.startAnimation(this) }
+            }.run { view.startAnimation(this) }
+
+        ObjectAnimator.ofFloat(view, "alpha", 0f, 0.0f, 1f)
+            .apply {
+                duration = animDuration
+                interpolator = animInterpolator
+            }.start()
+
+        view.show()
     }
 }

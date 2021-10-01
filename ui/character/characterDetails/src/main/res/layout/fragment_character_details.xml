@@ -34,7 +34,7 @@
         app:strokeColor="?text_value_color"
         app:strokeWidth="1dp" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -197,9 +197,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clExtraInfo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 android:padding="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/cvInfo">
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/cvInfo"
+                tools:visibility="visible">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvLocation"
@@ -211,6 +214,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
                         android:padding="24dp">
 
                         <TextView
@@ -234,36 +238,81 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:gravity="center"
-                            app:layout_constraintEnd_toStartOf="@+id/ivOpen"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvLocationTitle"
                             tools:text="Earth (Replacement Dimension)" />
-
-                        <ImageView
-                            android:id="@+id/ivOpen"
-                            android:layout_width="18dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="8dp"
-                            android:alpha="0.7"
-                            android:src="@drawable/icon_link"
-                            app:layout_constraintBottom_toBottomOf="@id/tvLocationValue"
-                            app:layout_constraintDimensionRatio="h,1:1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/tvLocationValue"
-                            app:layout_constraintTop_toTopOf="@+id/tvLocationValue"
-                            app:tint="?text_value_color" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvEpisodes"
+                    style="@style/RM.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:animateLayoutChanges="true"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/cvLocation">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="24dp"
+                        tools:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvEpisodesTitle"
+                            style="@style/RM.Text.Value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="Episodes"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivExpand"
+                            android:layout_width="30dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/icon_down"
+                            app:layout_constraintDimensionRatio="h,1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvEpisodesTitle"
+                            app:tint="?text_value_color" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvEpisodes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:nestedScrollingEnabled="false"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@+id/ivExpand"
+                            tools:listitem="@layout/item_episode" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Space
+                    android:id="@+id/sBottomSpacer"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintTop_toBottomOf="@+id/cvEpisodes" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
