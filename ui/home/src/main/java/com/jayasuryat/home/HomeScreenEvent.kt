@@ -10,5 +10,8 @@ class OpenCharacters(
     val clickPoint: Point,
 ) : HomeScreenEvent
 
-object OpenEpisodes : HomeScreenEvent
+class OpenEpisodes(
+    val extras: Navigator.Extras,
+) : HomeScreenEvent
+
 object OpenLocations : HomeScreenEvent

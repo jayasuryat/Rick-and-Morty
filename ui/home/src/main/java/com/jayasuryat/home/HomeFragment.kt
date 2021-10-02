@@ -27,7 +27,7 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
         binding.clRoot.post(::handleReveal)
 
         mcvCharacters.shrinkOnClickWithPoint(::navigateToCharacters)
-        mcvEpisodes.shrinkOnClick { postEvent(OpenEpisodes) }
+        mcvEpisodes.shrinkOnClick(::navigateToEpisodes)
         mcvLocations.shrinkOnClick { postEvent(OpenLocations) }
     }
 
@@ -98,6 +98,11 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
     private fun navigateToCharacters(point: Point) {
         val extras = FragmentNavigatorExtras(binding.tvCharacters to "charListTitle")
         OpenCharacters(extras = extras, clickPoint = point).let(::postEvent)
+    }
+
+    private fun navigateToEpisodes() {
+        val extras = FragmentNavigatorExtras(binding.tvEpisodes to "episodesListTitle")
+        OpenEpisodes(extras = extras).let(::postEvent)
     }
 
     private fun postEvent(event: HomeScreenEvent) = EventBus.getDefault().post(event)

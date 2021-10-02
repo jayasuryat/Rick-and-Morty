@@ -8,7 +8,7 @@ import com.jayasuryat.data.data.local.entities.EpisodeEntity
 internal interface EpisodesLocalDataSource : LocalDataSource {
 
     @Query("SELECT * FROM episode")
-    suspend fun getAllEpisodes(): EpisodeEntity
+    suspend fun getAllEpisodes(): List<EpisodeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveEpisodes(characters: List<EpisodeEntity>)

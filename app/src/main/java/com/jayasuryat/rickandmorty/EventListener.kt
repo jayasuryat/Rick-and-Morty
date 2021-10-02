@@ -14,6 +14,8 @@ import com.jayasuryat.characterdetails.CharacterDetailsEvent
 import com.jayasuryat.characterlist.CharacterListEvent
 import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
+import com.jayasuryat.episodelist.EpisodeListEvent
+import com.jayasuryat.episodelist.OpenEpisode
 import com.jayasuryat.home.HomeScreenEvent
 import com.jayasuryat.home.OpenCharacters
 import com.jayasuryat.home.OpenEpisodes
@@ -70,7 +72,13 @@ class EventListener private constructor(
                 )
             }
 
-            OpenEpisodes -> TODO()
+            is OpenEpisodes -> {
+
+                navigationHelper.navigate(
+                    destinationId = R.id.episodesListFragment,
+                    extras = event.extras,
+                )
+            }
 
             OpenLocations -> TODO()
         }
@@ -104,6 +112,17 @@ class EventListener private constructor(
         when (event) {
 
             com.jayasuryat.characterdetails.NavigateBack -> navigationHelper.popBackStack()
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: EpisodeListEvent) {
+
+        when (event) {
+
+            is com.jayasuryat.episodelist.NavigateBack -> navigationHelper.popBackStack()
+
+            is OpenEpisode -> TODO()
         }
     }
 

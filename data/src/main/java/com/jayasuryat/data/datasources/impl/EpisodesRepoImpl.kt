@@ -18,8 +18,29 @@ internal class EpisodesRepoImpl(
     private val episodeEntityToDomain: EntityToDomainMapper<EpisodeEntity, Episode>,
 ) : EpisodesRepository {
 
-    override suspend fun getEpisodes(page: Int): KResult<List<Episode>> {
-        TODO("Not yet implemented")
+    override suspend fun getEpisodes(page: Int): KResult<List<Episode>> = wrapAsResult {
+
+        networkClient.getEpisodes(page)
+            .results
+            .map { dto -> episodeDtoToEntity(dto) }
+            .also { entities -> cacheClient.saveEpisodes(entities) }
+
+        cacheClient.getAllEpisodes()
+            .map { entity -> episodeEntityToDomain(entity) }
+    }
+
+    override suspend fun getAllEpisodes(): KResult<List<Episode>> = wrapAsResult {
+
+        val totalCount = networkClient.getEpisodes(0).info.count
+
+        getEpisodes((1..totalCount).toList())
+            .getOrThrow()
+    }
+
+    override suspend fun getAllEpisodesInCache(): KResult<List<Episode>> = wrapAsResult {
+
+        cacheClient.getAllEpisodes()
+            .map { entity -> episodeEntityToDomain(entity) }
     }
 
     @Suppress("ComplexRedundantLet")

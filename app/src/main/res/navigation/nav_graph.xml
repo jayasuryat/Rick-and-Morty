@@ -19,4 +19,9 @@
         android:name="com.jayasuryat.characterdetails.CharacterDetailsFragment"
         android:label="CharacterDetailsFragment" />
 
+    <fragment
+        android:id="@+id/episodesListFragment"
+        android:name="com.jayasuryat.episodelist.EpisodesListFragment"
+        android:label="EpisodesListFragment" />
+
 </navigation>

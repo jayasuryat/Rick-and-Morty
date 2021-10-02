@@ -19,3 +19,5 @@ include ':ui:home'
 
 include ':ui:character:characterList'
 include ':ui:character:characterDetails'
+
+include ':ui:episode:episodeList'
