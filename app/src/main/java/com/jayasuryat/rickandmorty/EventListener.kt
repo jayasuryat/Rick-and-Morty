@@ -54,6 +54,7 @@ class EventListener private constructor(
     private fun register() = EventBus.getDefault().register(this)
     private fun unRegister() = EventBus.getDefault().unregister(this)
 
+    // region : Home Screen
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: HomeScreenEvent) {
 
@@ -84,7 +85,9 @@ class EventListener private constructor(
             OpenLocations -> TODO()
         }
     }
+    // endregion
 
+    // region : Character list flow
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: CharacterListEvent) {
 
@@ -112,7 +115,44 @@ class EventListener private constructor(
 
         when (event) {
 
+            is com.jayasuryat.characterdetails.OpenEpisode -> {
+
+                val args = Bundle().apply {
+                    putLong("episodeId", event.episodeId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.episodeDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+
             com.jayasuryat.characterdetails.NavigateBack -> navigationHelper.popBackStack()
+        }
+    }
+    // endregion
+
+    // region : Episode flow
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: EpisodeListEvent) {
+
+        when (event) {
+
+            is OpenEpisode -> {
+
+                val args = Bundle().apply {
+                    putLong("episodeId", event.episodeId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.episodeDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+
+            is com.jayasuryat.episodelist.NavigateBack -> navigationHelper.popBackStack()
         }
     }
 
@@ -137,28 +177,7 @@ class EventListener private constructor(
             }
         }
     }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: EpisodeListEvent) {
-
-        when (event) {
-
-            is OpenEpisode -> {
-
-                val args = Bundle().apply {
-                    putLong("episodeId", event.episodeId)
-                }
-
-                navigationHelper.navigate(
-                    destinationId = R.id.episodeDetailsFragment,
-                    arguments = args,
-                    extras = event.extras
-                )
-            }
-
-            is com.jayasuryat.episodelist.NavigateBack -> navigationHelper.popBackStack()
-        }
-    }
+    // endregion
 
     private inner class NavigationHelper {
 

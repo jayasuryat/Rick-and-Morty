@@ -1,9 +1,14 @@
 package com.jayasuryat.characterdetails
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.jayasuryat.base.anim.AnimHelper
@@ -23,13 +28,16 @@ import com.jayasuryat.data.models.domain.Character.Status.Alive
 import com.jayasuryat.data.models.domain.Character.Status.Dead
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 @AndroidEntryPoint
 class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         FragmentCharacterDetailsBinding>(FragmentCharacterDetailsBinding::inflate) {
 
-    private val episodesAdapter: EpisodeListAdapter by lazy { EpisodeListAdapter() }
+    private val hasLanded: AtomicBoolean = AtomicBoolean(false)
+
+    private val episodesAdapter: EpisodeListAdapter by lazy { EpisodeListAdapter(::onEpisodeClicked) }
 
     override val viewModel: CharacterDetailsViewModel by viewModels()
 
@@ -37,6 +45,15 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        if (hasLanded.get()) postponeEnterTransition()
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun setupViews(): FragmentCharacterDetailsBinding.() -> Unit = {
@@ -66,6 +83,8 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         obsEpisodes.observe(viewLifecycleOwner) { episodes ->
             episodesAdapter.submitList(episodes)
             binding.cvEpisodes.toggleVisibility(!episodes.isNullOrEmpty())
+            (view?.parent as? ViewGroup)
+                ?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 
@@ -107,6 +126,18 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             tvStatus.text = character.status.name
             tvLocationValue.text = character.location.name
         }
+    }
+
+    private fun onEpisodeClicked(episode: EpisodeData, name: View) {
+
+        val extras = FragmentNavigatorExtras(name to "episodeName")
+
+        val event = OpenEpisode(
+            episodeId = episode.episodeId,
+            extras = extras,
+        )
+
+        EventBus.getDefault().post(event)
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)

@@ -2,6 +2,7 @@ package com.jayasuryat.characterdetails
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.characterdetails.databinding.ItemEpisodeBinding
 
-class EpisodeListAdapter : ListAdapter<EpisodeData,
-        EpisodeListAdapter.EpisodeViewHolder>(diffCallback) {
+class EpisodeListAdapter(
+    private val onClicked: (episode: EpisodeData, name: View) -> Unit,
+) : ListAdapter<EpisodeData, EpisodeListAdapter.EpisodeViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder =
         ItemEpisodeBinding
@@ -24,7 +26,11 @@ class EpisodeListAdapter : ListAdapter<EpisodeData,
         RecyclerView.ViewHolder(item.root) {
 
         init {
-            item.cvRoot.shrinkOnClick { }
+            item.cvRoot.shrinkOnClick {
+                val position = adapterPosition
+                if (position >= 0)
+                    onClicked(getItem(position), item.tvEpisodeName)
+            }
         }
 
         @SuppressLint("SetTextI18n")
@@ -32,6 +38,7 @@ class EpisodeListAdapter : ListAdapter<EpisodeData,
             item.tvEpisodeName.text = data.episodeName
             item.tvSeasonNumber.text = "S${data.season}"
             item.tvEpisodeNumber.text = "E${data.episode}"
+            item.tvEpisodeName.transitionName = "name_${data.url}"
         }
     }
 
@@ -39,7 +46,7 @@ class EpisodeListAdapter : ListAdapter<EpisodeData,
 
         private val diffCallback = object : DiffUtil.ItemCallback<EpisodeData>() {
             override fun areItemsTheSame(oldItem: EpisodeData, newItem: EpisodeData): Boolean =
-                oldItem.episode == newItem.episode
+                oldItem.episodeId == newItem.episodeId
 
             override fun areContentsTheSame(oldItem: EpisodeData, newItem: EpisodeData): Boolean =
                 oldItem == newItem
@@ -48,6 +55,7 @@ class EpisodeListAdapter : ListAdapter<EpisodeData,
 }
 
 data class EpisodeData(
+    val episodeId: Long,
     val episodeName: String,
     val season: Int,
     val episode: Int,

@@ -61,6 +61,7 @@ class CharacterDetailsViewModel @Inject constructor(
                 ).toInt()
 
                 EpisodeData(
+                    episodeId = episode.id,
                     episodeName = episode.name,
                     season = seasonNum,
                     episode = episodeNum,

@@ -1,6 +1,5 @@
 package com.jayasuryat.data.data.remote.impl
 
-import android.util.Log
 import com.jayasuryat.data.data.remote.Router
 import com.jayasuryat.data.data.remote.definitions.CharactersRemoteDataSource
 import com.jayasuryat.data.data.remote.definitions.EpisodesRemoteDataSource
@@ -16,11 +15,7 @@ internal class NetworkClient(
 ) : CharactersRemoteDataSource, EpisodesRemoteDataSource, LocationsRemoteDataSource {
 
     override suspend fun getCharacters(page: Int): CharacterListResponse =
-        withContext(Dispatchers.IO) {
-            val data = client.get<CharacterListResponse>(block = Router.characters(page))
-            Log.d("Help", "Got data : $data")
-            data
-        }
+        withContext(Dispatchers.IO) { client.get(block = Router.characters(page)) }
 
     override suspend fun getCharactersById(ids: List<Long>): List<CharacterDto> =
         withContext(Dispatchers.IO) { client.get(block = Router.characters(ids)) }
