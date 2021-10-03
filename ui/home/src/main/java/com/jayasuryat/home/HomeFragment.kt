@@ -2,11 +2,12 @@ package com.jayasuryat.home
 
 import android.graphics.Point
 import android.view.View
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.TranslateAnimation
 import androidx.fragment.app.viewModels
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import com.jayasuryat.base.CircleRevealHelper
+import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.CircleRevealHelper
+import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.base.shrinkOnClickWithPoint
@@ -49,21 +50,20 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
             .animation
             .start()
 
-        TranslateAnimation(0f, 0f, 100f, 0f)
-            .apply {
-                duration = 300
-                interpolator = DecelerateInterpolator()
-            }.run { binding.clContainer.startAnimation(this) }
-
-        TranslateAnimation(0f, 0f, 200f, 0f)
-            .apply {
-                duration = 300
-                interpolator = DecelerateInterpolator()
-            }.run {
-                binding.ivCharacter.startAnimation(this)
-                binding.ivEpisodes.startAnimation(this)
-                binding.ivLocations.startAnimation(this)
+        AnimHelper.create {
+            addAnim {
+                TranslateAnim.builder()
+                    .fromVerticalDelta(100f)
+                    .toCurrentPosition()
+                    .build(binding.clContainer)
             }
+            addAnim {
+                TranslateAnim.builder()
+                    .fromVerticalDelta(200f)
+                    .toCurrentPosition()
+                    .build(binding.clContainer, binding.ivEpisodes, binding.ivLocations)
+            }
+        }.start()
     }
 
     private fun revealRoot() {
@@ -77,21 +77,21 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
             .animation
         //.start()
 
-        TranslateAnimation(0f, 0f, -100f, 0f)
-            .apply {
-                duration = 300
-                interpolator = DecelerateInterpolator()
-            }.run { binding.clContainer.startAnimation(this) }
-
-        TranslateAnimation(0f, 0f, -50f, 0f)
-            .apply {
-                duration = 300
-                interpolator = DecelerateInterpolator()
-            }.run {
-                binding.ivCharacter.startAnimation(this)
-                binding.ivEpisodes.startAnimation(this)
-                binding.ivLocations.startAnimation(this)
+        AnimHelper.create {
+            addAnim {
+                TranslateAnim.builder()
+                    .fromVerticalDelta(-100f)
+                    .toCurrentPosition()
+                    .build(binding.clContainer)
             }
+            addAnim {
+                TranslateAnim.builder()
+                    .fromVerticalDelta(-50f)
+                    .toCurrentPosition()
+                    .build(binding.clContainer, binding.ivEpisodes, binding.ivLocations)
+            }
+            overrideInterpolator(LinearOutSlowInInterpolator())
+        }.start()
     }
     // endregion
 

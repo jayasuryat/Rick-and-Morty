@@ -1,17 +1,17 @@
 package com.jayasuryat.episodelist
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.TranslateAnimation
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.jayasuryat.base.anim.impl.AlphaAnim
+import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.episodelist.databinding.FragmentEpisodesListBinding
@@ -70,49 +70,44 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
 
     private fun handleAnimation() {
 
-        val animDuration: Long = 300
-        val animInterpolator = DecelerateInterpolator()
-
         fun defaultAnimation() {
 
-            ObjectAnimator.ofFloat(binding.ivBack, "alpha", 0f, 0.0f, 1f)
-                .apply {
-                    duration = animDuration
-                    interpolator = animInterpolator
-                }.start()
-
-            ObjectAnimator.ofFloat(binding.rvEpisodesList, "alpha", 0f, 0.0f, 1f)
-                .apply {
-                    duration = animDuration
-                    interpolator = animInterpolator
-                }.start()
-
-            TranslateAnimation(-100f, 0f, 0f, 0f)
-                .apply {
-                    duration = animDuration
-                    interpolator = animInterpolator
-                }.run { binding.ivBack.startAnimation(this) }
-
-            TranslateAnimation(0f, 0f, 200f, 0f)
-                .apply {
-                    duration = animDuration
-                    interpolator = animInterpolator
-                }.run { binding.rvEpisodesList.startAnimation(this) }
+            AnimHelper.create {
+                addAnim {
+                    AlphaAnim.builder()
+                        .intermediateSteps(0f)
+                        .build(binding.ivBack, binding.rvEpisodesList)
+                }
+                addAnim {
+                    TranslateAnim.builder()
+                        .fromHorizontalDelta(-100f)
+                        .toCurrentPosition()
+                        .build(binding.ivBack)
+                }
+                addAnim {
+                    TranslateAnim.builder()
+                        .fromHorizontalDelta(200f)
+                        .toCurrentPosition()
+                        .build(binding.rvEpisodesList)
+                }
+            }.start()
         }
 
         fun backAnimation() {
 
-            ObjectAnimator.ofFloat(binding.rvEpisodesList, "alpha", 0f, 0.0f, 1f)
-                .apply {
-                    duration = animDuration
-                    interpolator = animInterpolator
-                }.start()
-
-            TranslateAnimation(0f, 0f, -164f, 0f)
-                .apply {
-                    duration = animDuration
-                    interpolator = animInterpolator
-                }.run { binding.rvEpisodesList.startAnimation(this) }
+            AnimHelper.create {
+                addAnim {
+                    AlphaAnim.builder()
+                        .intermediateSteps(0f)
+                        .build(binding.rvEpisodesList)
+                }
+                addAnim {
+                    TranslateAnim.builder()
+                        .fromVerticalDelta(-164f)
+                        .toCurrentPosition()
+                        .build(binding.rvEpisodesList)
+                }
+            }.start()
         }
 
         if (hasLanded.compareAndSet(false, true)) defaultAnimation()

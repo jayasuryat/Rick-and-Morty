@@ -1,14 +1,14 @@
 package com.jayasuryat.characterdetails
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.TranslateAnimation
 import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.AlphaAnim
+import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.hide
 import com.jayasuryat.base.show
@@ -113,22 +113,21 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
 
     private fun animateViews() {
 
-        val animDuration: Long = 300
-        val animInterpolator = DecelerateInterpolator()
-
         val view = nullableBinding?.clExtraInfo ?: return
 
-        TranslateAnimation(0f, 0f, 200f, 0f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.run { view.startAnimation(this) }
-
-        ObjectAnimator.ofFloat(view, "alpha", 0f, 0.0f, 1f)
-            .apply {
-                duration = animDuration
-                interpolator = animInterpolator
-            }.start()
+        AnimHelper.create {
+            addAnim {
+                TranslateAnim.builder()
+                    .fromVerticalDelta(200f)
+                    .toCurrentPosition()
+                    .build(view)
+            }
+            addAnim {
+                AlphaAnim.builder()
+                    .intermediateSteps(0f)
+                    .build(view)
+            }
+        }.start()
 
         view.show()
     }
