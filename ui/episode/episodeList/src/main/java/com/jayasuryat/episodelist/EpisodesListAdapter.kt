@@ -12,7 +12,7 @@ import com.jayasuryat.episodelist.databinding.ItemSeasonBinding
 
 internal class EpisodesListAdapter(
     private val onSeasonClicked: (EpisodeListData.Season) -> Unit,
-    private val onEpisodeClicked: (EpisodeListData.Episode) -> Unit,
+    private val onEpisodeClicked: (episode: EpisodeListData.Episode, name: View) -> Unit,
 ) : ListAdapter<EpisodeListData, EpisodesListAdapter.BaseEpisodeHolder>(difCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEpisodeHolder =
@@ -58,13 +58,18 @@ internal class EpisodesListAdapter(
         init {
             item.cvRoot.shrinkOnClick {
                 val position = bindingAdapterPosition
-                if (position >= 0) onEpisodeClicked(getItem(position) as EpisodeListData.Episode)
+                if (position >= 0)
+                    onEpisodeClicked(
+                        getItem(position) as EpisodeListData.Episode,
+                        item.tvEpisodeName
+                    )
             }
         }
 
         fun bind(data: EpisodeListData.Episode) {
             item.cEpisodeNumber.text = data.episodeNumber.toString()
             item.tvEpisodeName.text = data.episodeName
+            item.tvEpisodeName.transitionName = data.url
         }
     }
 
@@ -83,14 +88,12 @@ internal class EpisodesListAdapter(
             override fun areItemsTheSame(
                 oldItem: EpisodeListData,
                 newItem: EpisodeListData
-            ): Boolean =
-                oldItem.id == newItem.id
+            ): Boolean = oldItem.id == newItem.id
 
             override fun areContentsTheSame(
                 oldItem: EpisodeListData,
                 newItem: EpisodeListData
-            ): Boolean =
-                oldItem == newItem
+            ): Boolean = oldItem == newItem
         }
     }
 }

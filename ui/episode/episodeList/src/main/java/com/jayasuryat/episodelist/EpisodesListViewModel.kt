@@ -37,6 +37,7 @@ class EpisodesListViewModel @Inject constructor(
         episodesRepository.getAllEpisodes()
             .getOrNull().map()?.let { episodes ->
 
+                if (episodes == rawEpisodes) return@let
                 rawEpisodes = episodes
 
                 episodes.filterIsInstance<EpisodeListData.Season>()
@@ -86,6 +87,7 @@ class EpisodesListViewModel @Inject constructor(
     private fun List<Episode>?.map(): List<EpisodeListData>? {
 
         data class EpisodeData(
+            val id: Long,
             val episode: Episode,
             val seasonNumber: Int,
             val episodeNumber: Int
@@ -102,6 +104,7 @@ class EpisodesListViewModel @Inject constructor(
             ).toInt()
 
             EpisodeData(
+                id = episode.id,
                 episode = episode,
                 seasonNumber = seasonNum,
                 episodeNumber = episodeNum
@@ -122,6 +125,7 @@ class EpisodesListViewModel @Inject constructor(
 
             val mappedEpisodes = seasonData.value.map { episode ->
                 EpisodeListData.Episode(
+                    episodeId = episode.id,
                     seasonName = season.seasonName,
                     episodeName = episode.episode.name,
                     episodeNumber = episode.episodeNumber,

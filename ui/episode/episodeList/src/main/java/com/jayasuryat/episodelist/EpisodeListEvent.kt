@@ -5,7 +5,7 @@ import androidx.navigation.Navigator
 sealed interface EpisodeListEvent
 
 class OpenEpisode(
-    val characterId: Long,
+    val episodeId: Long,
     val extras: Navigator.Extras,
 ) : EpisodeListEvent
 

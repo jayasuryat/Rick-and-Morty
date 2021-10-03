@@ -10,6 +10,7 @@ internal sealed class EpisodeListData(val id: String) {
     ) : EpisodeListData(seasonName)
 
     data class Episode(
+        val episodeId: Long,
         override val seasonName: String,
         val episodeName: String,
         val episodeNumber: Int,
