@@ -13,6 +13,9 @@ internal interface EpisodesLocalDataSource : LocalDataSource {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveEpisodes(characters: List<EpisodeEntity>)
 
+    @Query("SELECT * FROM episode WHERE id=:episodeId")
+    suspend fun getEpisodeForId(episodeId: Long): EpisodeEntity
+
     @Query("SELECT * FROM episode WHERE episode.id IN (:episodeIds)")
     suspend fun getEpisodesFor(episodeIds: List<Long>): List<EpisodeEntity>
 }

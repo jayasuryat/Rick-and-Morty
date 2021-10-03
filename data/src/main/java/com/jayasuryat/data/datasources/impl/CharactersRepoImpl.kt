@@ -41,4 +41,22 @@ internal class CharactersRepoImpl(
         val entity = cacheClient.getCharacterById(characterId)
         characterEntityToDomain(entity)
     }
+
+    override suspend fun getCharactersForIds(characterIds: List<Long>): KResult<List<Character>> =
+        wrapAsResult {
+
+            val charactersInCache = cacheClient.getCharactersById(characterIds)
+
+            if (characterIds.size == charactersInCache.size)
+                return@wrapAsResult characterEntityToDomain(charactersInCache)
+
+            val unCachedCharacters = characterIds.filter { id ->
+                charactersInCache.find { it.id == id } == null
+            }
+
+            val networkCharacters = networkClient.getCharactersById(unCachedCharacters)
+            cacheClient.saveCharacters(characterDtoToEntity(networkCharacters))
+
+            characterEntityToDomain(cacheClient.getCharactersById(characterIds))
+        }
 }

@@ -16,6 +16,10 @@ internal object Router {
         url.takeFrom(base() + "character".paged(page))
     }
 
+    fun characters(ids: List<Long>): HttpRequestBuilder.() -> Unit = {
+        url.takeFrom(base() + "character/" + ids.joinToString())
+    }
+
     fun locations(page: Int): HttpRequestBuilder.() -> Unit = {
         url.takeFrom(base() + "location".paged(page))
     }

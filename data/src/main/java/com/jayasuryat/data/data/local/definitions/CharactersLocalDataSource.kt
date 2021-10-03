@@ -15,4 +15,7 @@ internal interface CharactersLocalDataSource : LocalDataSource {
 
     @Query("SELECT * FROM character WHERE id=:characterId")
     suspend fun getCharacterById(characterId: Long): CharacterEntity
+
+    @Query("SELECT * FROM character WHERE character.id IN (:characterIds)")
+    suspend fun getCharactersById(characterIds: List<Long>): List<CharacterEntity>
 }

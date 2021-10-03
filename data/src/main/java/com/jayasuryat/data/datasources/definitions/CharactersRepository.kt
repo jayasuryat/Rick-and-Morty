@@ -10,4 +10,6 @@ public interface CharactersRepository {
     public suspend fun getAllCharactersInCache(): KResult<List<Character>>
 
     public suspend fun getCharacterFromCache(characterId: Long): KResult<Character>
+
+    public suspend fun getCharactersForIds(characterIds: List<Long>): KResult<List<Character>>
 }

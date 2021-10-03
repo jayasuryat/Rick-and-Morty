@@ -37,6 +37,10 @@ internal class EpisodesRepoImpl(
             .getOrThrow()
     }
 
+    override suspend fun getEpisodeFromCache(episodeId: Long): KResult<Episode> = wrapAsResult {
+        episodeEntityToDomain(cacheClient.getEpisodeForId(episodeId))
+    }
+
     override suspend fun getAllEpisodesInCache(): KResult<List<Episode>> = wrapAsResult {
 
         cacheClient.getAllEpisodes()

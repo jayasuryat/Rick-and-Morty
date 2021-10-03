@@ -7,7 +7,8 @@ public data class Character(
     val id: Long,
     val name: String,
     val status: Status,
-    val species: Species,
+    val speciesType: Species,
+    val speciesName: String,
     val type: String,
     val gender: Gender,
     val origin: Location,
@@ -27,12 +28,15 @@ public data class Character(
     public enum class Gender(value: String) {
         Female("Female"),
         Male("Male"),
+        Genderless("Genderless"),
         Unknown("unknown"),
     }
 
     public enum class Species(value: String) {
         Alien("Alien"),
         Human("Human"),
+        Humanoid("Humanoid"),
+        Other("Other"),
     }
 
     public enum class Status(value: String) {
