@@ -14,6 +14,7 @@ import com.jayasuryat.characterdetails.CharacterDetailsEvent
 import com.jayasuryat.characterlist.CharacterListEvent
 import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
+import com.jayasuryat.episodedetails.EpisodeDetailsEvent
 import com.jayasuryat.episodelist.EpisodeListEvent
 import com.jayasuryat.episodelist.OpenEpisode
 import com.jayasuryat.home.HomeScreenEvent
@@ -116,13 +117,46 @@ class EventListener private constructor(
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: EpisodeDetailsEvent) {
+
+        when (event) {
+
+            com.jayasuryat.episodedetails.NavigateBack -> navigationHelper.popBackStack()
+
+            is com.jayasuryat.episodedetails.OpenCharacter -> {
+
+                val args = Bundle().apply {
+                    putLong("id", event.characterId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.characterDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: EpisodeListEvent) {
 
         when (event) {
 
-            is com.jayasuryat.episodelist.NavigateBack -> navigationHelper.popBackStack()
+            is OpenEpisode -> {
 
-            is OpenEpisode -> TODO()
+                val args = Bundle().apply {
+                    putLong("episodeId", event.episodeId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.episodeDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+
+            is com.jayasuryat.episodelist.NavigateBack -> navigationHelper.popBackStack()
         }
     }
 

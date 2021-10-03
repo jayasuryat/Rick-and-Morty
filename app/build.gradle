@@ -65,4 +65,5 @@ dependencies {
     implementation project(path: ":ui:character:characterList")
     implementation project(path: ":ui:character:characterDetails")
     implementation project(path: ":ui:episode:episodeList")
+    implementation project(path: ":ui:episode:episodeDetails")
 }

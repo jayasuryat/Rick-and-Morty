@@ -23,5 +23,9 @@
         android:id="@+id/episodesListFragment"
         android:name="com.jayasuryat.episodelist.EpisodesListFragment"
         android:label="EpisodesListFragment" />
+    <fragment
+        android:id="@+id/episodeDetailsFragment"
+        android:name="com.jayasuryat.episodedetails.EpisodeDetailsFragment"
+        android:label="EpisodeDetailsFragment" />
 
 </navigation>
