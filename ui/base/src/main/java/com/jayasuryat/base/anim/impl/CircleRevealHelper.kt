@@ -1,4 +1,4 @@
-package com.jayasuryat.base
+package com.jayasuryat.base.anim.impl
 
 import android.animation.Animator
 import android.graphics.Point
@@ -88,6 +88,5 @@ public class CircleRevealHelper private constructor(
 
             return CircleRevealHelper(animation = anim)
         }
-
     }
 }
