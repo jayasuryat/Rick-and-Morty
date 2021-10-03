@@ -59,5 +59,4 @@ internal data class CharacterDef(
     val id: Long,
     val name: String,
     val imageUrl: String,
-    val lastSelectedCharacter: Boolean,
 )

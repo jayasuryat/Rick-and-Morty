@@ -18,8 +18,7 @@ import com.jayasuryat.characterdetails.UiUtils.loadImage
 import com.jayasuryat.characterdetails.databinding.FragmentCharacterDetailsBinding
 import com.jayasuryat.data.models.domain.Character
 import com.jayasuryat.data.models.domain.Character.Gender.*
-import com.jayasuryat.data.models.domain.Character.Species.Alien
-import com.jayasuryat.data.models.domain.Character.Species.Human
+import com.jayasuryat.data.models.domain.Character.Species.*
 import com.jayasuryat.data.models.domain.Character.Status.Alive
 import com.jayasuryat.data.models.domain.Character.Status.Dead
 import dagger.hilt.android.AndroidEntryPoint
@@ -79,15 +78,18 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             ivCharacter.loadImage(character.image)
             tvName.text = character.name
 
-            @IdRes val speciesImageId = when (character.species) {
+            @IdRes val speciesImageId = when (character.speciesType) {
                 Alien -> R.drawable.icon_alien
                 Human -> R.drawable.icon_user
+                Humanoid -> R.drawable.icon_robo
+                Other -> R.drawable.icon_paw
             }
 
             @IdRes val genderImageId = when (character.gender) {
                 Female -> R.drawable.icon_gender_female
                 Male -> R.drawable.icon_gender_male
-                Unknown -> R.drawable.icon_gender_neutral
+                Genderless -> R.drawable.icon_gender_neutral
+                Unknown -> R.drawable.icon_gender_neutral // TODO Need to add a diff icon
             }
 
             @IdRes val statusColorId = when (character.status) {
@@ -100,7 +102,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             ivGender.setImageResource(genderImageId)
             cvStatus.setCardBackgroundColor(ContextCompat.getColor(root.context, statusColorId))
 
-            tvSpecies.text = character.species.name
+            tvSpecies.text = character.speciesName
             tvGender.text = character.gender.name
             tvStatus.text = character.status.name
             tvLocationValue.text = character.location.name

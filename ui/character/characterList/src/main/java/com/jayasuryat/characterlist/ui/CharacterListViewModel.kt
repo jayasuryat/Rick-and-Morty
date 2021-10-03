@@ -44,15 +44,7 @@ class CharacterListViewModel @Inject constructor(
                 id = character.id,
                 name = character.name,
                 imageUrl = character.image,
-                false
             )
         }
-    }
-
-    internal fun onItemClicked(item: CharacterDef) {
-        val data = _obsCharactersList.value
-        if (data.isNullOrEmpty()) return
-        val mapped = data.map { it.copy(lastSelectedCharacter = item.id == it.id) }
-        _obsCharactersList.postValue(mapped)
     }
 }

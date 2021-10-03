@@ -153,8 +153,6 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
             container to "characterContainer",
         )
 
-        viewModel.onItemClicked(character)
-
         EventBus.getDefault()
             .post(OpenCharacter(characterId = character.id, extras))
     }

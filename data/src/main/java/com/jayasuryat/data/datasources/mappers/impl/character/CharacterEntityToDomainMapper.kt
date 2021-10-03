@@ -12,7 +12,13 @@ internal class CharacterEntityToDomainMapper : EntityToDomainMapper<CharacterEnt
             id = id,
             name = name,
             status = Character.Status.valueOf(status.toTitleCase()),
-            species = Character.Species.valueOf(species),
+            speciesType = when (input.species) {
+                "Alien" -> Character.Species.Alien
+                "Human" -> Character.Species.Human
+                "Humanoid" -> Character.Species.Humanoid
+                else -> Character.Species.Other
+            },
+            speciesName = species,
             type = type,
             gender = Character.Gender.valueOf(gender.toTitleCase()),
             origin = Character.Location(
