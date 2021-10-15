@@ -1,38 +1,46 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
-    id "kotlin-kapt"
-    id "dagger.hilt.android.plugin"
-    id "org.jetbrains.kotlin.plugin.serialization"
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
-    compileSdk 31
+
+    compileSdk = 31
 
     defaultConfig {
-        minSdk 22
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        minSdk = 22
+        targetSdk = 31
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        freeCompilerArgs += ["-Xexplicit-api=strict"]
     }
+}
+
+tasks.withType(KotlinCompile::class).all {
+    kotlinOptions.freeCompilerArgs += "-Xexplicit-api=strict"
 }
 
 dependencies {
