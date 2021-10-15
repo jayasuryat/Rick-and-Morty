@@ -44,19 +44,24 @@ android {
 
 dependencies {
 
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
+    // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
-    implementation(Dependency.legacySupport)
-    implementation(Dependency.navigationFragment)
     implementation(Dependency.recyclerView)
 
+    // Arch components
+    implementation(Dependency.navigationFragment)
+
+    // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
 
+    // Others
     implementation(Dependency.eventBus)
 
     api(project(Dependency.Module.baseUi))

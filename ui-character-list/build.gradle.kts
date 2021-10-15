@@ -46,28 +46,33 @@ android {
 
 dependencies {
 
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
+    // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
-    implementation(Dependency.legacySupport)
-    implementation(Dependency.navigationFragment)
     implementation(Dependency.recyclerView)
-    implementation(Dependency.glide)
 
-    implementation(Dependency.kotlinxSerialization)
-
-    implementation(Dependency.hilt)
-    kapt(Dependency.hiltCompiler)
-
+    // Arch components
+    implementation(Dependency.navigationFragment)
+    // Room
     implementation(Dependency.roomRuntime)
     implementation(Dependency.roomKtx)
     kapt(Dependency.roomCompiler)
 
-    implementation(Dependency.eventBus)
+    // Hilt
+    implementation(Dependency.hilt)
+    kapt(Dependency.hiltCompiler)
 
+    implementation(Dependency.kotlinxSerialization)
+
+    // Others
+    implementation(Dependency.eventBus)
+    implementation(Dependency.glide)
+    // Apollo
     implementation(Dependency.apolloRuntime)
     implementation(Dependency.apolloCoroutines)
 

@@ -1,6 +1,6 @@
 package com.jayasuryat.characterlist.di
 
-import com.apollographql.apollo.ApolloClient
+import com.jayasuryat.basedata.providers.GraphQlClientProvider
 import com.jayasuryat.characterlist.data.sources.remote.definitions.CharacterListNetworkDataSource
 import com.jayasuryat.characterlist.data.sources.remote.impl.CharacterListNetworkDataSourceImpl
 import dagger.Module
@@ -17,8 +17,8 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun providesCharacterListNetworkDataSource(
-        apolloClient: ApolloClient
+        graphQlClientProvider: GraphQlClientProvider,
     ): CharacterListNetworkDataSource {
-        return CharacterListNetworkDataSourceImpl(apolloClient)
+        return CharacterListNetworkDataSourceImpl(graphQlClientProvider.getClient())
     }
 }

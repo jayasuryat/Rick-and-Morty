@@ -5,7 +5,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -45,19 +44,20 @@ tasks.withType(KotlinCompile::class).all {
 
 dependencies {
 
-    implementation(Dependency.coreKtx)
-    implementation(Dependency.appCompat)
-    implementation(Dependency.material)
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
-    api(Dependency.apolloRuntime)
+    // UI
+    implementation(Dependency.coreKtx)
 
-    //Hilt
+    // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
 
-    implementation(Dependency.kotlinxSerialization)
     implementation(Dependency.coroutinesAndroid)
+
+    // Others
+    implementation(Dependency.apolloRuntime)
 }

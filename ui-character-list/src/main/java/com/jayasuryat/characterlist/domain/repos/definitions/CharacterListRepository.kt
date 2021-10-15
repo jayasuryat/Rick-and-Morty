@@ -1,6 +1,6 @@
 package com.jayasuryat.characterlist.domain.repos.definitions
 
-import com.jayasuryat.basedata.KResult
+import com.jayasuryat.basedata.models.KResult
 import com.jayasuryat.characterlist.domain.models.Character
 
 interface CharacterListRepository {

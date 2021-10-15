@@ -1,6 +1,6 @@
-package com.jayasuryat.characterlist.di
+package com.jayasuryat.basedata.di
 
-import com.jayasuryat.basedata.DispatcherProvider
+import com.jayasuryat.basedata.providers.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,11 +12,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DispatcherModule {
+internal object DispatcherModule {
 
     @Provides
     @Singleton
-    fun providesDispatcherProvider(): DispatcherProvider {
+    internal fun providesDispatcherProvider(): DispatcherProvider {
 
         return object : DispatcherProvider {
             override fun ui(): CoroutineDispatcher = Dispatchers.Main.immediate

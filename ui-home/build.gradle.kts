@@ -7,11 +7,11 @@ plugins {
 
 android {
 
-    compileSdk = 31
+    compileSdk = BuildConfig.compileSdk
 
     defaultConfig {
-        minSdk = 22
-        targetSdk = 31
+        minSdk = BuildConfig.minSdk
+        targetSdk = BuildConfig.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -44,26 +44,27 @@ android {
 
 dependencies {
 
-    implementation(Dependency.coreKtx)
-    implementation(Dependency.appCompat)
-    implementation(Dependency.material)
-    implementation(Dependency.legacySupport)
-
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
+    // UI
+    implementation(Dependency.coreKtx)
+    implementation(Dependency.appCompat)
+    implementation(Dependency.material)
+
+    // Arch components
     implementation(Dependency.navigationFragment)
-    implementation(Dependency.navigationUi)
 
     implementation(Dependency.coroutinesAndroid)
 
+    // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
 
+    // Others
     implementation(Dependency.eventBus)
-
-    implementation(Dependency.glide)
 
     api(project(Dependency.Module.baseUi))
 }

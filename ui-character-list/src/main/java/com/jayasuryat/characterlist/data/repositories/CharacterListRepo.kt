@@ -1,9 +1,9 @@
 package com.jayasuryat.characterlist.data.repositories
 
-import com.jayasuryat.basedata.DispatcherProvider
-import com.jayasuryat.basedata.KResult
+import com.jayasuryat.basedata.providers.DispatcherProvider
+import com.jayasuryat.basedata.models.KResult
 import com.jayasuryat.basedata.mappers.Mapper
-import com.jayasuryat.basedata.wrapAsResult
+import com.jayasuryat.basedata.models.wrapAsResult
 import com.jayasuryat.characterlist.CharacterListQuery
 import com.jayasuryat.characterlist.data.sources.local.definitions.CharacterListLocalDataSource
 import com.jayasuryat.characterlist.data.sources.local.entities.CharacterEntity

@@ -46,12 +46,16 @@ tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
 
 dependencies {
 
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
+    // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
+
+    // Arch components
     implementation(Dependency.navigationFragment)
 
     // Coroutines

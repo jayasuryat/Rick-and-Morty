@@ -1,7 +1,9 @@
-package com.jayasuryat.basedata
+package com.jayasuryat.basedata.di
 
 import android.os.Looper
 import com.apollographql.apollo.ApolloClient
+import com.jayasuryat.basedata.Constants
+import com.jayasuryat.basedata.providers.GraphQlClientProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,11 +15,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object NetworkModule {
+internal object GraphQlModule {
 
     @Provides
     @Singleton
-    fun providesApolloClient(): ApolloClient {
+    internal fun providesGraphQlClient(): GraphQlClientProvider {
 
         check(Looper.myLooper() == Looper.getMainLooper()) {
             "Only the main thread can get the apolloClient instance"
@@ -29,9 +31,12 @@ internal object NetworkModule {
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()
 
-        return ApolloClient.builder()
+        val apolloClient = ApolloClient.builder()
             .serverUrl(Constants.BASE_URL)
             .okHttpClient(okHttpClient)
             .build()
+
+
+        return GraphQlClientProvider(apolloClient)
     }
 }

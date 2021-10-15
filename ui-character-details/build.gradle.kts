@@ -45,19 +45,23 @@ android {
 
 dependencies {
 
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
+    // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
-    implementation(Dependency.legacySupport)
 
+    // Arch components
     implementation(Dependency.navigationFragment)
 
+    // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
 
+    // Others
     implementation(Dependency.glide)
     implementation(Dependency.eventBus)
 

@@ -1,7 +1,8 @@
-package com.jayasuryat.basedata
+package com.jayasuryat.basedata.models
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+
 
 public suspend inline fun <T> wrapAsResult(
     logic: suspend () -> T,

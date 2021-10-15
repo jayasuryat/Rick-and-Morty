@@ -1,4 +1,4 @@
-package com.jayasuryat.basedata
+package com.jayasuryat.basedata.providers
 
 import kotlinx.coroutines.CoroutineDispatcher
 

@@ -1,4 +1,4 @@
-package com.jayasuryat.basedata
+package com.jayasuryat.basedata.models
 
 public sealed class KResult<T> {
 

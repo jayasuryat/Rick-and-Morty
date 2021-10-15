@@ -46,17 +46,21 @@ tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
 
 dependencies {
 
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
 
+    // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
 
+    // Arch
     implementation(Dependency.roomRuntime)
     implementation(Dependency.roomKtx)
     kapt(Dependency.roomCompiler)
 
+    // Ktor
     implementation(Dependency.ktorAndroid)
     implementation(Dependency.ktorCio)
     implementation(Dependency.ktorLogging)

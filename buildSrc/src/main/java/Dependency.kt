@@ -26,7 +26,6 @@ object Dependency {
     const val coreKtx = "androidx.core:core-ktx:1.6.0"
 
     const val appCompat = "androidx.appcompat:appcompat:1.3.1"
-    const val legacySupport = "androidx.legacy:legacy-support-v4:1.0.0"
     const val material = "com.google.android.material:material:1.4.0"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.1"
     const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"

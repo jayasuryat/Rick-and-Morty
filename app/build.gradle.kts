@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+    // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
@@ -59,6 +60,8 @@ dependencies {
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
     implementation(Dependency.constraintLayout)
+
+    // Arch components
     implementation(Dependency.navigationFragment)
     implementation(Dependency.navigationUi)
 
@@ -66,6 +69,7 @@ dependencies {
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
 
+    // Others
     implementation(Dependency.eventBus)
 
     // Features
