@@ -45,19 +45,19 @@ tasks.withType(KotlinCompile::class).all {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(Dependency.coreKtx)
+    implementation(Dependency.appCompat)
+    implementation(Dependency.material)
+    testImplementation(Dependency.Test.junit)
+    androidTestImplementation(Dependency.Test.androidJunit)
+    androidTestImplementation(Dependency.Test.espresso)
 
-    api("com.apollographql.apollo:apollo-runtime:2.5.9")
+    api(Dependency.apolloRuntime)
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation(Dependency.hilt)
+    kapt(Dependency.hiltCompiler)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation(Dependency.kotlinxSerialization)
+    implementation(Dependency.coroutinesAndroid)
 }

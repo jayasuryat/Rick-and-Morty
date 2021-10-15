@@ -22,8 +22,8 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
@@ -44,21 +44,21 @@ android {
 
 dependencies {
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    testImplementation(Dependency.Test.junit)
+    androidTestImplementation(Dependency.Test.androidJunit)
+    androidTestImplementation(Dependency.Test.espresso)
 
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation(Dependency.appCompat)
+    implementation(Dependency.material)
+    implementation(Dependency.legacySupport)
+    implementation(Dependency.navigationFragment)
+    implementation(Dependency.recyclerView)
 
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-compiler:2.38.1")
+    implementation(Dependency.hilt)
+    kapt(Dependency.hiltCompiler)
 
-    implementation("org.greenrobot:eventbus:3.2.0")
+    implementation(Dependency.eventBus)
 
-    implementation(project(":ui:base"))
-    implementation(project(":data"))
+    api(project(Dependency.Module.baseUi))
+    api(project(Dependency.Module.data))
 }

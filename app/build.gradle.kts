@@ -51,29 +51,29 @@ android {
 
 dependencies {
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    testImplementation(Dependency.Test.junit)
+    androidTestImplementation(Dependency.Test.androidJunit)
+    androidTestImplementation(Dependency.Test.espresso)
 
     // UI
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+    implementation(Dependency.appCompat)
+    implementation(Dependency.material)
+    implementation(Dependency.constraintLayout)
+    implementation(Dependency.navigationFragment)
+    implementation(Dependency.navigationUi)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-compiler:2.38.1")
+    implementation(Dependency.hilt)
+    kapt(Dependency.hiltCompiler)
 
-    implementation("org.greenrobot:eventbus:3.2.0")
+    implementation(Dependency.eventBus)
 
     // Features
-    implementation(project(":ui:base"))
-    implementation(project(":data"))
-    implementation(project(":ui:home"))
-    implementation(project(":ui:character:characterList"))
-    implementation(project(":ui:character:characterDetails"))
-    implementation(project(":ui:episode:episodeList"))
-    implementation(project(":ui:episode:episodeDetails"))
+    implementation(project(Dependency.Module.baseUi))
+    implementation(project(Dependency.Module.data))
+    implementation(project(Dependency.Module.home))
+    implementation(project(Dependency.Module.characterList))
+    implementation(project(Dependency.Module.characterDetails))
+    implementation(project(Dependency.Module.episodeList))
+    implementation(project(Dependency.Module.episodeDetails))
 }
