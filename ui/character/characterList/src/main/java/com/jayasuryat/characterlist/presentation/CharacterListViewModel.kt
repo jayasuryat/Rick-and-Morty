@@ -1,17 +1,17 @@
-package com.jayasuryat.characterlist.ui
+package com.jayasuryat.characterlist.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jayasuryat.base.arch.BaseViewModel
-import com.jayasuryat.data.datasources.definitions.CharactersRepository
-import com.jayasuryat.data.models.domain.Character
+import com.jayasuryat.characterlist.domain.models.Character
+import com.jayasuryat.characterlist.domain.repos.definitions.CharacterListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
-    private val charactersRepository: CharactersRepository
+    private val charactersRepository: CharacterListRepository
 ) : BaseViewModel() {
 
     private val _obsCharactersList: MutableLiveData<List<CharacterDef>> = MutableLiveData()
@@ -43,7 +43,7 @@ class CharacterListViewModel @Inject constructor(
             CharacterDef(
                 id = character.id,
                 name = character.name,
-                imageUrl = character.image,
+                imageUrl = character.imageUrl,
             )
         }
     }

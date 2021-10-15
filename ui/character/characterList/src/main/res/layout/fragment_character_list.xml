@@ -9,7 +9,7 @@
     android:background="?attr/background_color"
     android:paddingHorizontal="24dp"
     android:paddingTop="16dp"
-    tools:context=".ui.CharacterListFragment">
+    tools:context=".presentation.CharacterListFragment">
 
     <ImageView
         android:id="@+id/ivBack"

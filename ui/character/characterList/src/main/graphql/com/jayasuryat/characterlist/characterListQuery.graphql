@@ -1,0 +1,13 @@
+query CharacterList($input: Int) {
+    characters(page: $input) {
+        info{
+            next
+            prev
+        }
+        results {
+            id
+            name
+            image
+        }
+    }
+}

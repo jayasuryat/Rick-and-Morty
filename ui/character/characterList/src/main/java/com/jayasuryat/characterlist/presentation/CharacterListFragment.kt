@@ -1,4 +1,4 @@
-package com.jayasuryat.characterlist.ui
+package com.jayasuryat.characterlist.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
