@@ -3,7 +3,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.plugin.serialization")
     id("com.apollographql.apollo").version("2.5.9")
 }
 
@@ -66,8 +65,6 @@ dependencies {
     // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
-
-    implementation(Dependency.kotlinxSerialization)
 
     // Others
     implementation(Dependency.eventBus)

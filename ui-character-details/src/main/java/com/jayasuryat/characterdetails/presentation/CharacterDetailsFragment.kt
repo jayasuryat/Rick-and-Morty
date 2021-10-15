@@ -1,4 +1,4 @@
-package com.jayasuryat.characterdetails
+package com.jayasuryat.characterdetails.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,13 +19,16 @@ import com.jayasuryat.base.hide
 import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.base.toggleVisibility
-import com.jayasuryat.characterdetails.UiUtils.loadImage
+import com.jayasuryat.characterdetails.NavigateBack
+import com.jayasuryat.characterdetails.OpenEpisode
+import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.databinding.FragmentCharacterDetailsBinding
-import com.jayasuryat.data.models.domain.Character
-import com.jayasuryat.data.models.domain.Character.Gender.*
-import com.jayasuryat.data.models.domain.Character.Species.*
-import com.jayasuryat.data.models.domain.Character.Status.Alive
-import com.jayasuryat.data.models.domain.Character.Status.Dead
+import com.jayasuryat.characterdetails.domain.models.CharacterDetails
+import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Gender.*
+import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Species.*
+import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Status.Alive
+import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Status.Dead
+import com.jayasuryat.characterdetails.presentation.UiUtils.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
@@ -50,7 +53,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         if (hasLanded.get()) postponeEnterTransition()
         return super.onCreateView(inflater, container, savedInstanceState)
@@ -88,7 +91,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         }
     }
 
-    private fun loadUi(character: Character?) {
+    private fun loadUi(character: CharacterDetails?) {
 
         if (character == null) return
 
@@ -97,7 +100,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             ivCharacter.loadImage(character.image)
             tvName.text = character.name
 
-            @IdRes val speciesImageId = when (character.speciesType) {
+            @IdRes val speciesImageId = when (character.species) {
                 Alien -> R.drawable.icon_alien
                 Human -> R.drawable.icon_user
                 Humanoid -> R.drawable.icon_robo
@@ -114,14 +117,14 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             @IdRes val statusColorId = when (character.status) {
                 Alive -> R.color.green
                 Dead -> R.color.red
-                Character.Status.Unknown -> R.color.grey
+                CharacterDetails.Status.Unknown -> R.color.grey
             }
 
             ivSpecies.setImageResource(speciesImageId)
             ivGender.setImageResource(genderImageId)
             cvStatus.setCardBackgroundColor(ContextCompat.getColor(root.context, statusColorId))
 
-            tvSpecies.text = character.speciesName
+            tvSpecies.text = character.species.name
             tvGender.text = character.gender.name
             tvStatus.text = character.status.name
             tvLocationValue.text = character.location.name

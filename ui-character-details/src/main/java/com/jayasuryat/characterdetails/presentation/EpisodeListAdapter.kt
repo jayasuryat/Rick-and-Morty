@@ -1,4 +1,4 @@
-package com.jayasuryat.characterdetails
+package com.jayasuryat.characterdetails.presentation
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -38,7 +38,7 @@ class EpisodeListAdapter(
             item.tvEpisodeName.text = data.episodeName
             item.tvSeasonNumber.text = "S${data.season}"
             item.tvEpisodeNumber.text = "E${data.episode}"
-            item.tvEpisodeName.transitionName = "name_${data.url}"
+            item.tvEpisodeName.transitionName = "name_${data.episodeId}"
         }
     }
 
@@ -59,5 +59,4 @@ data class EpisodeData(
     val episodeName: String,
     val season: Int,
     val episode: Int,
-    val url: String,
 )

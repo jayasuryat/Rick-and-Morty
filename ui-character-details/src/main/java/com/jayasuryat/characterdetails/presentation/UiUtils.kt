@@ -1,4 +1,4 @@
-package com.jayasuryat.characterdetails
+package com.jayasuryat.characterdetails.presentation
 
 import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="?attr/background_color"
-    tools:context=".CharacterDetailsFragment">
+    tools:context=".presentation.CharacterDetailsFragment">
 
     <ImageView
         android:id="@+id/ivBack"
