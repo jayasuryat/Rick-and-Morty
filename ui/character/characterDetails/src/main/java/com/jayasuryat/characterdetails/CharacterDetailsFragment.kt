@@ -128,6 +128,47 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         }
     }
 
+    private fun animateViews() {
+
+        fun enterAnim() {
+
+            val view = nullableBinding?.clExtraInfo ?: return
+
+            AnimHelper.create {
+                addAnim {
+                    TranslateAnim.builder()
+                        .fromVerticalDelta(200f)
+                        .toCurrentPosition()
+                        .build(view)
+                }
+                addAnim {
+                    AlphaAnim.builder()
+                        .intermediateSteps(0f)
+                        .build(view)
+                }
+            }.start()
+
+            view.show()
+        }
+
+        fun backAnim() {
+            nullableBinding?.clExtraInfo?.show()
+            onShowEpisodesClicked()
+        }
+
+        if (hasLanded.compareAndSet(false, true)) enterAnim()
+        else backAnim()
+    }
+
+    private fun onShowEpisodesClicked() {
+
+        binding.apply {
+            cvEpisodes.isClickable = false
+            rvEpisodes.show()
+            ivExpand.hide()
+        }
+    }
+
     private fun onEpisodeClicked(episode: EpisodeData, name: View) {
 
         val extras = FragmentNavigatorExtras(name to "episodeName")
@@ -141,25 +182,4 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
-
-    private fun animateViews() {
-
-        val view = nullableBinding?.clExtraInfo ?: return
-
-        AnimHelper.create {
-            addAnim {
-                TranslateAnim.builder()
-                    .fromVerticalDelta(200f)
-                    .toCurrentPosition()
-                    .build(view)
-            }
-            addAnim {
-                AlphaAnim.builder()
-                    .intermediateSteps(0f)
-                    .build(view)
-            }
-        }.start()
-
-        view.show()
-    }
 }

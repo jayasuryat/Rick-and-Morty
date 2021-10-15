@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.jayasuryat.characterlist.ui.CharacterListFragment"
+        android:name="com.jayasuryat.characterlist.presentation.CharacterListFragment"
         android:label="CharacterListFragment" />
 
     <fragment

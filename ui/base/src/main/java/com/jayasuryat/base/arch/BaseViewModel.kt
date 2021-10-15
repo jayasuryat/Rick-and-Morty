@@ -13,6 +13,7 @@ public open class BaseViewModel : ViewModel() {
     @Suppress("PropertyName")
     protected val TAG: String by lazy { javaClass.simpleName }
 
+    @Suppress("PropertyName")
     protected val _obsIsDataLoading: MutableLiveData<Boolean> = MutableLiveData()
     public val obsIsDataLoading: LiveData<Boolean> get() = _obsIsDataLoading
 

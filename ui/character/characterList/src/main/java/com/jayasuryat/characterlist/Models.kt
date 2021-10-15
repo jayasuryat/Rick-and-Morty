@@ -1,10 +1,7 @@
 package com.jayasuryat.characterlist
 
 
-internal sealed interface CharacterListModel {
-
-    fun getDummy(): String = javaClass.simpleName
-}
+internal sealed interface CharacterListModel
 
 internal interface CharacterListDto : CharacterListModel
 internal interface CharacterListEntity : CharacterListModel
