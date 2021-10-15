@@ -13,14 +13,14 @@ object Dependency {
 
         const val app = ":app"
 
-        const val baseUi = ":ui:base"
+        const val baseUi = ":ui-base"
         const val data = ":data"
         const val baseData = ":base-data"
-        const val home = ":ui:home"
-        const val characterList = ":ui:character:characterList"
-        const val characterDetails = ":ui:character:characterDetails"
-        const val episodeList = ":ui:episode:episodeList"
-        const val episodeDetails = ":ui:episode:episodeDetails"
+        const val home = ":ui-home"
+        const val characterList = ":ui-character-list"
+        const val characterDetails = ":ui-character-details"
+        const val episodeList = ":ui-episode-list"
+        const val episodeDetails = ":ui-episode-details"
     }
 
     const val coreKtx = "androidx.core:core-ktx:1.6.0"

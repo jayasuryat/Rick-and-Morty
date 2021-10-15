@@ -12,13 +12,13 @@ include(":app")
 
 include(":data")
 
-include(":ui:base")
+include(":ui-base")
 
-include(":ui:home")
+include(":ui-home")
 
-include(":ui:character:characterList")
-include(":ui:character:characterDetails")
+include(":ui-character-list")
+include(":ui-character-details")
 
-include(":ui:episode:episodeList")
-include(":ui:episode:episodeDetails")
+include(":ui-episode-list")
+include(":ui-episode-details")
 include(":base-data")
