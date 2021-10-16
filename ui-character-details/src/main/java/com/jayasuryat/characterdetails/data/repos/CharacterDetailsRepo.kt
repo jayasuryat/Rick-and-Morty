@@ -1,6 +1,7 @@
 package com.jayasuryat.characterdetails.data.repos
 
 import com.jayasuryat.basedata.mappers.Mapper
+import com.jayasuryat.basedata.mappers.map
 import com.jayasuryat.basedata.models.KResult
 import com.jayasuryat.basedata.models.wrapAsResult
 import com.jayasuryat.basedata.providers.DispatcherProvider
@@ -28,16 +29,16 @@ internal class CharacterDetailsRepo(
         val networkCharacters = networkResponse?.character()
             ?: throw RuntimeException("No characters found") // TODO: 15/10/21
 
-        val mappedCharacters = characterDtoToEntityMapper(networkCharacters)
+        val mappedCharacters = characterDtoToEntityMapper.map(networkCharacters)
         cacheClient.saveCharacterDetails(mappedCharacters)
 
         val cachedCharacters = cacheClient.getCharacter(characterId)
-        characterEntityToDomainMapper(cachedCharacters)
+        characterEntityToDomainMapper.map(cachedCharacters)
     }
 
     override suspend fun getCharacterDetailsFromCache(
         characterId: Long,
     ): KResult<CharacterDetails> = wrapAsResult(dispatcher.io()) {
-        characterEntityToDomainMapper(cacheClient.getCharacter(characterId))
+        characterEntityToDomainMapper.map(cacheClient.getCharacter(characterId))
     }
 }

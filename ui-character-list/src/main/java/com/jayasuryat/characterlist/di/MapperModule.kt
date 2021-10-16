@@ -10,6 +10,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -17,15 +18,20 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object MapperModule {
 
+    internal const val C_D_DTO_TO_ENTITY: String = "CharacterDetailsDtoToEntity"
+    internal const val C_D_ENTITY_TO_DOMAIN: String = "CharacterDetailsEntityToDomain"
+
     @Provides
     @Singleton
+    @Named(C_D_DTO_TO_ENTITY)
     internal fun providesCharacterDtoToEntityMapper():
-            Mapper<CharacterListQuery.Result, CharacterEntity> =
+            Mapper<@JvmSuppressWildcards CharacterListQuery.Result, @JvmSuppressWildcards CharacterEntity> =
         CharacterDtoToEntityMapper()
 
     @Provides
     @Singleton
+    @Named(C_D_ENTITY_TO_DOMAIN)
     internal fun providesCharacterEntityToDtoMapper():
-            Mapper<CharacterEntity, Character> =
+            Mapper<@JvmSuppressWildcards CharacterEntity, @JvmSuppressWildcards Character> =
         CharacterEntityToDomainMapper()
 }

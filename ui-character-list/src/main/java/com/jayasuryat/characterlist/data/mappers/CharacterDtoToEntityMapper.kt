@@ -5,13 +5,16 @@ import com.jayasuryat.characterlist.CharacterListQuery
 import com.jayasuryat.characterlist.data.sources.local.entities.CharacterEntity
 
 internal class CharacterDtoToEntityMapper :
-    Mapper<CharacterListQuery.Result, CharacterEntity> {
+    Mapper<CharacterListQuery.Result, CharacterEntity>(mappingStrategy = ::mappingStrategy) {
 
-    override suspend fun invoke(
-        input: CharacterListQuery.Result
-    ): CharacterEntity = CharacterEntity(
-        id = input.id()!!.toLong(),
-        name = input.name()!!,
-        imageUrl = input.image()!!,
-    )
+    private companion object {
+
+        private fun mappingStrategy(
+            input: CharacterListQuery.Result,
+        ): CharacterEntity = CharacterEntity(
+            id = input.id()!!.toLong(),
+            name = input.name()!!,
+            imageUrl = input.image()!!,
+        )
+    }
 }

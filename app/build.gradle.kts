@@ -73,8 +73,11 @@ dependencies {
     implementation(Dependency.eventBus)
 
     // Features
-    implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.data))
+    implementation(project(Dependency.Module.baseData))
+
+    implementation(project(Dependency.Module.baseUi))
+
     implementation(project(Dependency.Module.home))
     implementation(project(Dependency.Module.characterList))
     implementation(project(Dependency.Module.characterDetails))

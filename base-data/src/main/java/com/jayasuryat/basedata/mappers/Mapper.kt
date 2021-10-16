@@ -1,9 +1,31 @@
 package com.jayasuryat.basedata.mappers
 
-public interface Mapper<in I, out O> {
 
-    public suspend operator fun invoke(input: I): O
+public open class Mapper<in I : Any, out O : Any>(
+    private val mappingStrategy: suspend (I) -> O,
+) {
 
-    public suspend operator fun invoke(input: List<I>): List<O> =
-        input.map { model -> this.invoke(model) }
+    @PublishedApi
+    internal fun getMapper(): suspend (I) -> O = mappingStrategy
+}
+
+public suspend inline fun <reified I : Any, reified O : Any> Mapper<I, O>.map(input: I): O {
+
+    try {
+        return getMapper().invoke(input)
+    } catch (ex: Exception) {
+        val message = "Error mapping ${I::class.java} object to ${O::class.java} object"
+        throw MapperException(message, ex)
+    }
+}
+
+public suspend inline fun <reified I : Any, reified O : Any> Mapper<I, O>.map(input: List<I>): List<O> {
+
+    try {
+        val mapper = getMapper()
+        return input.map { mapper(it) }
+    } catch (ex: Exception) {
+        val message = "Error mapping ${I::class.java} object to ${O::class.java} object"
+        throw MapperException(message, ex)
+    }
 }

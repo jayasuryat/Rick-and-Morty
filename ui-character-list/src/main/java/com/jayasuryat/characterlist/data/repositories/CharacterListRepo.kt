@@ -1,9 +1,10 @@
 package com.jayasuryat.characterlist.data.repositories
 
-import com.jayasuryat.basedata.providers.DispatcherProvider
-import com.jayasuryat.basedata.models.KResult
 import com.jayasuryat.basedata.mappers.Mapper
+import com.jayasuryat.basedata.mappers.map
+import com.jayasuryat.basedata.models.KResult
 import com.jayasuryat.basedata.models.wrapAsResult
+import com.jayasuryat.basedata.providers.DispatcherProvider
 import com.jayasuryat.characterlist.CharacterListQuery
 import com.jayasuryat.characterlist.data.sources.local.definitions.CharacterListLocalDataSource
 import com.jayasuryat.characterlist.data.sources.local.entities.CharacterEntity
@@ -20,7 +21,7 @@ internal class CharacterListRepo(
 ) : CharacterListRepository {
 
     override suspend fun getCharacters(
-        page: Int
+        page: Int,
     ): KResult<List<Character>> = wrapAsResult(dispatcher.io()) {
 
         val networkResponse = networkClient.getCharacters(page).data?.characters()
@@ -29,17 +30,17 @@ internal class CharacterListRepo(
         if (networkCharacters.isNullOrEmpty())
             throw RuntimeException("No characters found") // TODO: 15/10/21
 
-        val mappedCharacters = characterDtoToEntityMapper(networkCharacters)
+        val mappedCharacters = characterDtoToEntityMapper.map(networkCharacters)
         cacheClient.saveCharacters(mappedCharacters)
 
         val cachedCharacters = cacheClient.getCharacters(limit = PAGE_SIZE, offset = page - 1)
 
-        characterEntityToDomainMapper(cachedCharacters)
+        characterEntityToDomainMapper.map(cachedCharacters)
     }
 
     override suspend fun getAllCharactersInCache(): KResult<List<Character>> =
         wrapAsResult(dispatcher.io()) {
-            characterEntityToDomainMapper(cacheClient.getAllCharacters())
+            characterEntityToDomainMapper.map(cacheClient.getAllCharacters())
         }
 
     companion object {
