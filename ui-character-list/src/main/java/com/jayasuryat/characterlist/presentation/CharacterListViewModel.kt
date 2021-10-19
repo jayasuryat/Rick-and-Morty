@@ -31,6 +31,7 @@ class CharacterListViewModel @Inject constructor(
                 .let(_obsCharactersList::postValue)
 
             charactersRepository.getCharacters(0)
+                .logError()
                 .getOrNull()
                 .mapToDef()
                 .let(_obsCharactersList::postValue)

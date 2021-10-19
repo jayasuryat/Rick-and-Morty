@@ -36,6 +36,7 @@ class CharacterDetailsViewModel @Inject constructor(
             .getOrNull()
 
         val character = cacheCharacter ?: charactersRepository.getCharacterDetails(characterId)
+            .logError()
             .getOrNull() ?: return
 
         _obsCharacter.postValue(character)

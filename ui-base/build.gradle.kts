@@ -60,4 +60,6 @@ dependencies {
 
     // Coroutines
     implementation(Dependency.coroutinesAndroid)
+
+    implementation(project(Dependency.Module.baseData))
 }

@@ -1,8 +1,10 @@
 package com.jayasuryat.base.arch
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jayasuryat.basedata.models.KResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,6 +27,14 @@ public open class BaseViewModel : ViewModel() {
         _obsIsDataLoading.postValue(true)
         logic()
         _obsIsDataLoading.postValue(false)
+    }
+
+    protected inline fun <reified T> KResult<T>.logError(): KResult<T> {
+        if (this is KResult.Error) {
+            Log.e(TAG, this.toString())
+            this.throwable.printStackTrace()
+        }
+        return this
     }
 
     override fun onCleared() {
