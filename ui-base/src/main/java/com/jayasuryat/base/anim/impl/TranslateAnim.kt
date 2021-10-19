@@ -82,7 +82,7 @@ public class TranslateAnim private constructor() {
             private val animation: TranslateAnimation,
             private val views: List<WeakReference<View>>,
             override var duration: Long = animation.duration,
-            override var interpolator: Interpolator = animation.interpolator
+            override var interpolator: Interpolator = animation.interpolator,
         ) : InvokableAnimation() {
 
             public override fun start() {
@@ -91,8 +91,8 @@ public class TranslateAnim private constructor() {
                 if (views.isNullOrEmpty()) return
 
                 animation.apply {
-                    this.duration = duration
-                    this.interpolator = interpolator
+                    this.duration = this@InvokableTranslateAnimation.duration
+                    this.interpolator = this@InvokableTranslateAnimation.interpolator
                 }
 
                 views.forEach { view -> view.startAnimation(animation) }

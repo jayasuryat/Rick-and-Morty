@@ -52,22 +52,29 @@ public class AlphaAnim private constructor() {
                 add(endAlpha)
             }.toFloatArray()
 
-            val anim = ObjectAnimator
-                .ofFloat(*values)
-                .apply {
-                    duration = this@Builder.duration
-                    interpolator = this@Builder.interpolator
-                }
+            val animBuilder: (View) -> ValueAnimator = { view ->
+                ObjectAnimator
+                    .ofFloat(view, "alpha", *values)
+                    .apply {
+                        duration = this@Builder.duration
+                        interpolator = this@Builder.interpolator
+                    }
+            }
 
             val views = forViews.map(::WeakReference)
 
-            return InvokableAlphaAnimation(anim, views, interpolator = interpolator)
+            return InvokableAlphaAnimation(
+                animationBuilder = animBuilder,
+                views = views,
+                duration = duration,
+                interpolator = interpolator,
+            )
         }
 
         private class InvokableAlphaAnimation(
-            private var objectAnimator: ValueAnimator,
+            private val animationBuilder: (View) -> ValueAnimator,
             private val views: List<WeakReference<View>>,
-            override var duration: Long = objectAnimator.duration,
+            override var duration: Long,
             override var interpolator: Interpolator,
         ) : InvokableAnimation() {
 
@@ -76,12 +83,12 @@ public class AlphaAnim private constructor() {
                 val views = views.mapNotNull { it.get() }
                 if (views.isNullOrEmpty()) return
 
-                objectAnimator
-                    .apply {
+                views.map(animationBuilder).forEach {
+                    it.apply {
                         this.duration = this@InvokableAlphaAnimation.duration
                         this.interpolator = this@InvokableAlphaAnimation.interpolator
-                        setObjectValues(*views.toList().toTypedArray())
                     }.start()
+                }
             }
         }
     }

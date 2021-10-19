@@ -29,7 +29,18 @@ public object AnimHelper {
             this.interpolator = interpolator
         }
 
-        internal fun build(): ExecutableAnimation = ExecutableAnimation(animations)
+        internal fun build(): ExecutableAnimation {
+
+            duration?.let { overrideDuration ->
+                animations.forEach { it.duration = overrideDuration }
+            }
+
+            interpolator?.let { overrideInterpolator ->
+                animations.forEach { it.interpolator = overrideInterpolator }
+            }
+
+            return ExecutableAnimation(animations)
+        }
 
         //TODO : Circular reveal anim
     }
