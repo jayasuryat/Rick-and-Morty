@@ -1,4 +1,4 @@
-package com.jayasuryat.episodelist
+package com.jayasuryat.episodelist.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
-import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
@@ -41,9 +41,9 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        if (hasLanded.get()) postponeEnterTransition()
+        postponeEnterTransition()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -54,6 +54,7 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
         ivBack.shrinkOnClick(::navigateBack)
 
         rvEpisodesList.apply {
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             adapter = episodesListAdapter
         }
@@ -63,8 +64,7 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
 
         obsEpisodes.observe(viewLifecycleOwner) { episodes ->
             episodesListAdapter.submitList(episodes)
-            (view?.parent as? ViewGroup)
-                ?.doOnPreDraw { startPostponedEnterTransition() }
+            (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 
@@ -86,7 +86,7 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
                 }
                 addAnim {
                     TranslateAnim.builder()
-                        .fromHorizontalDelta(200f)
+                        .fromVerticalDelta(164f)
                         .toCurrentPosition()
                         .build(binding.rvEpisodesList)
                 }

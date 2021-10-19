@@ -9,7 +9,7 @@
     android:background="?attr/background_color"
     android:paddingHorizontal="24dp"
     android:paddingTop="16dp"
-    tools:context=".EpisodesListFragment">
+    tools:context=".presentation.EpisodesListFragment">
 
     <ImageView
         android:id="@+id/ivBack"

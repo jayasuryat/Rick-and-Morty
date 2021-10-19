@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.apollographql.apollo").version("2.5.9")
 }
 
 android {
@@ -56,6 +57,10 @@ dependencies {
 
     // Arch components
     implementation(Dependency.navigationFragment)
+    // Arch
+    implementation(Dependency.roomRuntime)
+    implementation(Dependency.roomKtx)
+    kapt(Dependency.roomCompiler)
 
     // Hilt
     implementation(Dependency.hilt)
@@ -63,7 +68,10 @@ dependencies {
 
     // Others
     implementation(Dependency.eventBus)
+    // Apollo
+    implementation(Dependency.apolloRuntime)
+    implementation(Dependency.apolloCoroutines)
 
     api(project(Dependency.Module.baseUi))
-    api(project(Dependency.Module.data))
+    api(project(Dependency.Module.baseData))
 }

@@ -1,17 +1,17 @@
-package com.jayasuryat.episodelist
+package com.jayasuryat.episodelist.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jayasuryat.base.arch.BaseViewModel
-import com.jayasuryat.data.datasources.definitions.EpisodesRepository
-import com.jayasuryat.data.models.domain.Episode
+import com.jayasuryat.episodelist.domain.models.Episode
+import com.jayasuryat.episodelist.domain.repos.EpisodeListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class EpisodesListViewModel @Inject constructor(
-    private val episodesRepository: EpisodesRepository,
+    private val episodesRepository: EpisodeListRepository,
 ) : BaseViewModel() {
 
     private val _obsEpisodes: MutableLiveData<List<EpisodeListData>> = MutableLiveData()
@@ -35,6 +35,7 @@ class EpisodesListViewModel @Inject constructor(
             }
 
         episodesRepository.getAllEpisodes()
+            .logError()
             .getOrNull().map()?.let { episodes ->
 
                 if (episodes == rawEpisodes) return@let
@@ -90,7 +91,7 @@ class EpisodesListViewModel @Inject constructor(
             val id: Long,
             val episode: Episode,
             val seasonNumber: Int,
-            val episodeNumber: Int
+            val episodeNumber: Int,
         )
 
         if (this.isNullOrEmpty()) return null
@@ -129,7 +130,6 @@ class EpisodesListViewModel @Inject constructor(
                     seasonName = season.seasonName,
                     episodeName = episode.episode.name,
                     episodeNumber = episode.episodeNumber,
-                    url = episode.episode.url,
                 )
             }
 

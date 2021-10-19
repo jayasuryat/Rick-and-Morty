@@ -1,4 +1,4 @@
-package com.jayasuryat.episodelist
+package com.jayasuryat.episodelist.presentation
 
 import androidx.navigation.Navigator
 

@@ -1,4 +1,4 @@
-package com.jayasuryat.episodelist
+package com.jayasuryat.episodelist.presentation
 
 internal sealed class EpisodeListData(val id: String) {
 
@@ -14,6 +14,5 @@ internal sealed class EpisodeListData(val id: String) {
         override val seasonName: String,
         val episodeName: String,
         val episodeNumber: Int,
-        val url: String,
-    ) : EpisodeListData(url)
+    ) : EpisodeListData(episodeName)
 }

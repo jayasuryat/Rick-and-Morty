@@ -1,5 +1,6 @@
-package com.jayasuryat.episodelist
+package com.jayasuryat.episodelist.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ internal class EpisodesListAdapter(
         }
 
         fun bind(data: EpisodeListData.Season) {
+            Log.d("Timing", "$bindingAdapterPosition item data bound")
             item.tvSeason.text = data.seasonName
         }
     }
@@ -69,7 +71,7 @@ internal class EpisodesListAdapter(
         fun bind(data: EpisodeListData.Episode) {
             item.cEpisodeNumber.text = data.episodeNumber.toString()
             item.tvEpisodeName.text = data.episodeName
-            item.tvEpisodeName.transitionName = data.url
+            item.tvEpisodeName.transitionName = data.episodeName
         }
     }
 
@@ -87,12 +89,12 @@ internal class EpisodesListAdapter(
 
             override fun areItemsTheSame(
                 oldItem: EpisodeListData,
-                newItem: EpisodeListData
+                newItem: EpisodeListData,
             ): Boolean = oldItem.id == newItem.id
 
             override fun areContentsTheSame(
                 oldItem: EpisodeListData,
-                newItem: EpisodeListData
+                newItem: EpisodeListData,
             ): Boolean = oldItem == newItem
         }
     }
