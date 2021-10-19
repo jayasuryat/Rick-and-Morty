@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.apollographql.apollo").version("2.5.9")
 }
 
 android {
@@ -56,6 +58,12 @@ dependencies {
 
     // Arch components
     implementation(Dependency.navigationFragment)
+    // Arch
+    implementation(Dependency.roomRuntime)
+    implementation(Dependency.roomKtx)
+    kapt(Dependency.roomCompiler)
+
+    implementation(Dependency.kotlinxSerialization)
 
     // Hilt
     implementation(Dependency.hilt)
@@ -64,7 +72,10 @@ dependencies {
     // Others
     implementation(Dependency.glide)
     implementation(Dependency.eventBus)
+    // Apollo
+    implementation(Dependency.apolloRuntime)
+    implementation(Dependency.apolloCoroutines)
 
     implementation(project(Dependency.Module.baseUi))
-    implementation(project(Dependency.Module.data))
+    api(project(Dependency.Module.baseData))
 }

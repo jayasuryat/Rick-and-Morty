@@ -14,7 +14,7 @@ import com.jayasuryat.characterdetails.CharacterDetailsEvent
 import com.jayasuryat.characterlist.CharacterListEvent
 import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
-import com.jayasuryat.episodedetails.EpisodeDetailsEvent
+import com.jayasuryat.episodedetails.presentation.EpisodeDetailsEvent
 import com.jayasuryat.episodelist.presentation.EpisodeListEvent
 import com.jayasuryat.episodelist.presentation.OpenEpisode
 import com.jayasuryat.home.HomeScreenEvent
@@ -161,9 +161,9 @@ class EventListener private constructor(
 
         when (event) {
 
-            com.jayasuryat.episodedetails.NavigateBack -> navigationHelper.popBackStack()
+            com.jayasuryat.episodedetails.presentation.NavigateBack -> navigationHelper.popBackStack()
 
-            is com.jayasuryat.episodedetails.OpenCharacter -> {
+            is com.jayasuryat.episodedetails.presentation.OpenCharacter -> {
 
                 val args = Bundle().apply {
                     putLong("id", event.characterId)

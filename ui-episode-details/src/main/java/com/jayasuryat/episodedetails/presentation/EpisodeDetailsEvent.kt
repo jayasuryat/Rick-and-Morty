@@ -1,4 +1,4 @@
-package com.jayasuryat.episodedetails
+package com.jayasuryat.episodedetails.presentation
 
 import androidx.navigation.Navigator
 

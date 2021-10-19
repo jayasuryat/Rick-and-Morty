@@ -1,13 +1,11 @@
-package com.jayasuryat.episodedetails
+package com.jayasuryat.episodedetails.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.jayasuryat.base.arch.BaseViewModel
-import com.jayasuryat.data.datasources.definitions.CharactersRepository
-import com.jayasuryat.data.datasources.definitions.EpisodesRepository
-import com.jayasuryat.data.models.domain.Character
-import com.jayasuryat.data.models.domain.Episode
+import com.jayasuryat.episodedetails.domain.model.Character
+import com.jayasuryat.episodedetails.domain.repositories.EpisodeDetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EpisodeDetailsViewModel @Inject constructor(
-    private val episodesRepository: EpisodesRepository,
-    private val charactersRepository: CharactersRepository,
+    private val episodeDetailsRepo: EpisodeDetailsRepository,
     private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
@@ -34,7 +31,9 @@ class EpisodeDetailsViewModel @Inject constructor(
 
         val episodeId = savedStateHandle.get<Long>("episodeId") ?: return
 
-        val episode = episodesRepository.getEpisodeFromCache(episodeId).getOrNull() ?: return
+        val episode = episodeDetailsRepo.getEpisodeDetails(episodeId)
+            .logError()
+            .getOrNull() ?: return
 
         val seasonNum = episode.episode.substring(1, episode.episode.indexOf('E')).toInt()
         val episodeNum = episode.episode.substring(
@@ -49,18 +48,6 @@ class EpisodeDetailsViewModel @Inject constructor(
         )
 
         _obsEpisode.postValue(episodeData)
-
-        loadCharacters(episode)
-    }
-
-    private suspend fun loadCharacters(episode: Episode) {
-
-        val characterIds = episode.characters.map { url ->
-            val id = url.substring(url.lastIndexOf('/') + 1, url.length)
-            id.toLong()
-        }
-
-        val characters = charactersRepository.getCharactersForIds(characterIds).getOrNull()
-        _obsCharacter.postValue(characters)
+        _obsCharacter.postValue(episode.characters)
     }
 }

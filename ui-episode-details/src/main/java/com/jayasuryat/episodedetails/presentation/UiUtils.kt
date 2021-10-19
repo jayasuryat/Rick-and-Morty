@@ -1,4 +1,4 @@
-package com.jayasuryat.episodedetails
+package com.jayasuryat.episodedetails.presentation
 
 import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView

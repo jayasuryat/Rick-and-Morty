@@ -1,4 +1,4 @@
-package com.jayasuryat.episodedetails
+package com.jayasuryat.episodedetails.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,13 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
-import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
-import com.jayasuryat.data.models.domain.Character
 import com.jayasuryat.episodedetails.databinding.FragmentEpisodeDetailsBinding
+import com.jayasuryat.episodedetails.domain.model.Character
 import dagger.hilt.android.AndroidEntryPoint
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
@@ -42,7 +42,7 @@ class EpisodeDetailsFragment : BaseAbsFragment<EpisodeDetailsViewModel,
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         if (hasLanded.get()) postponeEnterTransition()
         return super.onCreateView(inflater, container, savedInstanceState)

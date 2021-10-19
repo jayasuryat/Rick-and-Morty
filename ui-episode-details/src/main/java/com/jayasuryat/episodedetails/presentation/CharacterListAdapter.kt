@@ -1,4 +1,4 @@
-package com.jayasuryat.episodedetails
+package com.jayasuryat.episodedetails.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jayasuryat.base.shrinkOnClick
-import com.jayasuryat.data.models.domain.Character
-import com.jayasuryat.episodedetails.UiUtils.loadImage
 import com.jayasuryat.episodedetails.databinding.ItemEpisodeCharacterBinding
+import com.jayasuryat.episodedetails.domain.model.Character
+import com.jayasuryat.episodedetails.presentation.UiUtils.loadImage
 
 class CharacterListAdapter(
     private val onCharacterClicked: (character: Character, image: View, name: View, container: View) -> Unit,
