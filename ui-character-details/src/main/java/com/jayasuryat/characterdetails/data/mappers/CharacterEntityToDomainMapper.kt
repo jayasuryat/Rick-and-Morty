@@ -16,10 +16,10 @@ internal class CharacterEntityToDomainMapper :
         ): CharacterDetails = CharacterDetails(
             id = input.id,
             name = input.name,
-            status = CharacterDetails.Status.valueOf(input.status),
-            species = CharacterDetails.Species.valueOf(input.species),
+            status = CharacterDetails.Status.enumFrom(input.status),
+            species = CharacterDetails.Species.enumFrom(input.species),
             type = input.type,
-            gender = CharacterDetails.Gender.valueOf(input.gender),
+            gender = CharacterDetails.Gender.enumFrom(input.gender),
             location = Location(
                 id = input.location.id,
                 name = input.location.name,

@@ -20,21 +20,43 @@ data class CharacterDetails(
         Female("Female"),
         Male("Male"),
         Genderless("Genderless"),
-        Unknown("unknown"),
+        Unknown("unknown");
+
+        companion object {
+
+            fun enumFrom(value: String): Gender {
+                return values().firstOrNull { it.name.equals(value, false) } ?: Unknown
+            }
+        }
     }
 
     enum class Species(value: String) {
         Alien("Alien"),
         Human("Human"),
         Humanoid("Humanoid"),
-        Other("Other"),
+        Other("Other");
+
+        companion object {
+
+            fun enumFrom(value: String): Species {
+                return values().firstOrNull { it.name.equals(value, false) } ?: Other
+            }
+        }
     }
 
-    enum class Status(value: String) {
+    enum class Status(val value: String) {
         Alive("Alive"),
         Dead("Deadd"),
-        Unknown("unknown"),
+        Unknown("unknown");
+
+        companion object {
+
+            fun enumFrom(value: String): Status {
+                return values().firstOrNull { it.name.equals(value, false) } ?: Unknown
+            }
+        }
     }
+
     // endregion
 }
 
