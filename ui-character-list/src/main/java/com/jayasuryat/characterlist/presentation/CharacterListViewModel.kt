@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
-    private val charactersRepository: CharacterListRepository
+    private val charactersRepository: CharacterListRepository,
 ) : BaseViewModel() {
 
     private val _obsCharactersList: MutableLiveData<List<CharacterDef>> = MutableLiveData()

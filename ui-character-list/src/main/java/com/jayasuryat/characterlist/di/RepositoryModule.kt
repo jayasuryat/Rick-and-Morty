@@ -3,7 +3,6 @@ package com.jayasuryat.characterlist.di
 import com.jayasuryat.basedata.mappers.Mapper
 import com.jayasuryat.basedata.providers.DispatcherProvider
 import com.jayasuryat.characterlist.CharacterListQuery
-import com.jayasuryat.characterlist.data.mappers.CharacterDtoToEntityMapper
 import com.jayasuryat.characterlist.data.repositories.CharacterListRepo
 import com.jayasuryat.characterlist.data.sources.local.definitions.CharacterListLocalDataSource
 import com.jayasuryat.characterlist.data.sources.local.entities.CharacterEntity
@@ -23,11 +22,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object RepositoryModule {
-
-    @Provides
-    @Singleton
-    fun providesCharacterDtoToEntityMapper(): Mapper<CharacterListQuery.Result, CharacterEntity> =
-        CharacterDtoToEntityMapper()
 
     @Provides
     @Singleton

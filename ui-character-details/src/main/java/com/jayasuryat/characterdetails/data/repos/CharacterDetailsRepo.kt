@@ -26,19 +26,22 @@ internal class CharacterDetailsRepo(
     ): KResult<CharacterDetails> = wrapAsResult(dispatcher.io()) {
 
         val networkResponse = networkClient.getCharacterDetails(characterId).data
-        val networkCharacters = networkResponse?.character()
+        val networkCharacter = networkResponse?.character()
             ?: throw RuntimeException("No characters found") // TODO: 15/10/21
 
-        val mappedCharacters = characterDtoToEntityMapper.map(networkCharacters)
-        cacheClient.saveCharacterDetails(mappedCharacters)
+        val mappedCharacter = characterDtoToEntityMapper.map(networkCharacter)
+        cacheClient.saveCharacterDetails(mappedCharacter)
 
-        val cachedCharacters = cacheClient.getCharacter(characterId)
-        characterEntityToDomainMapper.map(cachedCharacters)
+        val cachedCharacter = cacheClient.getCharacter(characterId)
+            ?: throw IllegalStateException("Model not found in cache for id $characterId")
+        characterEntityToDomainMapper.map(cachedCharacter)
     }
 
     override suspend fun getCharacterDetailsFromCache(
         characterId: Long,
     ): KResult<CharacterDetails> = wrapAsResult(dispatcher.io()) {
-        characterEntityToDomainMapper.map(cacheClient.getCharacter(characterId))
+        val cacheCharacter = cacheClient.getCharacter(characterId)
+            ?: throw IllegalStateException("Model not found in cache for $characterId")
+        characterEntityToDomainMapper.map(cacheCharacter)
     }
 }

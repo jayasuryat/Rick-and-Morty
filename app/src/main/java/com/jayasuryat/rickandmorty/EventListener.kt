@@ -15,8 +15,8 @@ import com.jayasuryat.characterlist.CharacterListEvent
 import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.episodedetails.EpisodeDetailsEvent
-import com.jayasuryat.episodelist.EpisodeListEvent
-import com.jayasuryat.episodelist.OpenEpisode
+import com.jayasuryat.episodelist.presentation.EpisodeListEvent
+import com.jayasuryat.episodelist.presentation.OpenEpisode
 import com.jayasuryat.home.HomeScreenEvent
 import com.jayasuryat.home.OpenCharacters
 import com.jayasuryat.home.OpenEpisodes
@@ -152,7 +152,7 @@ class EventListener private constructor(
                 )
             }
 
-            is com.jayasuryat.episodelist.NavigateBack -> navigationHelper.popBackStack()
+            is com.jayasuryat.episodelist.presentation.NavigateBack -> navigationHelper.popBackStack()
         }
     }
 

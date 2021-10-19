@@ -10,8 +10,8 @@ import com.jayasuryat.characterdetails.data.sources.local.entities.CharacterEnti
 @Dao
 internal interface CharacterDetailsLocalDataSource {
 
-    @Query("SELECT * FROM character_details WHERE id = :characterId")
-    suspend fun getCharacter(characterId: Long): CharacterEntity
+    @Query("SELECT * FROM character_details WHERE id=:characterId")
+    suspend fun getCharacter(characterId: Long): CharacterEntity?
 
     @Insert(onConflict = REPLACE)
     suspend fun saveCharacterDetails(characterDetails: CharacterEntity)
