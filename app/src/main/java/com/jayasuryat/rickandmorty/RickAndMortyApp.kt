@@ -1,7 +1,6 @@
 package com.jayasuryat.rickandmorty
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import org.greenrobot.eventbus.EventBus
 
