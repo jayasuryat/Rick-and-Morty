@@ -10,8 +10,6 @@ rootProject.name = "RickAndMorty"
 
 include(":app")
 
-include(":data")
-
 include(":ui-base")
 
 include(":ui-home")
