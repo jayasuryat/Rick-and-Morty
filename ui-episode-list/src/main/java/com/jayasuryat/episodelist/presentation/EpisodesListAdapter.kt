@@ -13,7 +13,7 @@ import com.jayasuryat.episodelist.databinding.ItemSeasonBinding
 
 internal class EpisodesListAdapter(
     private val onSeasonClicked: (EpisodeListData.Season) -> Unit,
-    private val onEpisodeClicked: (episode: EpisodeListData.Episode, name: View) -> Unit,
+    private val onEpisodeClicked: (episode: EpisodeListData.Episode, name: View, nameContainer: View) -> Unit,
 ) : ListAdapter<EpisodeListData, EpisodesListAdapter.BaseEpisodeHolder>(difCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseEpisodeHolder =
@@ -63,7 +63,8 @@ internal class EpisodesListAdapter(
                 if (position >= 0)
                     onEpisodeClicked(
                         getItem(position) as EpisodeListData.Episode,
-                        item.tvEpisodeName
+                        item.tvEpisodeName,
+                        item.cvRoot
                     )
             }
         }
@@ -72,6 +73,7 @@ internal class EpisodesListAdapter(
             item.cEpisodeNumber.text = data.episodeNumber.toString()
             item.tvEpisodeName.text = data.episodeName
             item.tvEpisodeName.transitionName = data.episodeName
+            item.cvRoot.transitionName = data.episodeName + "_container"
         }
     }
 

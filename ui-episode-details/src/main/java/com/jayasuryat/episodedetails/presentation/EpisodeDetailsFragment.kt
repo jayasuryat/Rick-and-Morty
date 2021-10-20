@@ -97,7 +97,7 @@ class EpisodeDetailsFragment : BaseAbsFragment<EpisodeDetailsViewModel,
                 addAnim {
                     AlphaAnim.builder()
                         .intermediateSteps(0f)
-                        .build(view, view2, view3)
+                        .build(view, view2)
                 }
             }.start()
         }

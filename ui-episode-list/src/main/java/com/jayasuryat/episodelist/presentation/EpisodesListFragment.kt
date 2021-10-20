@@ -117,9 +117,16 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
     private fun onSeasonClicked(season: EpisodeListData.Season) =
         viewModel.onSeasonClicked(season)
 
-    private fun onEpisodeClicked(episode: EpisodeListData.Episode, name: View) {
+    private fun onEpisodeClicked(
+        episode: EpisodeListData.Episode,
+        name: View,
+        nameContainer: View,
+    ) {
 
-        val extras = FragmentNavigatorExtras(name to "episodeName")
+        val extras = FragmentNavigatorExtras(
+            name to "episodeName",
+            nameContainer to "episodeNameContainer"
+        )
 
         val event = OpenEpisode(
             episodeId = episode.episodeId,

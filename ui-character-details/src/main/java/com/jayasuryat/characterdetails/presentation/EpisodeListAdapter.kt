@@ -11,7 +11,7 @@ import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.characterdetails.databinding.ItemEpisodeBinding
 
 class EpisodeListAdapter(
-    private val onClicked: (episode: EpisodeData, name: View) -> Unit,
+    private val onClicked: (episode: EpisodeData, name: View, nameContainer: View) -> Unit,
 ) : ListAdapter<EpisodeData, EpisodeListAdapter.EpisodeViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder =
@@ -29,7 +29,11 @@ class EpisodeListAdapter(
             item.cvRoot.shrinkOnClick {
                 val position = adapterPosition
                 if (position >= 0)
-                    onClicked(getItem(position), item.tvEpisodeName)
+                    onClicked(
+                        getItem(position),
+                        item.tvEpisodeName,
+                        item.cvRoot
+                    )
             }
         }
 
@@ -39,6 +43,7 @@ class EpisodeListAdapter(
             item.tvSeasonNumber.text = "S${data.season}"
             item.tvEpisodeNumber.text = "E${data.episode}"
             item.tvEpisodeName.transitionName = "name_${data.episodeId}"
+            item.cvRoot.transitionName = "name_container_${data.episodeId}"
         }
     }
 

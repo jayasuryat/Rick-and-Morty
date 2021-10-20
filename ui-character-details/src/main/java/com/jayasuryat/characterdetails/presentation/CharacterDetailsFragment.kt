@@ -172,9 +172,16 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
         }
     }
 
-    private fun onEpisodeClicked(episode: EpisodeData, name: View) {
+    private fun onEpisodeClicked(
+        episode: EpisodeData,
+        name: View,
+        nameContainer: View,
+    ) {
 
-        val extras = FragmentNavigatorExtras(name to "episodeName")
+        val extras = FragmentNavigatorExtras(
+            name to "episodeName",
+            nameContainer to "episodeNameContainer"
+        )
 
         val event = OpenEpisode(
             episodeId = episode.episodeId,
