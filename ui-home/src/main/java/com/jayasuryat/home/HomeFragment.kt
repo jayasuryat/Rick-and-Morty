@@ -3,9 +3,9 @@ package com.jayasuryat.home
 import android.graphics.Point
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.CircleRevealHelper
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
@@ -63,19 +63,15 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
                     .toCurrentPosition()
                     .build(binding.clContainer, binding.ivEpisodes, binding.ivLocations)
             }
+            addAnim {
+                AlphaAnim.builder()
+                    .intermediateSteps(0f)
+                    .build(binding.clContainer)
+            }
         }.start()
     }
 
     private fun revealRoot() {
-
-        val animView: View = binding.clRoot
-
-        CircleRevealHelper.Builder(animView)
-            .setStartPoint(x = 66.0, y = 100.0)
-            .setFarthestPointFromStartAsEnd()
-            .build()
-            .animation
-        //.start()
 
         AnimHelper.create {
             addAnim {
@@ -85,12 +81,10 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
                     .build(binding.clContainer)
             }
             addAnim {
-                TranslateAnim.builder()
-                    .fromVerticalDelta(-50f)
-                    .toCurrentPosition()
-                    .build(binding.clContainer, binding.ivEpisodes, binding.ivLocations)
+                AlphaAnim.builder()
+                    .intermediateSteps(0f)
+                    .build(binding.clContainer)
             }
-            overrideInterpolator(LinearOutSlowInInterpolator())
         }.start()
     }
     // endregion

@@ -13,7 +13,9 @@
         android:id="@+id/clContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp">
+        android:alpha="0.01"
+        android:padding="24dp"
+        tools:alpha="1">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/mcvCharacters"
