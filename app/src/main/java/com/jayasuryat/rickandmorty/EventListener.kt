@@ -204,7 +204,8 @@ class EventListener private constructor(
                 .setEnterAnim(R.anim.enter_from_right)
                 .setExitAnim(R.anim.exit_to_left)
                 .setPopEnterAnim(R.anim.enter_from_left)
-                .setPopExitAnim(R.anim.exit_to_right).build()
+                .setPopExitAnim(R.anim.exit_to_right)
+                .build()
         }
 
         fun navigate(
