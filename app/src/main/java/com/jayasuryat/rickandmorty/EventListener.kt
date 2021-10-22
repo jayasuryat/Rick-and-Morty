@@ -83,7 +83,8 @@ class EventListener private constructor(
             }
 
             OpenLocations -> TODO()
-        }
+
+        }.exhaustive
     }
     // endregion
 
@@ -107,7 +108,8 @@ class EventListener private constructor(
             }
 
             is NavigateBack -> navigationHelper.popBackStack()
-        }
+
+        }.exhaustive
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -153,7 +155,8 @@ class EventListener private constructor(
             }
 
             is com.jayasuryat.episodelist.presentation.NavigateBack -> navigationHelper.popBackStack()
-        }
+
+        }.exhaustive
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -175,7 +178,8 @@ class EventListener private constructor(
                     extras = event.extras
                 )
             }
-        }
+
+        }.exhaustive
     }
     // endregion
 
