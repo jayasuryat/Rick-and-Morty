@@ -17,8 +17,8 @@ class CharacterEpisodesViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
-    private val _obsEpisodes: MutableLiveData<List<EpisodeData>> = MutableLiveData()
-    val obsEpisodes: LiveData<List<EpisodeData>> = _obsEpisodes
+    private val _obsEpisodes: MutableLiveData<List<CharacterEpisodeData>> = MutableLiveData()
+    val obsEpisodes: LiveData<List<CharacterEpisodeData>> = _obsEpisodes
 
     init {
         ioScope.launch { doWhileLoading { getEpisodes() } }
@@ -37,19 +37,35 @@ class CharacterEpisodesViewModel @Inject constructor(
         _obsEpisodes.postValue(episodes)
     }
 
-    private fun List<Episode>.mapped(): List<EpisodeData> = map { episode ->
+    private fun List<Episode>.mapped(): List<CharacterEpisodeData> {
 
-        val seasonNum = episode.episode.substring(1, episode.episode.indexOf('E')).toInt()
-        val episodeNum = episode.episode.substring(
-            episode.episode.indexOf('E') + 1,
-            episode.episode.length
-        ).toInt()
+        val mapped = map { episode ->
 
-        EpisodeData(
-            episodeId = episode.id,
-            episodeName = episode.name,
-            season = seasonNum,
-            episode = episodeNum,
-        )
+            val seasonNum = episode.episode.substring(1, episode.episode.indexOf('E')).toInt()
+            val episodeNum = episode.episode.substring(
+                episode.episode.indexOf('E') + 1,
+                episode.episode.length
+            ).toInt()
+
+            CharacterEpisodeData.EpisodeData(
+                episodeId = episode.id,
+                episodeName = episode.name,
+                season = seasonNum,
+                episode = episodeNum,
+            )
+        }
+
+        val seasons = mapped.groupBy { it.season }
+
+        val episodesList: MutableList<CharacterEpisodeData> = mutableListOf()
+
+        seasons.forEach { seasonData ->
+            episodesList.addAll(seasonData.value)
+            episodesList.add(CharacterEpisodeData.SeasonDivider(seasonData.key.toLong()))
+        }
+
+        episodesList.removeLast()
+
+        return episodesList
     }
 }
