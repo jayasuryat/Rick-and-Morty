@@ -29,14 +29,14 @@ internal class CharactersListAdapter(
             item.cvRoot.shrinkOnClick {
                 val position = bindingAdapterPosition
                 if (position >= 0)
-                    onItemSelected(getItem(position), item.ivAvatar, item.tvName, item.cvRoot)
+                    onItemSelected(getItem(position), item.cvAvatar, item.tvName, item.cvRoot)
             }
         }
 
         fun bind(data: CharacterDef) {
             item.tvName.text = data.name
             item.ivAvatar.loadImage(data.imageUrl)
-            item.ivAvatar.transitionName = "avatar_#${data.id}"
+            item.cvAvatar.transitionName = "avatar_#${data.id}"
             item.tvName.transitionName = "name_#${data.id}"
             item.cvRoot.transitionName = "container_#${data.id}"
         }

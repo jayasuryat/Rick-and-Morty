@@ -1,8 +1,8 @@
 package com.jayasuryat.episodedetails.presentation
 
-import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 internal object UiUtils {
 
@@ -12,7 +12,7 @@ internal object UiUtils {
 
         Glide.with(context)
             .load(url)
-            .placeholder(ColorDrawable())
+            .transition(DrawableTransitionOptions.withCrossFade(300))
             .into(this)
     }
 }

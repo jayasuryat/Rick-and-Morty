@@ -1,7 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.character
 
 import android.os.Bundle
-import android.view.animation.OvershootInterpolator
 import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -11,6 +10,7 @@ import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
+import com.jayasuryat.base.toggleVisibility
 import com.jayasuryat.characterdetails.NavigateBack
 import com.jayasuryat.characterdetails.OpenCharacterEpisodes
 import com.jayasuryat.characterdetails.R
@@ -93,10 +93,8 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             tvGender.text = character.gender.name
             tvStatus.text = character.status.name
 
-            if (!character.type.isNullOrEmpty()) {
-                tvType.show()
-                tvType.text = character.type
-            }
+            tvType.toggleVisibility(!character.type.isNullOrEmpty())
+            tvType.text = character.type
 
             tvCurrentLocationValue.text = character.location?.name
             tvCurrentLocationDimension.text = character.location?.dimension
@@ -119,7 +117,6 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
                     TranslateAnim.builder()
                         .fromVerticalDelta(200f)
                         .toCurrentPosition()
-                        .setInterpolator(OvershootInterpolator())
                         .build(view1, view2, view3)
                 }
             }

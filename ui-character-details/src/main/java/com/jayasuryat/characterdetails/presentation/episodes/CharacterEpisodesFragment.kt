@@ -1,7 +1,9 @@
 package com.jayasuryat.characterdetails.presentation.episodes
 
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -15,6 +17,7 @@ import com.jayasuryat.characterdetails.NavigateBack
 import com.jayasuryat.characterdetails.OpenEpisode
 import com.jayasuryat.characterdetails.databinding.FragmentCharacterEpisodesBinding
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -34,18 +37,25 @@ class CharacterEpisodesFragment : BaseAbsFragment<CharacterEpisodesViewModel,
         binding.root.post(::animateViews)
 
         rvEpisodesList.apply {
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = FadeInUpAnimator(DecelerateInterpolator())
             adapter = episodesAdapter
         }
 
         ivBack.shrinkOnClick(::navigateBack)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (hasLanded.get()) postponeEnterTransition()
+    }
+
     override fun setupObservers(): CharacterEpisodesViewModel.() -> Unit = {
 
         obsEpisodes.observe(viewLifecycleOwner) { episodes ->
             episodesAdapter.submitList(episodes)
-           // (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
+            (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 
@@ -77,7 +87,7 @@ class CharacterEpisodesFragment : BaseAbsFragment<CharacterEpisodesViewModel,
             AnimHelper.create {
                 addAnim {
                     TranslateAnim.builder()
-                        .fromVerticalDelta(-200f)
+                        .fromVerticalDelta(-164f)
                         .toCurrentPosition()
                         .build(view)
                 }
@@ -94,7 +104,7 @@ class CharacterEpisodesFragment : BaseAbsFragment<CharacterEpisodesViewModel,
     }
 
     private fun onEpisodeClicked(
-        episode: EpisodeData,
+        episode: CharacterEpisodeData.EpisodeData,
         name: View,
         nameContainer: View,
     ) {

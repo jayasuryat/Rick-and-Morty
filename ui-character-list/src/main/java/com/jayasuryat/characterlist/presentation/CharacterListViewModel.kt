@@ -18,7 +18,7 @@ class CharacterListViewModel @Inject constructor(
     internal val obsCharactersList: LiveData<List<CharacterDef>> = _obsCharactersList
 
     init {
-        ioScope.launch { loadCharacters() }
+        ioScope.launch { doWhileLoading { loadCharacters() } }
     }
 
     private suspend fun loadCharacters() {

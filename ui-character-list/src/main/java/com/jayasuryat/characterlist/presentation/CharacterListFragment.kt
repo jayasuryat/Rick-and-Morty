@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
-import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.AnimHelper
+import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.CircleRevealHelper
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
@@ -20,6 +21,7 @@ import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -45,7 +47,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         postponeEnterTransition()
         return super.onCreateView(inflater, container, savedInstanceState)
@@ -60,6 +62,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
         rvCharactersList.apply {
             layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = SlideInUpAnimator(DecelerateInterpolator())
             adapter = characterListAdapter
         }
     }

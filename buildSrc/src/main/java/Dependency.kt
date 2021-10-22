@@ -37,6 +37,8 @@ object Dependency {
 
     const val eventBus = "org.greenrobot:eventbus:3.2.0"
 
+    const val recyclerviewAnimators = "jp.wasabeef:recyclerview-animators:4.0.2"
+
     const val apolloRuntime = "com.apollographql.apollo:apollo-runtime:2.5.9"
     const val apolloCoroutines = "com.apollographql.apollo:apollo-coroutines-support:2.5.9"
     const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"

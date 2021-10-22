@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -17,6 +18,7 @@ import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.episodedetails.databinding.FragmentEpisodeDetailsBinding
 import com.jayasuryat.episodedetails.domain.model.Character
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.*
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -55,7 +57,9 @@ class EpisodeDetailsFragment : BaseAbsFragment<EpisodeDetailsViewModel,
         ivBack.shrinkOnClick(::navigateBack)
 
         rvCharacters.apply {
+            setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireActivity(), 3)
+            itemAnimator = FadeInUpAnimator(AccelerateInterpolator())
             adapter = characterListAdapter
         }
     }

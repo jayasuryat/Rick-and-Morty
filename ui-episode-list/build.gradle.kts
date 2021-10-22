@@ -68,6 +68,7 @@ dependencies {
 
     // Others
     implementation(Dependency.eventBus)
+    implementation(Dependency.recyclerviewAnimators)
     // Apollo
     implementation(Dependency.apolloRuntime)
     implementation(Dependency.apolloCoroutines)

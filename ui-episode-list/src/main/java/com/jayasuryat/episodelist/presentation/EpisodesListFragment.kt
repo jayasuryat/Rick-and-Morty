@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -16,6 +17,7 @@ import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.episodelist.databinding.FragmentEpisodesListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.FlipInTopXAnimator
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -55,6 +57,7 @@ class EpisodesListFragment : BaseAbsFragment<EpisodesListViewModel,
 
         rvEpisodesList.apply {
             setHasFixedSize(true)
+            itemAnimator = FlipInTopXAnimator(AccelerateInterpolator())
             layoutManager = LinearLayoutManager(requireContext())
             adapter = episodesListAdapter
         }
