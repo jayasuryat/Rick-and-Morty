@@ -11,6 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.findNavController
 import com.jayasuryat.characterdetails.CharacterDetailsEvent
+import com.jayasuryat.characterdetails.OpenCharacterEpisodes
 import com.jayasuryat.characterlist.CharacterListEvent
 import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
@@ -130,8 +131,21 @@ class EventListener private constructor(
                 )
             }
 
+            is OpenCharacterEpisodes -> {
+
+                val args = Bundle().apply {
+                    putLong("id", event.characterId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.characterEpisodesFragment,
+                    arguments = args,
+                )
+            }
+
             com.jayasuryat.characterdetails.NavigateBack -> navigationHelper.popBackStack()
-        }
+
+        }.exhaustive
     }
     // endregion
 
@@ -201,7 +215,7 @@ class EventListener private constructor(
         ) {
 
             activity.findNavController(R.id.fcvMainContainer)
-                .navigate(destinationId, arguments, null /*navOptions*/, extras)
+                .navigate(destinationId, arguments, /*null*/ navOptions, extras)
         }
 
         fun popBackStack() {
