@@ -1,4 +1,4 @@
-package com.jayasuryat.characterdetails.presentation
+package com.jayasuryat.characterdetails.presentation.character
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,9 +20,6 @@ class CharacterDetailsViewModel @Inject constructor(
     private val _obsCharacter: MutableLiveData<CharacterDetails> = MutableLiveData()
     val obsCharacter: LiveData<CharacterDetails> = _obsCharacter
 
-    private val _obsEpisodes: MutableLiveData<List<EpisodeData>> = MutableLiveData()
-    val obsEpisodes: LiveData<List<EpisodeData>> = _obsEpisodes
-
     init {
         ioScope.launch { doWhileLoading { loadCharacterDetails() } }
     }
@@ -31,34 +28,10 @@ class CharacterDetailsViewModel @Inject constructor(
 
         val characterId = savedStateHandle.get<Long>("id") ?: 1
 
-        val cacheCharacter = charactersRepository
-            .getCharacterDetailsFromCache(characterId)
-            .getOrNull()
-
-        val character = cacheCharacter ?: charactersRepository.getCharacterDetails(characterId)
+        val character = charactersRepository.getCharacterDetails(characterId)
             .logError()
             .getOrNull() ?: return
 
         _obsCharacter.postValue(character)
-        loadEpisodes(character)
-    }
-
-    private fun loadEpisodes(character: CharacterDetails) {
-
-        character.episode.map { episode ->
-
-            val seasonNum = episode.episode.substring(1, episode.episode.indexOf('E')).toInt()
-            val episodeNum = episode.episode.substring(
-                episode.episode.indexOf('E') + 1,
-                episode.episode.length
-            ).toInt()
-
-            EpisodeData(
-                episodeId = episode.id,
-                episodeName = episode.name,
-                season = seasonNum,
-                episode = episodeNum,
-            )
-        }.let(_obsEpisodes::postValue)
     }
 }

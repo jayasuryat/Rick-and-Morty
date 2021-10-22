@@ -1,6 +1,5 @@
 package com.jayasuryat.characterdetails.presentation
 
-import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
@@ -12,7 +11,6 @@ internal object UiUtils {
 
         Glide.with(context)
             .load(url)
-            .placeholder(ColorDrawable())
             .into(this)
     }
 }

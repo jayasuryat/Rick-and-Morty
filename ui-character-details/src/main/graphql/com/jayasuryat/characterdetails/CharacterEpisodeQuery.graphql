@@ -1,0 +1,10 @@
+query CharacterEpisodeQuery($id: ID!) {
+    character(id: $id) {
+        id
+        episode {
+            id
+            name
+            episode
+        }
+    }
+}

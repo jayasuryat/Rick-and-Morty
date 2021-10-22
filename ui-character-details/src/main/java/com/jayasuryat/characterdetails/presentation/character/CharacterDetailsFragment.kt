@@ -1,26 +1,18 @@
-package com.jayasuryat.characterdetails.presentation
+package com.jayasuryat.characterdetails.presentation.character
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.jayasuryat.base.anim.AnimHelper
-import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
-import com.jayasuryat.base.hide
 import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
-import com.jayasuryat.base.toggleVisibility
 import com.jayasuryat.characterdetails.NavigateBack
-import com.jayasuryat.characterdetails.OpenEpisode
+import com.jayasuryat.characterdetails.OpenCharacterEpisodes
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.databinding.FragmentCharacterDetailsBinding
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
@@ -40,8 +32,6 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
 
     private val hasLanded: AtomicBoolean = AtomicBoolean(false)
 
-    private val episodesAdapter: EpisodeListAdapter by lazy { EpisodeListAdapter(::onEpisodeClicked) }
-
     override val viewModel: CharacterDetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,45 +40,20 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        if (hasLanded.get()) postponeEnterTransition()
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun setupViews(): FragmentCharacterDetailsBinding.() -> Unit = {
 
-        binding.root.postDelayed(::animateViews, 300)
-
-        rvEpisodes.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = episodesAdapter
-        }
+        binding.root.post(::animateViews)
 
         cvBack.shrinkOnClick(::navigateBack)
 
-        cvLocation.shrinkOnClick { }
-
-        cvEpisodes.setOnClickListener {
-            cvEpisodes.isClickable = false
-            rvEpisodes.show()
-            ivExpand.hide()
-        }
+        cvCurrentLocation.shrinkOnClick { }
+        cvOriginLocation.shrinkOnClick { }
+        cvEpisodes.shrinkOnClick(::onEpisodesClicked)
     }
 
     override fun setupObservers(): CharacterDetailsViewModel.() -> Unit = {
 
         obsCharacter.observe(viewLifecycleOwner, ::loadUi)
-
-        obsEpisodes.observe(viewLifecycleOwner) { episodes ->
-            episodesAdapter.submitList(episodes)
-            binding.cvEpisodes.toggleVisibility(!episodes.isNullOrEmpty())
-            (view?.parent as? ViewGroup)
-                ?.doOnPreDraw { startPostponedEnterTransition() }
-        }
     }
 
     private fun loadUi(character: CharacterDetails?) {
@@ -127,7 +92,17 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             tvSpecies.text = character.species.name
             tvGender.text = character.gender.name
             tvStatus.text = character.status.name
-            tvLocationValue.text = character.location.name
+
+            if (!character.type.isNullOrEmpty()) {
+                tvType.show()
+                tvType.text = character.type
+            }
+
+            tvCurrentLocationValue.text = character.location?.name
+            tvCurrentLocationDimension.text = character.location?.dimension
+
+            tvOriginLocationValue.text = character.origin?.name
+            tvOriginLocationDimension.text = character.location?.dimension
         }
     }
 
@@ -135,57 +110,58 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
 
         fun enterAnim() {
 
-            val view = nullableBinding?.clExtraInfo ?: return
+            val view1 = nullableBinding?.cvCurrentLocation ?: return
+            val view2 = nullableBinding?.cvOriginLocation ?: return
+            val view3 = nullableBinding?.cvEpisodes ?: return
 
-            AnimHelper.create {
+            val anim = AnimHelper.create {
                 addAnim {
                     TranslateAnim.builder()
                         .fromVerticalDelta(200f)
                         .toCurrentPosition()
-                        .build(view)
+                        .setInterpolator(OvershootInterpolator())
+                        .build(view1, view2, view3)
                 }
-                addAnim {
-                    AlphaAnim.builder()
-                        .intermediateSteps(0f)
-                        .build(view)
-                }
-            }.start()
+            }
 
-            view.show()
+            view1.postDelayed({
+                view1.show(); view2.show(); view3.show();
+                anim.start()
+            }, 300)
         }
 
         fun backAnim() {
-            nullableBinding?.clExtraInfo?.show()
-            onShowEpisodesClicked()
+
+            val view1 = nullableBinding?.cvCurrentLocation ?: return
+            val view2 = nullableBinding?.cvOriginLocation ?: return
+            val view3 = nullableBinding?.cvEpisodes ?: return
+
+            val anim = AnimHelper.create {
+                addAnim {
+                    TranslateAnim.builder()
+                        .fromVerticalDelta(-96f)
+                        .toCurrentPosition()
+                        .setDuration(128)
+                        .build(view1, view2, view3)
+                }
+            }
+
+            view1.postDelayed({
+                view1.show(); view2.show(); view3.show();
+                anim.start()
+            }, 60)
         }
 
         if (hasLanded.compareAndSet(false, true)) enterAnim()
         else backAnim()
     }
 
-    private fun onShowEpisodesClicked() {
+    private fun onEpisodesClicked() {
 
-        binding.apply {
-            cvEpisodes.isClickable = false
-            rvEpisodes.show()
-            ivExpand.hide()
-        }
-    }
+        val characterId = (arguments?.get("id") as Long?) ?: return
 
-    private fun onEpisodeClicked(
-        episode: EpisodeData,
-        name: View,
-        nameContainer: View,
-    ) {
-
-        val extras = FragmentNavigatorExtras(
-            name to "episodeName",
-            nameContainer to "episodeNameContainer"
-        )
-
-        val event = OpenEpisode(
-            episodeId = episode.episodeId,
-            extras = extras,
+        val event = OpenCharacterEpisodes(
+            characterId = characterId,
         )
 
         EventBus.getDefault().post(event)

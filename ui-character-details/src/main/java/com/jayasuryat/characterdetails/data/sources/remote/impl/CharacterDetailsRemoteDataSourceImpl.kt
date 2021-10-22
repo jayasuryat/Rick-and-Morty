@@ -4,6 +4,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.await
 import com.jayasuryat.characterdetails.CharacterDetailsQuery
+import com.jayasuryat.characterdetails.CharacterEpisodeQuery
 import com.jayasuryat.characterdetails.data.sources.remote.definitons.CharacterDetailsRemoteDataSource
 
 
@@ -15,6 +16,13 @@ internal class CharacterDetailsRemoteDataSourceImpl(
         characterId: Long,
     ): Response<CharacterDetailsQuery.Data> {
         return apolloClient.query(CharacterDetailsQuery(characterId.toString()))
+            .await()
+    }
+
+    override suspend fun getCharacterEpisodes(
+        characterId: Long,
+    ): Response<CharacterEpisodeQuery.Data> {
+        return apolloClient.query(CharacterEpisodeQuery(characterId.toString()))
             .await()
     }
 }

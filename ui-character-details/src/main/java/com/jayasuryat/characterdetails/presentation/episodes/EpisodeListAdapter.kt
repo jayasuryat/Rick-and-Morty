@@ -1,4 +1,4 @@
-package com.jayasuryat.characterdetails.presentation
+package com.jayasuryat.characterdetails.presentation.episodes
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -58,10 +58,3 @@ class EpisodeListAdapter(
         }
     }
 }
-
-data class EpisodeData(
-    val episodeId: Long,
-    val episodeName: String,
-    val season: Int,
-    val episode: Int,
-)

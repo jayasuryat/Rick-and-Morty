@@ -6,17 +6,17 @@ import com.jayasuryat.characterdetails.CharacterDetailsDomainModel
 data class CharacterDetails(
     val id: String,
     val name: String,
+    val image: String,
     val status: Status,
     val species: Species,
-    val type: String,
+    val type: String?,
     val gender: Gender,
-    val location: Location,
-    val image: String,
-    val episode: List<Episode>,
+    val location: Location?,
+    val origin: Location?,
 ) : CharacterDetailsDomainModel {
 
     // region : Enums
-    enum class Gender(value: String) {
+    enum class Gender(val value: String) {
         Female("Female"),
         Male("Male"),
         Genderless("Genderless"),
@@ -30,7 +30,7 @@ data class CharacterDetails(
         }
     }
 
-    enum class Species(value: String) {
+    enum class Species(val value: String) {
         Alien("Alien"),
         Human("Human"),
         Humanoid("Humanoid"),
@@ -60,15 +60,9 @@ data class CharacterDetails(
     // endregion
 }
 
-data class Episode(
-    val id: Long,
-    val name: String,
-    val episode: String,
-)
-
 data class Location(
-    val id: String,
-    val name: String,
-    val type: String,
-    val dimension: String,
+    val id: String?,
+    val name: String?,
+    val type: String?,
+    val dimension: String?,
 )

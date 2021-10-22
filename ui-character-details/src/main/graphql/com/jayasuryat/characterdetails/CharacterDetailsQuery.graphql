@@ -13,10 +13,11 @@ query CharacterDetailsQuery($id: ID!) {
             dimension
         }
         image
-        episode {
+        origin {
             id
             name
-            episode
+            type
+            dimension
         }
     }
 }
