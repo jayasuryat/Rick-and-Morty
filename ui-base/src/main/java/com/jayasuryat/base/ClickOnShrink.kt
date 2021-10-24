@@ -17,27 +17,6 @@ public fun View.shrinkOnClick(onClickListener: () -> Unit) {
     }
 }
 
-@SuppressLint("ClickableViewAccessibility")
-public fun View.shrinkOnClickWithPoint(action: (Point) -> Unit) {
-
-    val coordinates = Point()
-    val screenPosition = IntArray(2)
-
-    val shrink = ClickOnShrink(this)
-    setOnTouchListener { v, event ->
-        shrink.onTouch(v, event)
-        if (event.action == MotionEvent.ACTION_DOWN) {
-            v.getLocationOnScreen(screenPosition)
-            coordinates.set(
-                event.x.toInt() + screenPosition[0],
-                event.y.toInt() + screenPosition[1]
-            )
-        }
-        false
-    }
-    setOnClickListener { action.invoke(coordinates) }
-}
-
 private class ClickOnShrink(private val viewToShrink: View) : View.OnTouchListener {
 
     private val animInterpolator: TimeInterpolator by lazy { AccelerateInterpolator() }

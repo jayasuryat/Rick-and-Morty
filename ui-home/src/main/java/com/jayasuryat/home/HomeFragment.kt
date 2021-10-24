@@ -1,6 +1,5 @@
 package com.jayasuryat.home
 
-import android.graphics.Point
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -10,7 +9,6 @@ import com.jayasuryat.base.anim.impl.CircleRevealHelper
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
-import com.jayasuryat.base.shrinkOnClickWithPoint
 import com.jayasuryat.home.databinding.FragmentHomeBinding
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
@@ -27,9 +25,9 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
 
         binding.clRoot.post(::handleReveal)
 
-        mcvCharacters.shrinkOnClickWithPoint(::navigateToCharacters)
+        mcvCharacters.shrinkOnClick(::navigateToCharacters)
         mcvEpisodes.shrinkOnClick(::navigateToEpisodes)
-        mcvLocations.shrinkOnClick { postEvent(OpenLocations) }
+        mcvLocations.shrinkOnClick(::navigateToLocations)
     }
 
     // region : Reveal animation setup
@@ -89,14 +87,19 @@ class HomeFragment : BaseAbsFragment<HomeViewModel,
     }
     // endregion
 
-    private fun navigateToCharacters(point: Point) {
+    private fun navigateToCharacters() {
         val extras = FragmentNavigatorExtras(binding.tvCharacters to "charListTitle")
-        OpenCharacters(extras = extras, clickPoint = point).let(::postEvent)
+        OpenCharacters(extras = extras).let(::postEvent)
     }
 
     private fun navigateToEpisodes() {
         val extras = FragmentNavigatorExtras(binding.tvEpisodes to "episodesListTitle")
         OpenEpisodes(extras = extras).let(::postEvent)
+    }
+
+    private fun navigateToLocations() {
+        val extras = FragmentNavigatorExtras(binding.tvLocation to "locationsListTitle")
+        OpenLocations(extras = extras).let(::postEvent)
     }
 
     private fun postEvent(event: HomeScreenEvent) = EventBus.getDefault().post(event)

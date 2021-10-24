@@ -64,14 +64,8 @@ class EventListener private constructor(
 
             is OpenCharacters -> {
 
-                val args = Bundle().apply {
-                    putInt("x", event.clickPoint.x)
-                    putInt("y", event.clickPoint.y)
-                }
-
                 navigationHelper.navigate(
                     destinationId = R.id.characterListFragment,
-                    arguments = args,
                     extras = event.extras,
                 )
             }
