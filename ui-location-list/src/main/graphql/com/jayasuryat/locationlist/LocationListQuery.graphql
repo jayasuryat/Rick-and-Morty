@@ -1,0 +1,10 @@
+query LocationListQuery($input: Int) {
+    locations(page: $input) {
+        results {
+            id
+            name
+            type
+            dimension
+        }
+    }
+}

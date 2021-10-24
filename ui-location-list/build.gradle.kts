@@ -1,9 +1,10 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
+    id("com.apollographql.apollo").version("2.5.9")
+    id("kotlin-android")
 }
 
 android {
@@ -11,12 +12,11 @@ android {
     compileSdk = BuildConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.jayasuryat.rickandmorty"
         minSdk = BuildConfig.minSdk
         targetSdk = BuildConfig.targetSdk
-        versionCode = 1
-        versionName = "1.0"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -35,22 +35,26 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
 
-    kapt {
-        correctErrorTypes = true
-        javacOptions {
-            // Increase the max count of errors from annotation processors.
-            // Default is 100.
-            option("-Xmaxerrs", 500)
-        }
-    }
+apollo {
+    generateKotlinModels.set(true)
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
 dependencies {
 
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
@@ -59,11 +63,16 @@ dependencies {
     // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
-    implementation(Dependency.constraintLayout)
+    implementation(Dependency.recyclerView)
 
     // Arch components
     implementation(Dependency.navigationFragment)
-    implementation(Dependency.navigationUi)
+    // Room
+    implementation(Dependency.roomRuntime)
+    implementation(Dependency.roomKtx)
+    kapt(Dependency.roomCompiler)
+    implementation(Dependency.roomPaging)
+    implementation(Dependency.pagingRuntime)
 
     // Hilt
     implementation(Dependency.hilt)
@@ -71,16 +80,12 @@ dependencies {
 
     // Others
     implementation(Dependency.eventBus)
-
-    // Features
-    implementation(project(Dependency.Module.baseData))
+    implementation(Dependency.glide)
+    implementation(Dependency.recyclerviewAnimators)
+    // Apollo
+    implementation(Dependency.apolloRuntime)
+    implementation(Dependency.apolloCoroutines)
 
     implementation(project(Dependency.Module.baseUi))
-
-    implementation(project(Dependency.Module.home))
-    implementation(project(Dependency.Module.characterList))
-    implementation(project(Dependency.Module.characterDetails))
-    implementation(project(Dependency.Module.episodeList))
-    implementation(project(Dependency.Module.episodeDetails))
-    implementation(project(Dependency.Module.locationList))
+    implementation(project(Dependency.Module.baseData))
 }

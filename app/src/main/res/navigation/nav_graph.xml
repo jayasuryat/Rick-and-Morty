@@ -34,4 +34,9 @@
         android:name="com.jayasuryat.episodedetails.presentation.EpisodeDetailsFragment"
         android:label="EpisodeDetailsFragment" />
 
+    <fragment
+        android:id="@+id/locationListFragment"
+        android:name="com.jayasuryat.locationlist.presentation.LocationListFragment"
+        android:label="LocationListFragment" />
+
 </navigation>

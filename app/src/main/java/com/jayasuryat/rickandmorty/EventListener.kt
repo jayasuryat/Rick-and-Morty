@@ -27,7 +27,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class EventListener private constructor(
-    private val activity: FragmentActivity
+    private val activity: FragmentActivity,
 ) : LifecycleEventObserver {
 
     private val navigationHelper: NavigationHelper by lazy { NavigationHelper() }
@@ -48,7 +48,8 @@ class EventListener private constructor(
             ON_CREATE,
             ON_RESUME,
             ON_PAUSE,
-            ON_ANY -> Unit
+            ON_ANY,
+            -> Unit
         }
     }
 
@@ -83,7 +84,13 @@ class EventListener private constructor(
                 )
             }
 
-            OpenLocations -> TODO()
+            is OpenLocations -> {
+
+                navigationHelper.navigate(
+                    destinationId = R.id.locationListFragment,
+                    extras = event.extras,
+                )
+            }
 
         }.exhaustive
     }
@@ -212,7 +219,7 @@ class EventListener private constructor(
             @IdRes destinationId: Int,
             arguments: Bundle? = null,
             extras: Navigator.Extras? = null,
-            navOptions: NavOptions = defaultNavOptions
+            navOptions: NavOptions = defaultNavOptions,
         ) {
 
             activity.findNavController(R.id.fcvMainContainer)
