@@ -66,5 +66,5 @@ dependencies {
     // Others
     implementation(Dependency.eventBus)
 
-    api(project(Dependency.Module.baseUi))
+    implementation(project(Dependency.Module.baseUi))
 }

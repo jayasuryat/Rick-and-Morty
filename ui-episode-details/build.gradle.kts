@@ -78,5 +78,5 @@ dependencies {
     implementation(Dependency.apolloCoroutines)
 
     implementation(project(Dependency.Module.baseUi))
-    api(project(Dependency.Module.baseData))
+    implementation(project(Dependency.Module.baseData))
 }

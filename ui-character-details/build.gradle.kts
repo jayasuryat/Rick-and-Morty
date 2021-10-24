@@ -80,6 +80,6 @@ dependencies {
     implementation(Dependency.apolloRuntime)
     implementation(Dependency.apolloCoroutines)
 
-    api(project(Dependency.Module.baseUi))
-    api(project(Dependency.Module.baseData))
+    implementation(project(Dependency.Module.baseUi))
+    implementation(project(Dependency.Module.baseData))
 }
