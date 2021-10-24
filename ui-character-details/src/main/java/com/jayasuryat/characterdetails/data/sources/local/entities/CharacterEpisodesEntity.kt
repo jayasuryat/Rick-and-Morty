@@ -2,7 +2,6 @@ package com.jayasuryat.characterdetails.data.sources.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import com.jayasuryat.characterdetails.CharacterDetailsEntity
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

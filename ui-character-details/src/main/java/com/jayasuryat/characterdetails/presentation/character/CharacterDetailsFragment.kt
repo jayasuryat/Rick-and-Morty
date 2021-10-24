@@ -122,7 +122,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             }
 
             view1.postDelayed({
-                view1.show(); view2.show(); view3.show();
+                view1.show(); view2.show(); view3.show()
                 anim.start()
             }, 300)
         }
@@ -144,7 +144,7 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
             }
 
             view1.postDelayed({
-                view1.show(); view2.show(); view3.show();
+                view1.show(); view2.show(); view3.show()
                 anim.start()
             }, 60)
         }

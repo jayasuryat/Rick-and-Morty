@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.jayasuryat.base.anim.AnimHelper
 import com.jayasuryat.base.anim.impl.AlphaAnim
-import com.jayasuryat.base.anim.impl.CircleRevealHelper
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
 import com.jayasuryat.base.shrinkOnClick
@@ -55,7 +54,6 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     override fun setupViews(): FragmentCharacterListBinding.() -> Unit = {
 
-        //binding.clRoot.post(::revealRoot)
         binding.clRoot.post(::handleAnimation)
 
         ivBack.shrinkOnClick(::navigateBack)
@@ -73,24 +71,6 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
             uiScope.launch { characterListAdapter.submitData(characters) }
             (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
         }
-    }
-
-    private fun revealRoot() {
-
-        val argsX = arguments?.get("x")?.toString()?.toIntOrNull() ?: 0
-        val argsY = arguments?.get("y")?.toString()?.toIntOrNull() ?: 0
-
-        val hasLanded = hasLanded.get()
-
-        val startX = if (hasLanded) 64 else argsX
-        val startY = if (hasLanded) 154 else argsY
-
-        CircleRevealHelper.Builder(binding.clRoot)
-            .setStartPoint(startX.toDouble(), startY.toDouble())
-            .setFarthestPointFromStartAsEnd()
-            .build()
-            .animation
-            .start()
     }
 
     private fun handleAnimation() {

@@ -46,7 +46,7 @@ data class CharacterDetails(
 
     enum class Status(val value: String) {
         Alive("Alive"),
-        Dead("Deadd"),
+        Dead("Dead"),
         Unknown("unknown");
 
         companion object {

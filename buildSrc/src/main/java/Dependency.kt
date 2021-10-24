@@ -51,11 +51,5 @@ object Dependency {
 
     const val pagingRuntime = "androidx.paging:paging-runtime:3.1.0-beta01"
 
-    const val ktorAndroid = "io.ktor:ktor-client-android:1.6.3"
-    const val ktorCio = "io.ktor:ktor-client-cio:1.6.3"
-    const val ktorLogging = "io.ktor:ktor-client-logging:1.6.3"
-    const val ktorSerialization = "io.ktor:ktor-client-serialization:1.6.3"
-    const val ktorOkhttp = "io.ktor:ktor-client-okhttp:1.6.3"
-
     const val glide = "com.github.bumptech.glide:glide:4.12.0"
 }
