@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="text_title_color" format="reference|color" />
     <attr name="text_value_color" format="reference|color" />
 
     <attr name="background_color" format="reference|color" />

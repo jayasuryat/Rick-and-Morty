@@ -9,8 +9,11 @@
     <color name="black">#FF000000</color>
 
     <color name="white">#FFFFFF</color>
-    <color name="milky">#fafafa</color>
-    <color name="dune">#34322f</color>
     <color name="cod_gray">#191919</color>
+    <color name="dune">#34322f</color>
+
+    <color name="milk">#F3F3ED</color>
+    <color name="pale_green">#A9D2A4</color>
+    <color name="grass">#236044</color>
 
 </resources>
