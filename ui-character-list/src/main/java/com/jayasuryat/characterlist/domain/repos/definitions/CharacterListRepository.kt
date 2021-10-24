@@ -1,13 +1,10 @@
 package com.jayasuryat.characterlist.domain.repos.definitions
 
-import com.jayasuryat.basedata.models.KResult
+import androidx.paging.PagingData
 import com.jayasuryat.characterlist.domain.models.Character
+import kotlinx.coroutines.flow.Flow
 
 interface CharacterListRepository {
 
-    suspend fun getCharacters(
-        page: Int,
-    ): KResult<List<Character>>
-
-    suspend fun getAllCharactersInCache(): KResult<List<Character>>
+    fun getPagedCharacters(): Flow<PagingData<Character>>
 }

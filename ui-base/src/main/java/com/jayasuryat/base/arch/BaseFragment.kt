@@ -13,6 +13,7 @@ public open class BaseFragment : Fragment() {
     private val jobDelegate: Lazy<Job> = lazy { SupervisorJob() }
     private val job by jobDelegate
     protected val uiScope: CoroutineScope by lazy { CoroutineScope(Dispatchers.Main + job) }
+    protected val ioScope: CoroutineScope by lazy { CoroutineScope(Dispatchers.IO + job) }
 
     protected fun NavDirections.navigate(): Unit = findNavController().navigate(this)
 
