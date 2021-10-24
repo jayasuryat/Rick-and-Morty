@@ -43,6 +43,10 @@ android {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+}
+
 dependencies {
 
     // Test
@@ -61,6 +65,8 @@ dependencies {
     implementation(Dependency.roomRuntime)
     implementation(Dependency.roomKtx)
     kapt(Dependency.roomCompiler)
+    implementation(Dependency.roomPaging)
+    implementation(Dependency.pagingRuntime)
 
     // Hilt
     implementation(Dependency.hilt)

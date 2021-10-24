@@ -15,13 +15,13 @@ import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.CircleRevealHelper
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
-import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.characterlist.NavigateBack
 import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -70,10 +70,8 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
     override fun setupObservers(): CharacterListViewModel.() -> Unit = {
 
         obsCharactersList.observe(viewLifecycleOwner) { characters ->
-            characterListAdapter.submitList(characters)
-            binding.rvCharactersList.show()
-            (view?.parent as? ViewGroup)
-                ?.doOnPreDraw { startPostponedEnterTransition() }
+            uiScope.launch { characterListAdapter.submitData(characters) }
+            (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 

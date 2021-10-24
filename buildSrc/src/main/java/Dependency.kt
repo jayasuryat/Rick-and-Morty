@@ -47,6 +47,9 @@ object Dependency {
     const val roomRuntime = "androidx.room:room-runtime:2.3.0"
     const val roomKtx = "androidx.room:room-ktx:2.3.0"
     const val roomCompiler = "androidx.room:room-compiler:2.3.0"
+    const val roomPaging = "androidx.room:room-paging:2.4.0-beta01"
+
+    const val pagingRuntime = "androidx.paging:paging-runtime:3.1.0-beta01"
 
     const val ktorAndroid = "io.ktor:ktor-client-android:1.6.3"
     const val ktorCio = "io.ktor:ktor-client-cio:1.6.3"
