@@ -30,7 +30,7 @@ internal class CharactersListAdapter(
                 val position = bindingAdapterPosition
                 if (position >= 0) {
                     val data = getItem(position) ?: return@shrinkOnClick
-                    onItemSelected(data, item.cvAvatar, item.tvName, item.cvRoot)
+                    onItemSelected(data, item.ivAvatar, item.tvName, item.cvRoot)
                 }
             }
         }
@@ -39,7 +39,7 @@ internal class CharactersListAdapter(
             data ?: return
             item.tvName.text = data.name
             item.ivAvatar.loadImage(data.imageUrl)
-            item.cvAvatar.transitionName = "avatar_#${data.id}"
+            item.ivAvatar.transitionName = "avatar_#${data.id}"
             item.tvName.transitionName = "name_#${data.id}"
             item.cvRoot.transitionName = "container_#${data.id}"
         }
