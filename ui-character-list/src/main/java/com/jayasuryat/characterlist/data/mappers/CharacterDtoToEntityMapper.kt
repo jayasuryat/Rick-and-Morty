@@ -12,9 +12,9 @@ internal class CharacterDtoToEntityMapper :
         private fun mappingStrategy(
             input: CharacterListQuery.Result,
         ): CharacterEntity = CharacterEntity(
-            id = input.id()!!.toLong(),
-            name = input.name()!!,
-            imageUrl = input.image()!!,
+            id = input.id!!.toLong(),
+            name = input.name!!,
+            imageUrl = input.image!!,
         )
     }
 }

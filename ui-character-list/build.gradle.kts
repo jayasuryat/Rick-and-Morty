@@ -43,6 +43,10 @@ android {
     }
 }
 
+apollo {
+    generateKotlinModels.set(true)
+}
+
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
     kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }

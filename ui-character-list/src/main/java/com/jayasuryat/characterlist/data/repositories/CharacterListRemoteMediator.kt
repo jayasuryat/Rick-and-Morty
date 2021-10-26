@@ -39,7 +39,9 @@ internal class CharacterListRemoteMediator(
 
             if (loadType == LoadType.REFRESH) cacheClient.deleteAllCharacters()
 
-            val characters = networkClient.getCharacters(loadKey).data?.characters()?.results()
+            val characters = networkClient.getCharacters(loadKey).data
+                ?.characters?.results?.filterNotNull()
+            
             characters?.let {
                 cacheClient.saveCharacters(characterDtoToEntityMapper.map(characters))
             }
