@@ -13,15 +13,15 @@ internal class EpisodeDetailsDtoToEntityMapper :
         private fun mappingStrategy(
             input: EpisodeDetailQuery.Episode,
         ): EpisodeDetailsEntity = EpisodeDetailsEntity(
-            id = input.id()!!.toLong(),
-            name = input.name()!!,
-            airDate = input.air_date()!!,
-            episode = input.episode()!!,
-            characters = input.characters().map { character ->
+            id = input.id!!.toLong(),
+            name = input.name!!,
+            airDate = input.air_date!!,
+            episode = input.episode!!,
+            characters = input.characters.filterNotNull().map { character ->
                 Character(
-                    id = character.id()!!.toLong(),
-                    name = character.name()!!,
-                    image = character.image()!!,
+                    id = character.id!!.toLong(),
+                    name = character.name!!,
+                    image = character.image!!,
                 )
             },
         )

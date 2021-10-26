@@ -28,7 +28,7 @@ internal class EpisodeDetailsRepo(
             return@wrapAsResult episodeEntityToDomainMapper.map(cachedEpisode)
         }
 
-        val remoteEpisode = remoteClient.getEpisodeDetails(episodeId).data?.episode()
+        val remoteEpisode = remoteClient.getEpisodeDetails(episodeId).data?.episode
             ?: throw RuntimeException("Remote episode details with id $episodeId not found")
 
         cacheClient.saveEpisodeDetails(episodeDtoToEntityMapper.map(remoteEpisode))
