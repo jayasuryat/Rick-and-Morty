@@ -1,0 +1,8 @@
+package com.jayasuryat.locationdetails
+
+
+internal sealed interface LocationDetailsModel
+
+internal interface LocationDetailsDtoModel : LocationDetailsModel
+internal interface LocationDetailsEntityModel : LocationDetailsModel
+internal interface LocationDetailsDomainModel : LocationDetailsModel

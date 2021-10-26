@@ -22,6 +22,7 @@ object Dependency {
         const val episodeList = ":ui-episode-list"
         const val episodeDetails = ":ui-episode-details"
         const val locationList = ":ui-location-list"
+        const val locationDetils = ":ui-location-details"
     }
 
     const val coreKtx = "androidx.core:core-ktx:1.6.0"
