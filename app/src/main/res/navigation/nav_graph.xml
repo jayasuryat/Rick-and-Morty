@@ -39,4 +39,9 @@
         android:name="com.jayasuryat.locationlist.presentation.LocationListFragment"
         android:label="LocationListFragment" />
 
+    <fragment
+        android:id="@+id/locationDetailsFragment"
+        android:name="com.jayasuryat.locationdetails.presentation.LocationDetailsFragment"
+        android:label="LocationDetailsFragment" />
+
 </navigation>

@@ -83,4 +83,5 @@ dependencies {
     implementation(project(Dependency.Module.episodeList))
     implementation(project(Dependency.Module.episodeDetails))
     implementation(project(Dependency.Module.locationList))
+    implementation(project(Dependency.Module.locationDetils))
 }

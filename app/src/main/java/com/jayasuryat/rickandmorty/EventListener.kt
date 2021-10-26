@@ -22,6 +22,9 @@ import com.jayasuryat.home.HomeScreenEvent
 import com.jayasuryat.home.OpenCharacters
 import com.jayasuryat.home.OpenEpisodes
 import com.jayasuryat.home.OpenLocations
+import com.jayasuryat.locationdetails.presentation.LocationDetailsEvent
+import com.jayasuryat.locationlist.LocationListEvent
+import com.jayasuryat.locationlist.OpenLocation
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -197,6 +200,52 @@ class EventListener private constructor(
         }.exhaustive
     }
     // endregion
+
+    // region : Location flow
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: LocationListEvent) {
+
+        when (event) {
+
+            com.jayasuryat.locationlist.NavigateBack -> navigationHelper.popBackStack()
+
+            is OpenLocation -> {
+
+                val args = Bundle().apply {
+                    putLong("locationId", event.locationId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.locationDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+        }.exhaustive
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: LocationDetailsEvent) {
+
+        when (event) {
+
+            com.jayasuryat.locationdetails.presentation.NavigateBack -> navigationHelper.popBackStack()
+
+            is com.jayasuryat.locationdetails.presentation.OpenCharacter -> {
+
+                val args = Bundle().apply {
+                    putLong("id", event.characterId)
+                }
+
+                navigationHelper.navigate(
+                    destinationId = R.id.characterDetailsFragment,
+                    arguments = args,
+                    extras = event.extras
+                )
+            }
+        }.exhaustive
+    }
+    //endregion
 
     private inner class NavigationHelper {
 
