@@ -74,7 +74,7 @@ dependencies {
     kapt(Dependency.hiltCompiler)
 
     // Others
-    implementation(Dependency.glide)
+    implementation(Dependency.coil)
     implementation(Dependency.eventBus)
     implementation(Dependency.recyclerviewAnimators)
     // Apollo

@@ -5,7 +5,6 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import com.apollographql.apollo.exception.ApolloNetworkException
-import com.bumptech.glide.load.HttpException
 import com.jayasuryat.basedata.mappers.Mapper
 import com.jayasuryat.basedata.mappers.map
 import com.jayasuryat.locationlist.LocationListQuery
@@ -51,8 +50,6 @@ internal class LocationListRemoteMediator(
         } catch (ex: ApolloNetworkException) {
             MediatorResult.Error(ex)
         } catch (e: IOException) {
-            return MediatorResult.Error(e)
-        } catch (e: HttpException) {
             return MediatorResult.Error(e)
         }
     }

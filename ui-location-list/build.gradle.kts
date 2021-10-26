@@ -80,7 +80,7 @@ dependencies {
 
     // Others
     implementation(Dependency.eventBus)
-    implementation(Dependency.glide)
+    implementation(Dependency.coil)
     implementation(Dependency.recyclerviewAnimators)
     // Apollo
     implementation(Dependency.apolloRuntime)
