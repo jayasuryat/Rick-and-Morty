@@ -23,7 +23,7 @@ internal class EpisodeListRepo(
     override suspend fun getAllEpisodes(): KResult<List<Episode>> = wrapAsResult(dispatcher.io()) {
 
         val episodesCount = remoteClient.getTotalEpisodesCount().data
-            ?.episodes()?.info()?.count() ?: 0
+            ?.episodes?.info?.count ?: 0
 
         val cachedEpisodes = cacheClient.getAllEpisodes()
 
@@ -31,7 +31,7 @@ internal class EpisodeListRepo(
             return@wrapAsResult episodeEntityToDomainMapper.map(cachedEpisodes)
 
         val episodes = (1..episodesCount).map { it.toLong() }
-        val remoteEpisodes = remoteClient.getEpisodes(episodes).data?.episodesByIds()?.toList()
+        val remoteEpisodes = remoteClient.getEpisodes(episodes).data?.episodesByIds?.filterNotNull()
 
         if (remoteEpisodes.isNullOrEmpty()) throw RuntimeException("No episodes found")
 

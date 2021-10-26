@@ -13,9 +13,9 @@ internal class EpisodeDtoToEntityMapper :
         private fun mappingStrategy(
             input: EpisodeListQuery.EpisodesById,
         ): EpisodeEntity = EpisodeEntity(
-            id = input.id()!!.toLong(),
-            episode = input.episode()!!,
-            name = input.name()!!,
+            id = input.id!!.toLong(),
+            episode = input.episode!!,
+            name = input.name!!,
         )
     }
 }
