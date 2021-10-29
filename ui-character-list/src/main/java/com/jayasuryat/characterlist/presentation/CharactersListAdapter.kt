@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.jayasuryat.base.shrinkOnClick
-import com.jayasuryat.characterlist.UiUtils.loadImage
 import com.jayasuryat.characterlist.databinding.ItemCharacterBinding
 
 internal class CharactersListAdapter(
@@ -38,7 +39,10 @@ internal class CharactersListAdapter(
         fun bind(data: CharacterDef?) {
             data ?: return
             item.tvName.text = data.name
-            item.ivAvatar.loadImage(data.imageUrl)
+            item.ivAvatar.load(data.imageUrl) {
+                crossfade(120)
+                transformations(RoundedCornersTransformation(32f))
+            }
             item.ivAvatar.transitionName = "avatar_#${data.id}"
             item.tvName.transitionName = "name_#${data.id}"
             item.cvRoot.transitionName = "container_#${data.id}"

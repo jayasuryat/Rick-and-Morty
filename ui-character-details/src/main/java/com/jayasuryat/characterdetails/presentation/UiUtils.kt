@@ -10,7 +10,7 @@ internal object UiUtils {
         if (url.isEmpty()) return
 
         this.load(url) {
-            crossfade(120)
+            crossfade(300)
         }
     }
 }

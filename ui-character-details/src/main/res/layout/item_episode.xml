@@ -14,52 +14,44 @@
         android:layout_height="match_parent"
         android:padding="12dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvSesNumber"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/cSeasonNumber"
+            style="@style/RM.Text.Value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="?attr/background_color"
-            app:cardCornerRadius="8dp"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textSize="14sp"
+            app:chipCornerRadius="8dp"
+            app:chipMinHeight="0dp"
+            app:chipMinTouchTargetSize="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="S31" />
 
-            <TextView
-                android:id="@+id/tvSeasonNumber"
-                style="@style/RM.Text.Value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:textSize="14sp"
-                tools:text="S31" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvEpNumber"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/cEpisodeNumber"
+            style="@style/RM.Text.Value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:backgroundTint="?attr/background_color"
-            app:cardCornerRadius="8dp"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textSize="14sp"
+            app:chipCornerRadius="8dp"
+            app:chipMinHeight="0dp"
+            app:chipMinTouchTargetSize="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cvSesNumber"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tvEpisodeNumber"
-                style="@style/RM.Text.Value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:textSize="14sp"
-                tools:text="S31 E31" />
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintStart_toEndOf="@+id/cSeasonNumber"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="E31" />
 
         <TextView
             android:id="@+id/tvEpisodeName"
@@ -69,7 +61,7 @@
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cvEpNumber"
+            app:layout_constraintStart_toEndOf="@+id/cEpisodeNumber"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Pickle Rick" />
 

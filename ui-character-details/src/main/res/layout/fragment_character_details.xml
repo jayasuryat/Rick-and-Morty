@@ -14,6 +14,18 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp">
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvBack"
+            style="@style/RM.Card"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="32dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"
+            app:layout_constraintEnd_toEndOf="@id/ivBack"
+            app:layout_constraintStart_toStartOf="@id/ivBack"
+            app:layout_constraintTop_toTopOf="@id/ivBack" />
+
         <ImageView
             android:id="@+id/ivBack"
             style="@style/RM.Button.Back"
@@ -25,21 +37,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvBack"
-            style="@style/RM.Card"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="15dp"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="30dp"
-            app:layout_constraintBottom_toBottomOf="@id/ivBack"
-            app:layout_constraintEnd_toEndOf="@id/ivBack"
-            app:layout_constraintStart_toStartOf="@id/ivBack"
-            app:layout_constraintTop_toTopOf="@id/ivBack" />
-
-        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvAvatar"
-            style="@style/RM.Card"
+            style="@style/RM.Card.Material"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
@@ -62,7 +61,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvInfo"
             style="@style/RM.Card"
             android:layout_width="0dp"
@@ -116,8 +115,7 @@
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
-                    android:alpha="0.1"
-                    android:background="?text_value_color"
+                    android:background="?accent_color"
                     app:layout_constraintTop_toBottomOf="@+id/tvType" />
 
                 <ImageView
@@ -203,7 +201,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCurrentLocation"
@@ -226,9 +224,9 @@
                     style="@style/RM.Text.Value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:alpha="0.5"
                     android:gravity="center"
                     android:text="@string/location"
+                    android:textColor="?accent_color"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -285,9 +283,9 @@
                     style="@style/RM.Text.Value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:alpha="0.5"
                     android:gravity="center"
                     android:text="@string/origin"
+                    android:textColor="?accent_color"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -347,11 +345,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.cardview.widget.CardView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintTop_toBottomOf="@+id/cvEpisodes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

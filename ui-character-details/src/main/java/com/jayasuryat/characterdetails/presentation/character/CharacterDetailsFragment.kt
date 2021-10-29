@@ -5,6 +5,8 @@ import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.transition.TransitionInflater
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.jayasuryat.base.anim.AnimHelper
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
@@ -43,6 +45,10 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
     override fun setupViews(): FragmentCharacterDetailsBinding.() -> Unit = {
 
         binding.root.post(::animateViews)
+
+        ivBack.load(R.drawable.icon_back) {
+            transformations(CircleCropTransformation())
+        }
 
         cvBack.shrinkOnClick(::navigateBack)
 

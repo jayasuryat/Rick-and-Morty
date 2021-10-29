@@ -68,7 +68,7 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
     override fun setupObservers(): CharacterListViewModel.() -> Unit = {
 
         obsCharactersList.observe(viewLifecycleOwner) { characters ->
-            uiScope.launch { characterListAdapter.submitData(characters) }
+            ioScope.launch { characterListAdapter.submitData(characters) }
             (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }

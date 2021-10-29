@@ -56,8 +56,8 @@ class EpisodeListAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(data: CharacterEpisodeData.EpisodeData) {
             item.tvEpisodeName.text = data.episodeName
-            item.tvSeasonNumber.text = "S${data.season}"
-            item.tvEpisodeNumber.text = "E${data.episode}"
+            item.cSeasonNumber.text = "S${data.season}"
+            item.cEpisodeNumber.text = "E${data.episode}"
             item.tvEpisodeName.transitionName = "name_${data.episodeId}"
             item.cvRoot.transitionName = "name_container_${data.episodeId}"
         }

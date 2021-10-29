@@ -7,4 +7,9 @@
         <item name="cardCornerRadius">32dp</item>
     </style>
 
+    <style name="RM.Card.Material" parent="RM.Card">
+        <item name="strokeColor">?accent_color</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
 </resources>

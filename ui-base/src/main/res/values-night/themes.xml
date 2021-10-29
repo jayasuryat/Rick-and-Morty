@@ -3,12 +3,12 @@
     <!-- Base application theme. -->
     <style name="Theme.RickAndMorty" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/neon_green</item>
+        <item name="colorPrimaryVariant">@color/neon_green</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/neon_green</item>
+        <item name="colorSecondaryVariant">@color/neon_green</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/background_color</item>
@@ -18,14 +18,15 @@
         <!-- Customize your theme here. -->
 
         <item name="cardViewStyle">@style/RM.Card</item>
-        <item name="materialCalendarStyle">@style/RM.Card</item>
-
-        <item name="background_color">@color/black</item>
-        <item name="background_color_light">@color/cod_gray</item>
-        <item name="text_value_color">@color/white</item>
+        <item name="materialCardViewStyle">@style/RM.Card.Material</item>
 
         <item name="android:windowBackground">?attr/background_color_light</item>
-        <item name="colorControlHighlight">?attr/colorSecondary</item>
+        <item name="colorControlHighlight">?attr/accent_color</item>
+
+        <item name="accent_color">@color/neon_green</item>
+        <item name="background_color">@color/black</item>
+        <item name="background_color_light">#181818</item>
+        <item name="text_value_color">@color/white</item>
 
     </style>
 

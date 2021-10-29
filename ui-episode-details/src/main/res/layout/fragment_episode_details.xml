@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:transitionName="episodeNameContainer"
-        app:cardElevation="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivBack">
@@ -71,7 +70,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/cSeason"
@@ -79,7 +79,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
                 app:chipCornerRadius="8dp"
+                app:chipMinTouchTargetSize="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -91,7 +94,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
                 app:chipCornerRadius="8dp"
+                app:chipMinTouchTargetSize="0dp"
                 app:layout_constraintStart_toEndOf="@+id/cSeason"
                 app:layout_constraintTop_toBottomOf="@+id/cSeason"
                 app:layout_constraintTop_toTopOf="@+id/cSeason"
@@ -100,29 +106,23 @@
             <TextView
                 android:id="@+id/tvAiredOnTitle"
                 style="@style/RM.Text.Value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:alpha="0.5"
-                android:gravity="center"
                 android:text="@string/aired_on"
+                android:textColor="?accent_color"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvAiredOn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/cEpisode"
+                app:layout_constraintEnd_toEndOf="@+id/tvAiredOn"
+                app:layout_constraintStart_toStartOf="@+id/tvAiredOn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvAiredOn"
                 style="@style/RM.Text.Value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/tvAiredOnTitle"
                 app:layout_constraintTop_toBottomOf="@+id/tvAiredOnTitle"
                 tools:text="March 24, 2014" />
 
@@ -154,9 +154,9 @@
                 style="@style/RM.Text.Value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.5"
                 android:gravity="center"
                 android:text="@string/characters"
+                android:textColor="?accent_color"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

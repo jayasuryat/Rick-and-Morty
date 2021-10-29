@@ -13,14 +13,15 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvAvatar"
             style="@style/RM.Card"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="2dp">
 
             <ImageView
                 android:id="@+id/ivAvatar"
@@ -29,7 +30,7 @@
                 android:background="?attr/background_color"
                 android:contentDescription="@string/cd_character_image" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tvName"

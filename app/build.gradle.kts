@@ -38,15 +38,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    kapt {
-        correctErrorTypes = true
-        javacOptions {
-            // Increase the max count of errors from annotation processors.
-            // Default is 100.
-            option("-Xmaxerrs", 500)
-        }
-    }
 }
 
 dependencies {
