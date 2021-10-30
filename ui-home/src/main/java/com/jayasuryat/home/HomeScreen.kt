@@ -7,11 +7,17 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material.ripple.RippleAlpha
+import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,8 +38,27 @@ class HomeScreen : Fragment() {
         savedInstanceState: Bundle?,
     ): View = ComposeView(requireContext()).apply {
         setContent {
-            Home()
+            MaterialTheme {
+                CompositionLocalProvider(
+                    LocalRippleTheme provides CustomRipple,
+                    content = {
+                        Home()
+                    }
+                )
+            }
         }
+    }
+
+    private object CustomRipple : RippleTheme {
+
+        @Composable
+        override fun defaultColor(): Color = colorResource(id = R.color.neon_green)
+
+        @Composable
+        override fun rippleAlpha(): RippleAlpha = RippleTheme.defaultRippleAlpha(
+            contentColor = colorResource(id = R.color.black),
+            lightTheme = false,
+        )
     }
 
     @Composable
@@ -86,8 +111,13 @@ class HomeScreen : Fragment() {
             modifier = modifier
                 .fillMaxWidth()
                 .padding(vertical = 12.dp)
-                .clickable { onClick() }
                 .clip(RoundedCornerShape(24.dp))
+                .border(
+                    width = 1.dp,
+                    color = colorResource(id = R.color.neon_green),
+                    shape = RoundedCornerShape(24.dp),
+                )
+                .clickable { onClick() }
                 .background(color = Color(0xFF181818)),
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.SpaceBetween
