@@ -37,6 +37,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
     }
 
     kotlinOptions {
@@ -67,6 +72,8 @@ dependencies {
 
     // Arch components
     implementation(Dependency.navigationFragment)
+    implementation(Dependency.lifecycleKtx)
+
     // Room
     implementation(Dependency.roomRuntime)
     implementation(Dependency.roomKtx)
@@ -88,4 +95,13 @@ dependencies {
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.baseData))
+
+    implementation(project(Dependency.Module.event))
+
+    implementation(Dependency.Compose.activity)
+    implementation(Dependency.Compose.material)
+    implementation(Dependency.Compose.animation)
+    debugImplementation(Dependency.Compose.tooling)
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 }

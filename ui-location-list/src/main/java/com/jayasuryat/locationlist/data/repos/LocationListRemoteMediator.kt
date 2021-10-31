@@ -1,5 +1,6 @@
 package com.jayasuryat.locationlist.data.repos
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -44,7 +45,6 @@ internal class LocationListRemoteMediator(
             locations?.let {
                 cacheClient.saveLocations(locationDtoToEntityMapper.map(locations))
             }
-
             MediatorResult.Success(endOfPaginationReached = locations.isNullOrEmpty())
 
         } catch (ex: ApolloNetworkException) {

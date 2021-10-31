@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
@@ -21,6 +23,7 @@ import com.jayasuryat.locationlist.databinding.FragmentLocationListBinding
 import com.jayasuryat.locationlist.domain.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
@@ -55,6 +58,8 @@ class LocationListFragment : BaseAbsFragment<LocationListViewModel,
 
     override fun setupViews(): FragmentLocationListBinding.() -> Unit = {
 
+        (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
+
         binding.clRoot.post(::handleAnimation)
 
         ivBack.shrinkOnClick(::navigateBack)
@@ -68,9 +73,14 @@ class LocationListFragment : BaseAbsFragment<LocationListViewModel,
 
     override fun setupObservers(): LocationListViewModel.() -> Unit = {
 
-        obsLocationsList.observe(viewLifecycleOwner) { characters ->
-            uiScope.launch { locationListAdapter.submitData(characters) }
-            (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
+        uiScope.launch {
+
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                locationList.collect { characters ->
+                    locationListAdapter.submitData(characters)
+                }
+            }
         }
     }
 
