@@ -1,4 +1,4 @@
-package com.jayasuryat.home
+package com.jayasuryat.home.composable
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -15,54 +15,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jayasuryat.base.event.EventListener
-import com.jayasuryat.base.event.noOpEventListener
-import com.jayasuryat.home.event.HomeEvent
-
+import com.jayasuryat.home.R
 
 @Composable
-fun Home(
-    eventListener: EventListener<HomeEvent>,
-) {
-
-    Column(
-        modifier = Modifier
-            .background(color = MaterialTheme.colors.background)
-            .padding(
-                horizontal = 24.dp,
-                vertical = 12.dp,
-            )
-    ) {
-
-        HomeItem(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxSize(),
-            title = "Characters",
-            image = R.drawable.img_rick,
-            onClick = { eventListener.onEvent(HomeEvent.OpenCharacters) },
-        )
-        HomeItem(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxSize(),
-            title = "Episodes",
-            image = R.drawable.img_episode,
-            onClick = { eventListener.onEvent(HomeEvent.OpenEpisodes) },
-        )
-        HomeItem(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxSize(),
-            title = "Locations",
-            image = R.drawable.img_location,
-            onClick = { eventListener.onEvent(HomeEvent.OpenLocations) },
-        )
-    }
-}
-
-@Composable
-private fun HomeItem(
+internal fun HomeItem(
     modifier: Modifier = Modifier,
     title: String,
     @DrawableRes image: Int,
@@ -93,6 +49,7 @@ private fun HomeItem(
             color = MaterialTheme.colors.onPrimary,
             text = title,
         )
+
         Image(
             modifier = Modifier
                 .padding(
@@ -108,6 +65,14 @@ private fun HomeItem(
 
 @Preview
 @Composable
-private fun Preview() {
-    Home(noOpEventListener())
+private fun Prev_Home_Item() {
+
+    HomeItem(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp),
+        title = "Characters",
+        image = R.drawable.img_rick,
+        onClick = { },
+    )
 }

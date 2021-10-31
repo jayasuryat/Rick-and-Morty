@@ -1,6 +1,6 @@
 package com.jayasuryat.home.event
 
-import com.jayasuryat.base.event.Event
+import com.jayasuryat.event.Event
 
 sealed interface HomeEvent : Event {
 
