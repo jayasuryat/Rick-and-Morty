@@ -14,6 +14,7 @@ object Dependency {
         const val app = ":app"
 
         const val baseUi = ":ui-base"
+        const val event = ":event"
 
         const val baseData = ":base-data"
         const val home = ":ui-home"
