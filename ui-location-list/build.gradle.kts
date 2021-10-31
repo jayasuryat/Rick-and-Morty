@@ -59,7 +59,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
 
 dependencies {
 
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     // Test
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
@@ -95,13 +94,11 @@ dependencies {
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.baseData))
-
     implementation(project(Dependency.Module.event))
+    implementation(project(Dependency.Module.sharedComposable))
 
-    implementation(Dependency.Compose.activity)
     implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.animation)
+    implementation(Dependency.Compose.paging)
+    implementation(Dependency.Compose.hiltNavigation)
     debugImplementation(Dependency.Compose.tooling)
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
-    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 }

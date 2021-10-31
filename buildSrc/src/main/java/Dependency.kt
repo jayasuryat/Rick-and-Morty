@@ -34,6 +34,8 @@ object Dependency {
         const val animation = "androidx.compose.animation:animation:1.0.4"
         const val tooling = "androidx.compose.ui:ui-tooling:1.0.4"
         const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
+        const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+        const val paging = "androidx.paging:paging-compose:1.0.0-alpha14"
 
         const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
 
