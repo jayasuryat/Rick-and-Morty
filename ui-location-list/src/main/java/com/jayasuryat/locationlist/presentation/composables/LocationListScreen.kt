@@ -18,6 +18,7 @@ import com.jayasuryat.locationlist.R
 import com.jayasuryat.locationlist.domain.model.Location
 import com.jayasuryat.locationlist.presentation.LocationListViewModel
 import com.jayasuryat.locationlist.presentation.event.LocationListEvent
+import com.jayasuryat.sharedcomposable.composable.TopBar
 import kotlinx.coroutines.flow.flowOf
 
 
@@ -58,7 +59,8 @@ private fun Screen(
     ) {
 
         TopBar(
-            title = stringResource(R.string.cd_back),
+            title = stringResource(R.string.locations),
+            icon = R.drawable.icon_back,
         ) {
             postEvent(LocationListEvent.OnBackPressed)
         }
