@@ -53,6 +53,7 @@ dependencies {
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
+    androidTestImplementation(Dependency.Compose.Test.junit)
 
     // UI
     implementation(Dependency.coreKtx)
@@ -72,11 +73,9 @@ dependencies {
     implementation(Dependency.eventBus)
 
     implementation(project(Dependency.Module.baseUi))
+    implementation(project(Dependency.Module.event))
 
-    implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.compose.material:material:1.0.4")
-    implementation("androidx.compose.animation:animation:1.0.4")
-    implementation("androidx.compose.ui:ui-tooling:1.0.4")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.4")
+    implementation(Dependency.Compose.material)
+    implementation(Dependency.Compose.animation)
+    debugImplementation(Dependency.Compose.tooling)
 }

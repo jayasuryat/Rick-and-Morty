@@ -26,6 +26,22 @@ object Dependency {
         const val locationDetils = ":ui-location-details"
     }
 
+    object Compose {
+
+        const val activity = "androidx.activity:activity-compose:1.4.0"
+        const val material = "androidx.compose.material:material:1.0.4"
+        const val animation = "androidx.compose.animation:animation:1.0.4"
+        const val tooling = "androidx.compose.ui:ui-tooling:1.0.4"
+        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
+
+        const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
+
+        object Test {
+
+            const val junit = "androidx.compose.ui:ui-test-junit4:1.0.4"
+        }
+    }
+
     const val coreKtx = "androidx.core:core-ktx:1.6.0"
 
     const val appCompat = "androidx.appcompat:appcompat:1.3.1"
