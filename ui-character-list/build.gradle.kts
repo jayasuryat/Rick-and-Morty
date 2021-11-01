@@ -99,5 +99,5 @@ dependencies {
     implementation(Dependency.Compose.paging)
     implementation(Dependency.Compose.hiltNavigation)
     debugImplementation(Dependency.Compose.tooling)
-    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation(Dependency.Compose.coil)
 }

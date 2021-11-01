@@ -98,4 +98,5 @@ dependencies {
     debugImplementation(Dependency.Compose.tooling)
 
     implementation(Dependency.Compose.navigation)
+    implementation(Dependency.Compose.hiltNavigation)
 }

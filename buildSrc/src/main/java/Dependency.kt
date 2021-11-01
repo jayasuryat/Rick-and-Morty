@@ -36,7 +36,9 @@ object Dependency {
         const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
         const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
         const val paging = "androidx.paging:paging-compose:1.0.0-alpha14"
+        const val coil = "io.coil-kt:coil-compose:1.4.0"
 
+        const val liveData = "androidx.compose.runtime:runtime-livedata:1.0.4"
         const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
 
         object Test {
