@@ -36,6 +36,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
     }
 
     kotlinOptions {
@@ -65,6 +70,7 @@ dependencies {
 
     // Arch components
     implementation(Dependency.navigationFragment)
+    implementation(Dependency.lifecycleKtx)
     // Room
     implementation(Dependency.roomRuntime)
     implementation(Dependency.roomKtx)
@@ -86,4 +92,12 @@ dependencies {
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.baseData))
+    implementation(project(Dependency.Module.event))
+    implementation(project(Dependency.Module.sharedComposable))
+
+    implementation(Dependency.Compose.material)
+    implementation(Dependency.Compose.paging)
+    implementation(Dependency.Compose.hiltNavigation)
+    debugImplementation(Dependency.Compose.tooling)
+    implementation("io.coil-kt:coil-compose:1.4.0")
 }

@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.jayasuryat.characterlist.presentation.composable.CharacterList
+import com.jayasuryat.characterlist.presentation.event.CharacterListEvent
 import com.jayasuryat.home.composable.Home
 import com.jayasuryat.home.event.HomeEvent
 import com.jayasuryat.locationlist.presentation.composables.LocationList
@@ -22,7 +24,7 @@ fun RickAndMortyApp() {
         composable(Screen.Home.getRoute()) {
             Home { event ->
                 when (event) {
-                    HomeEvent.OpenCharacters -> TODO()
+                    HomeEvent.OpenCharacters -> navController.navigate(Screen.CharacterList.getRoute())
                     HomeEvent.OpenEpisodes -> TODO()
                     HomeEvent.OpenLocations -> navController.navigate(Screen.LocationsList.getRoute())
                 }
@@ -34,6 +36,15 @@ fun RickAndMortyApp() {
                 when (event) {
                     is LocationListEvent.OnBackPressed -> navController.popBackStack()
                     is LocationListEvent.OpenLocation -> TODO()
+                }
+            }
+        }
+
+        composable(Screen.CharacterList.getRoute()) {
+            CharacterList { event ->
+                when (event) {
+                    is CharacterListEvent.OnBackPressed -> navController.popBackStack()
+                    is CharacterListEvent.OpenCharacter -> TODO()
                 }
             }
         }

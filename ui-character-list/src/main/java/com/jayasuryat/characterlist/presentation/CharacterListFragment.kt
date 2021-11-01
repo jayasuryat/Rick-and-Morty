@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
@@ -20,6 +21,7 @@ import com.jayasuryat.characterlist.OpenCharacter
 import com.jayasuryat.characterlist.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.atomic.AtomicBoolean
@@ -67,9 +69,14 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
 
     override fun setupObservers(): CharacterListViewModel.() -> Unit = {
 
-        obsCharactersList.observe(viewLifecycleOwner) { characters ->
-            ioScope.launch { characterListAdapter.submitData(characters) }
-            (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
+        uiScope.launch {
+
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                charactersList.collect { characters ->
+                    characterListAdapter.submitData(characters)
+                }
+            }
         }
     }
 

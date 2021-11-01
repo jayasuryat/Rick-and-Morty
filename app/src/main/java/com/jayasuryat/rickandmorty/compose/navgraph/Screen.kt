@@ -8,6 +8,10 @@ sealed class Screen {
         override fun getRoute(): String = "home"
     }
 
+    object CharacterList : Screen() {
+        override fun getRoute(): String = "characters"
+    }
+
     object LocationsList : Screen() {
         override fun getRoute(): String = "locations"
     }
