@@ -2,7 +2,6 @@ package com.jayasuryat.characterdetails.presentation.character
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import com.jayasuryat.base.arch.BaseViewModel
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 import com.jayasuryat.characterdetails.domain.repos.CharacterDetailsRepository
@@ -14,19 +13,21 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterDetailsViewModel @Inject constructor(
     private val charactersRepository: CharacterDetailsRepository,
-    private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
     private val _obsCharacter: MutableLiveData<CharacterDetails> = MutableLiveData()
-    val obsCharacter: LiveData<CharacterDetails> = _obsCharacter
+    internal val obsCharacter: LiveData<CharacterDetails> = _obsCharacter
 
-    init {
-        ioScope.launch { doWhileLoading { loadCharacterDetails() } }
+    fun getCharacterDetails(
+        characterId: Long,
+    ) {
+
+        ioScope.launch { doWhileLoading { loadCharacterDetails(characterId = characterId) } }
     }
 
-    private suspend fun loadCharacterDetails() {
-
-        val characterId = savedStateHandle.get<Long>("id") ?: 1
+    private suspend fun loadCharacterDetails(
+        characterId: Long,
+    ) {
 
         val character = charactersRepository.getCharacterDetails(characterId)
             .logError()
