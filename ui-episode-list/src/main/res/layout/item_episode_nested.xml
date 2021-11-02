@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cEpisodeNumber"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Close Rick-counters of the Rick Kind" />
+            tools:text="Close Rick-counters" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

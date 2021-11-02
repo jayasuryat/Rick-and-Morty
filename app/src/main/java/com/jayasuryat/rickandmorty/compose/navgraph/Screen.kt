@@ -21,6 +21,19 @@ sealed class Screen {
         fun getNavigableRoute(id: Long): String = "characterDetails/$id"
     }
 
+    object CharacterEpisodes : Screen() {
+
+        internal const val CHARACTER_ID: String = "characterId"
+
+        override fun getRoute(): String = "characterEpisodes/{$CHARACTER_ID}"
+
+        fun getNavigableRoute(id: Long): String = "characterEpisodes/$id"
+    }
+
+    object EpisodeList : Screen() {
+        override fun getRoute(): String = "episodes"
+    }
+
     object LocationsList : Screen() {
         override fun getRoute(): String = "locations"
     }

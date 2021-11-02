@@ -34,7 +34,7 @@ public fun TopBar(
             Icon(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(12.dp),
+                    .padding(8.dp),
                 painter = painterResource(id = icon),
                 contentDescription = title,
                 tint = MaterialTheme.colors.onBackground,

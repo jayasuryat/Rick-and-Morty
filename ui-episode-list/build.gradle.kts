@@ -3,7 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-    id("com.apollographql.apollo").version("2.5.9")
+    id("com.apollographql.apollo").version(Dependency.apolloVersion)
 }
 
 android {
@@ -36,6 +36,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 
     kotlinOptions {
@@ -79,4 +84,10 @@ dependencies {
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.baseData))
+    implementation(project(Dependency.Module.event))
+    implementation(project(Dependency.Module.sharedComposable))
+
+    implementation(Dependency.Compose.material)
+    implementation(Dependency.Compose.liveData)
+    debugImplementation(Dependency.Compose.tooling)
 }
