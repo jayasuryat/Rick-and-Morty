@@ -4,7 +4,7 @@ import com.jayasuryat.event.Event
 
 sealed interface CharacterListEvent : Event {
 
-    object OnBackPressed : CharacterListEvent
+    object OnBackClicked : CharacterListEvent
 
     data class OpenCharacter(
         val characterId: Long,

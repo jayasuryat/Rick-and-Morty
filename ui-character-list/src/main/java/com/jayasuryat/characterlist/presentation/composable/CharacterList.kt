@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -24,11 +23,11 @@ import kotlinx.coroutines.flow.flowOf
 
 
 @Composable
-fun CharacterList(
+fun CharacterListScreen(
+    viewModel: CharacterListViewModel,
     eventListener: EventListener<CharacterListEvent>,
 ) {
 
-    val viewModel: CharacterListViewModel = hiltViewModel()
     val characters: LazyPagingItems<CharacterDef> =
         viewModel.charactersList.collectAsLazyPagingItems()
 
@@ -63,7 +62,7 @@ private fun Screen(
             title = stringResource(R.string.characters),
             icon = R.drawable.icon_back,
         ) {
-            postEvent(CharacterListEvent.OnBackPressed)
+            postEvent(CharacterListEvent.OnBackClicked)
         }
 
         Spacer(
