@@ -29,11 +29,12 @@ object Dependency {
 
     object Compose {
 
+        const val composeVersion = "1.0.1"
+
         const val activity = "androidx.activity:activity-compose:1.4.0"
         const val material = "androidx.compose.material:material:1.0.4"
         const val animation = "androidx.compose.animation:animation:1.0.4"
         const val tooling = "androidx.compose.ui:ui-tooling:1.0.4"
-        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
         const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
         const val paging = "androidx.paging:paging-compose:1.0.0-alpha14"
         const val coil = "io.coil-kt:coil-compose:1.4.0"
@@ -65,8 +66,9 @@ object Dependency {
 
     const val recyclerviewAnimators = "jp.wasabeef:recyclerview-animators:4.0.2"
 
-    const val apolloRuntime = "com.apollographql.apollo:apollo-runtime:2.5.9"
-    const val apolloCoroutines = "com.apollographql.apollo:apollo-coroutines-support:2.5.9"
+    const val apolloVersion = "2.5.10"
+    const val apolloRuntime = "com.apollographql.apollo:apollo-runtime:$apolloVersion"
+    const val apolloCoroutines = "com.apollographql.apollo:apollo-coroutines-support:$apolloVersion"
     const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
 

@@ -36,7 +36,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 
     kotlinOptions {
@@ -56,7 +56,5 @@ dependencies {
     androidTestImplementation(Dependency.Test.espresso)
 
     implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.paging)
-    implementation(Dependency.Compose.hiltNavigation)
     debugImplementation(Dependency.Compose.tooling)
 }

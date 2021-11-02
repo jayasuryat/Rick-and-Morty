@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("com.apollographql.apollo").version("2.5.9")
+    id("com.apollographql.apollo").version(Dependency.apolloVersion)
 }
 
 android {
@@ -40,7 +40,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 
     kotlinOptions {
@@ -97,7 +97,6 @@ dependencies {
 
     implementation(Dependency.Compose.material)
     implementation(Dependency.Compose.paging)
-    implementation(Dependency.Compose.hiltNavigation)
     debugImplementation(Dependency.Compose.tooling)
     implementation(Dependency.Compose.coil)
 }

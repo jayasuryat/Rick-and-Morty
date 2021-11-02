@@ -43,7 +43,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 }
 
@@ -76,6 +76,5 @@ dependencies {
     implementation(project(Dependency.Module.event))
 
     implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.animation)
     debugImplementation(Dependency.Compose.tooling)
 }

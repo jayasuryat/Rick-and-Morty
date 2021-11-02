@@ -4,7 +4,7 @@ plugins {
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.plugin.serialization")
-    id("com.apollographql.apollo").version("2.5.9")
+    id("com.apollographql.apollo").version(Dependency.apolloVersion)
 }
 
 android {
@@ -41,7 +41,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 
     kotlinOptions {
@@ -91,7 +91,6 @@ dependencies {
     implementation(project(Dependency.Module.sharedComposable))
 
     implementation(Dependency.Compose.material)
-    implementation(Dependency.Compose.hiltNavigation)
     implementation(Dependency.Compose.liveData)
     implementation(Dependency.Compose.coil)
     debugImplementation(Dependency.Compose.tooling)

@@ -4,7 +4,7 @@ plugins {
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.plugin.serialization")
-    id("com.apollographql.apollo").version("2.5.9")
+    id("com.apollographql.apollo").version(Dependency.apolloVersion)
 }
 
 android {
