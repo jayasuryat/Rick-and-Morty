@@ -5,7 +5,7 @@ import com.jayasuryat.locationlist.domain.model.Location
 
 sealed interface LocationListEvent : Event {
 
-    object OnBackPressed : LocationListEvent
+    object OnBackClicked : LocationListEvent
 
     data class OpenLocation(val location: Location) : LocationListEvent
 }

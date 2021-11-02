@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -23,11 +22,10 @@ import kotlinx.coroutines.flow.flowOf
 
 
 @Composable
-fun LocationList(
+fun LocationListScreen(
+    viewModel: LocationListViewModel,
     eventListener: EventListener<LocationListEvent>,
 ) {
-
-    val viewModel: LocationListViewModel = hiltViewModel()
 
     val locations: LazyPagingItems<Location> = viewModel.locationList.collectAsLazyPagingItems()
 
@@ -62,7 +60,7 @@ private fun Screen(
             title = stringResource(R.string.locations),
             icon = R.drawable.icon_back,
         ) {
-            postEvent(LocationListEvent.OnBackPressed)
+            postEvent(LocationListEvent.OnBackClicked)
         }
 
         Spacer(
