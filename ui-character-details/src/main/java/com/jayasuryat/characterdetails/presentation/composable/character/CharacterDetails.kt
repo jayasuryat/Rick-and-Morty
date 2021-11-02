@@ -9,12 +9,13 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsViewModel
 import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent
-import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.OnBackPressed
+import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.OnBackClicked
+import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.OpenCharacterEpisodes
 import com.jayasuryat.event.EventListener
 
 
 @Composable
-fun CharacterDetails(
+fun CharacterDetailsScreen(
     viewModel: CharacterDetailsViewModel,
     eventListener: EventListener<CharacterDetailsEvent>,
 ) {
@@ -25,9 +26,12 @@ fun CharacterDetails(
 
     CharacterDetailsBody(
         character = char,
-        onBackPressed = { eventListener.onEvent(OnBackPressed) },
+        onBackClicked = { eventListener.onEvent(OnBackClicked) },
         onLocationClicked = {},
         onOriginClicked = {},
+        onEpisodesClicked = {
+            eventListener.onEvent(OpenCharacterEpisodes(characterId = char.id.toLong()))
+        },
     )
 }
 
@@ -39,8 +43,9 @@ private fun Prev_Screen(
 
     CharacterDetailsBody(
         character = character,
-        onBackPressed = {},
+        onBackClicked = {},
         onLocationClicked = {},
         onOriginClicked = {},
+        onEpisodesClicked = {},
     )
 }

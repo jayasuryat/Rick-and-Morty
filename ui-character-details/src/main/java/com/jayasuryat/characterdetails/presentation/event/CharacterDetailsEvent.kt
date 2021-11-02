@@ -4,9 +4,11 @@ import com.jayasuryat.event.Event
 
 sealed interface CharacterDetailsEvent : Event {
 
-    object OnBackPressed : CharacterDetailsEvent
+    object OnBackClicked : CharacterDetailsEvent
 
-    object OpenCharacterEpisodes : CharacterDetailsEvent
+    data class OpenCharacterEpisodes(
+        val characterId: Long,
+    ) : CharacterDetailsEvent
 
     data class OpenLocation(
         val locationId: Long,

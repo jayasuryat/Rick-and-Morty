@@ -1,6 +1,7 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,6 +32,7 @@ internal fun InfoChip(
             .wrapContentHeight()
             .clip(shape = RoundedCornerShape(32.dp))
             .background(color = MaterialTheme.colors.primary)
+            .clickable { onClick() }
             .padding(16.dp)
     ) {
 

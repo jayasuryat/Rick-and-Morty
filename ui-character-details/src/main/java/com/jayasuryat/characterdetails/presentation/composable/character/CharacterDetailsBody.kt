@@ -1,11 +1,11 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -23,27 +23,23 @@ import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 @Composable
 internal fun CharacterDetailsBody(
     character: CharacterDetails,
-    onBackPressed: () -> Unit,
+    onBackClicked: () -> Unit,
     onLocationClicked: () -> Unit,
     onOriginClicked: () -> Unit,
+    onEpisodesClicked: () -> Unit,
 ) {
-
-    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
-            .scrollable(
-                state = scrollState,
-                orientation = Orientation.Vertical,
-            )
             .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
             .background(MaterialTheme.colors.background),
         verticalArrangement = Arrangement.Top,
     ) {
 
         CharacterImageWithBackButton(
             character = character,
-            onBackPressed = onBackPressed,
+            onBackClicked = onBackClicked,
         )
 
         CharacterInfo(
@@ -94,9 +90,10 @@ internal fun CharacterDetailsBody(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
-                .height(200.dp)
+                .wrapContentHeight()
                 .clip(RoundedCornerShape(32.dp))
                 .background(color = MaterialTheme.colors.primary)
+                .clickable { onEpisodesClicked() }
                 .padding(16.dp)
         )
     }
@@ -110,8 +107,9 @@ private fun Prev_Screen(
 
     CharacterDetailsBody(
         character = character,
-        onBackPressed = {},
+        onBackClicked = {},
         onLocationClicked = {},
         onOriginClicked = {},
+        onEpisodesClicked = {},
     )
 }

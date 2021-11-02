@@ -25,7 +25,7 @@ import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 @Composable
 internal fun CharacterImageWithBackButton(
     character: CharacterDetails,
-    onBackPressed: () -> Unit,
+    onBackClicked: () -> Unit,
 ) {
 
     Box(
@@ -42,7 +42,7 @@ internal fun CharacterImageWithBackButton(
         BackButton(
             modifier = Modifier
                 .align(alignment = Alignment.TopStart),
-            onBackPressed = onBackPressed,
+            onBackClicked = onBackClicked,
         )
     }
 }
@@ -76,7 +76,7 @@ private fun CharacterImage(
 @Composable
 private fun BackButton(
     modifier: Modifier = Modifier,
-    onBackPressed: () -> Unit,
+    onBackClicked: () -> Unit,
 ) {
 
     IconButton(
@@ -90,7 +90,7 @@ private fun BackButton(
                 color = MaterialTheme.colors.secondary,
                 shape = CircleShape,
             ),
-        onClick = { onBackPressed() },
+        onClick = { onBackClicked() },
     ) {
         Icon(
             modifier = Modifier
@@ -115,7 +115,7 @@ private fun Prev_CharacterImage(
 
     CharacterImageWithBackButton(
         character = character,
-        onBackPressed = {},
+        onBackClicked = {},
     )
 }
 
