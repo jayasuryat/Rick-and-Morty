@@ -66,20 +66,17 @@ class EpisodeDetailsFragment : BaseAbsFragment<EpisodeDetailsViewModel,
 
     override fun setupObservers(): EpisodeDetailsViewModel.() -> Unit = {
 
-        obsEpisode.observe(viewLifecycleOwner) { episode ->
+        obsEpisodeData.observe(viewLifecycleOwner) { episode ->
             if (episode == null) return@observe
             binding.apply {
-                tvEpisodeName.text = episode.episodeData.name
-                tvAiredOn.text = episode.episodeData.airDate
+                tvEpisodeName.text = episode.episodeName
+                tvAiredOn.text = episode.episodeAiredOn
                 cSeason.text = episode.season
                 cEpisode.text = episode.episode
             }
-        }
 
-        obsCharacter.observe(viewLifecycleOwner) { characters ->
-            characterListAdapter.submitList(characters)
-            (view?.parent as? ViewGroup)
-                ?.doOnPreDraw { startPostponedEnterTransition() }
+            characterListAdapter.submitList(episode.characters)
+            (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
         }
     }
 

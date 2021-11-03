@@ -37,6 +37,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 
     kotlinOptions {
@@ -46,6 +51,10 @@ android {
 
 apollo {
     generateKotlinModels.set(true)
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
 dependencies {
@@ -83,4 +92,11 @@ dependencies {
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.baseData))
+    implementation(project(Dependency.Module.event))
+    implementation(project(Dependency.Module.sharedComposable))
+
+    implementation(Dependency.Compose.material)
+    implementation(Dependency.Compose.liveData)
+    implementation(Dependency.Compose.coil)
+    debugImplementation(Dependency.Compose.tooling)
 }

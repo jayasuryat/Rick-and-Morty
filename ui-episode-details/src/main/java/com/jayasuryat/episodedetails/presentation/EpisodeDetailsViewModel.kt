@@ -2,9 +2,7 @@ package com.jayasuryat.episodedetails.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import com.jayasuryat.base.arch.BaseViewModel
-import com.jayasuryat.episodedetails.domain.model.Character
 import com.jayasuryat.episodedetails.domain.repositories.EpisodeDetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,22 +12,16 @@ import javax.inject.Inject
 @HiltViewModel
 class EpisodeDetailsViewModel @Inject constructor(
     private val episodeDetailsRepo: EpisodeDetailsRepository,
-    private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
-    private val _obsEpisode: MutableLiveData<EpisodeData> = MutableLiveData()
-    internal val obsEpisode: LiveData<EpisodeData> = _obsEpisode
+    private val _obsEpisodeData: MutableLiveData<EpisodeData> = MutableLiveData()
+    internal val obsEpisodeData: LiveData<EpisodeData> = _obsEpisodeData
 
-    private val _obsCharacter: MutableLiveData<List<Character>> = MutableLiveData()
-    internal val obsCharacter: LiveData<List<Character>> = _obsCharacter
-
-    init {
-        ioScope.launch { doWhileLoading { loadEpisodeDetails() } }
+    fun loadEpisodeDetails(episodeId: Long) {
+        ioScope.launch { doWhileLoading { getEpisodeDetails(episodeId) } }
     }
 
-    private suspend fun loadEpisodeDetails() {
-
-        val episodeId = savedStateHandle.get<Long>("episodeId") ?: return
+    private suspend fun getEpisodeDetails(episodeId: Long) {
 
         val episode = episodeDetailsRepo.getEpisodeDetails(episodeId)
             .logError()
@@ -42,12 +34,13 @@ class EpisodeDetailsViewModel @Inject constructor(
         ).toInt()
 
         val episodeData = EpisodeData(
-            episodeData = episode,
+            episodeName = episode.name,
+            episode = "E${episodeNum}",
             season = "S${seasonNum}",
-            episode = "E${episodeNum}"
+            episodeAiredOn = episode.airDate,
+            characters = episode.characters,
         )
 
-        _obsEpisode.postValue(episodeData)
-        _obsCharacter.postValue(episode.characters)
+        _obsEpisodeData.postValue(episodeData)
     }
 }

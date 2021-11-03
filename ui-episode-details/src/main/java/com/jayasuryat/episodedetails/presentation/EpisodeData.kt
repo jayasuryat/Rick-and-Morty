@@ -1,9 +1,11 @@
 package com.jayasuryat.episodedetails.presentation
 
-import com.jayasuryat.episodedetails.domain.model.EpisodeDetails
+import com.jayasuryat.episodedetails.domain.model.Character
 
 internal data class EpisodeData(
-    val episodeData: EpisodeDetails,
-    val season: String,
+    val episodeName: String,
     val episode: String,
+    val season: String,
+    val episodeAiredOn: String,
+    val characters: List<Character>,
 )
