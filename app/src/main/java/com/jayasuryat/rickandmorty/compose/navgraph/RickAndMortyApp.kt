@@ -136,7 +136,10 @@ private fun RickAndMortyNavHost() {
             ) { event ->
                 when (event) {
                     is CharacterEpisodesEvent.OnBackClicked -> navController.popBackStack()
-                    is CharacterEpisodesEvent.OpenEpisode -> pendingNavigationImpl(event)
+                    is CharacterEpisodesEvent.OpenEpisode -> {
+                        val route = Screen.EpisodeDetails.getNavigableRoute(event.episodeId)
+                        navController.navigate(route)
+                    }
                 }
             }
         }
