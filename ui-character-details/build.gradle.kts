@@ -93,5 +93,6 @@ dependencies {
     implementation(Dependency.Compose.material)
     implementation(Dependency.Compose.liveData)
     implementation(Dependency.Compose.coil)
+    implementation(Dependency.Compose.constraintLayout)
     debugImplementation(Dependency.Compose.tooling)
 }

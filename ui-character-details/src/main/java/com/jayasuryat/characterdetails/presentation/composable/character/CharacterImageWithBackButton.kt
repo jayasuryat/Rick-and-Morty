@@ -18,18 +18,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import coil.transform.RoundedCornersTransformation
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 
 @Composable
 internal fun CharacterImageWithBackButton(
     character: CharacterDetails,
+    modifier: Modifier = Modifier,
     onBackClicked: () -> Unit,
 ) {
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .padding(8.dp)
             .fillMaxWidth()
             .aspectRatio(1f)

@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 
@@ -37,16 +38,35 @@ internal fun CharacterDetailsBody(
         verticalArrangement = Arrangement.Top,
     ) {
 
-        CharacterImageWithBackButton(
-            character = character,
-            onBackClicked = onBackClicked,
-        )
-
-        CharacterInfo(
-            character = character,
+        ConstraintLayout(
             modifier = Modifier
-                .padding(horizontal = 24.dp)
-        )
+                .fillMaxWidth()
+                .wrapContentHeight()
+        ) {
+
+            val (imageView, infoView) = createRefs()
+
+            CharacterImageWithBackButton(
+                character = character,
+                modifier = Modifier
+                    .constrainAs(imageView) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
+                onBackClicked = onBackClicked,
+            )
+
+            CharacterInfo(
+                character = character,
+                modifier = Modifier
+                    .constrainAs(infoView) {
+                        top.linkTo(imageView.bottom)
+                        bottom.linkTo(imageView.bottom)
+                    }
+                    .padding(horizontal = 24.dp)
+            )
+        }
 
         Spacer(
             modifier = Modifier

@@ -41,6 +41,7 @@ object Dependency {
 
         const val liveData = "androidx.compose.runtime:runtime-livedata:1.0.4"
         const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
 
         object Test {
 
