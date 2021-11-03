@@ -1,7 +1,11 @@
 package com.jayasuryat.rickandmorty.compose.navgraph
 
 import android.util.Log
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -29,6 +33,19 @@ import com.jayasuryat.locationlist.presentation.event.LocationListEvent
 
 @Composable
 fun RickAndMortyApp() {
+
+    Surface(
+        modifier = Modifier
+            .fillMaxSize(),
+        color = MaterialTheme.colors.background
+    ) {
+
+        RickAndMortyNavHost()
+    }
+}
+
+@Composable
+private fun RickAndMortyNavHost() {
 
     val navController = rememberNavController()
 
