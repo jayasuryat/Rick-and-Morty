@@ -24,7 +24,6 @@ internal fun CharacterEpisodesBody(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colors.background)
             .padding(
                 top = 16.dp,
                 start = 24.dp,

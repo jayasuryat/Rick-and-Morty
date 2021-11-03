@@ -22,7 +22,6 @@ fun Home(
 
     Column(
         modifier = Modifier
-            .background(color = MaterialTheme.colors.background)
             .padding(
                 horizontal = 24.dp,
                 vertical = 12.dp,

@@ -33,8 +33,7 @@ internal fun CharacterDetailsBody(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .background(MaterialTheme.colors.background),
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top,
     ) {
 
