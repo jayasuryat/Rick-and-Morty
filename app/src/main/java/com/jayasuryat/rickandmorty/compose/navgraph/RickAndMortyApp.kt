@@ -21,6 +21,9 @@ import com.jayasuryat.characterdetails.presentation.event.CharacterEpisodesEvent
 import com.jayasuryat.characterlist.presentation.CharacterListViewModel
 import com.jayasuryat.characterlist.presentation.composable.CharacterListScreen
 import com.jayasuryat.characterlist.presentation.event.CharacterListEvent
+import com.jayasuryat.episodedetails.presentation.EpisodeDetailsViewModel
+import com.jayasuryat.episodedetails.presentation.composable.EpisodeDetailsScreen
+import com.jayasuryat.episodedetails.presentation.event.EpisodeDetailsEvent
 import com.jayasuryat.episodelist.presentation.EpisodesListViewModel
 import com.jayasuryat.episodelist.presentation.composable.EpisodeListScreen
 import com.jayasuryat.episodelist.presentation.event.EpisodeListEvent
@@ -149,7 +152,38 @@ private fun RickAndMortyNavHost() {
                 eventListener = { event ->
                     when (event) {
                         is EpisodeListEvent.OnBackClicked -> navController.popBackStack()
-                        is EpisodeListEvent.OpenEpisode -> pendingNavigationImpl(event)
+                        is EpisodeListEvent.OpenEpisode -> {
+                            val route = Screen.EpisodeDetails.getNavigableRoute(event.episodeId)
+                            navController.navigate(route)
+                        }
+                    }
+                }
+            )
+        }
+
+        composable(
+            route = Screen.EpisodeDetails.getRoute(),
+            arguments = listOf(
+                navArgument(Screen.EpisodeDetails.EPISODE_ID) { type = NavType.LongType }
+            )
+        ) {
+
+            val episodeId = it.arguments
+                ?.getLong(Screen.EpisodeDetails.EPISODE_ID)
+                ?: throw IllegalArgumentException("Episode id cannot be null")
+
+            val viewModel: EpisodeDetailsViewModel = hiltViewModel()
+            viewModel.loadEpisodeDetails(episodeId = episodeId)
+
+            EpisodeDetailsScreen(
+                viewModel = viewModel,
+                eventListener = { event ->
+                    when (event) {
+                        is EpisodeDetailsEvent.OnBackClicked -> navController.popBackStack()
+                        is EpisodeDetailsEvent.OpenCharacter -> {
+                            val route = Screen.CharacterDetails.getNavigableRoute(event.characterId)
+                            navController.navigate(route)
+                        }
                     }
                 }
             )

@@ -18,7 +18,9 @@ sealed class Screen {
 
         override fun getRoute(): String = "characterDetails/{$CHARACTER_ID}"
 
-        fun getNavigableRoute(id: Long): String = "characterDetails/$id"
+        fun getNavigableRoute(
+            characterId: Long,
+        ): String = "characterDetails/$characterId"
     }
 
     object CharacterEpisodes : Screen() {
@@ -27,11 +29,24 @@ sealed class Screen {
 
         override fun getRoute(): String = "characterEpisodes/{$CHARACTER_ID}"
 
-        fun getNavigableRoute(id: Long): String = "characterEpisodes/$id"
+        fun getNavigableRoute(
+            characterId: Long,
+        ): String = "characterEpisodes/$characterId"
     }
 
     object EpisodeList : Screen() {
         override fun getRoute(): String = "episodes"
+    }
+
+    object EpisodeDetails : Screen() {
+
+        internal const val EPISODE_ID: String = "episodeId"
+
+        override fun getRoute(): String = "episodeDetails/{$EPISODE_ID}"
+
+        fun getNavigableRoute(
+            episodeId: Long,
+        ): String = "episodeDetails/$episodeId"
     }
 
     object LocationsList : Screen() {
