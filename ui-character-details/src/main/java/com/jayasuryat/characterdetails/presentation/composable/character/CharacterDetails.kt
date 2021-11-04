@@ -9,8 +9,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsViewModel
 import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent
-import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.OnBackClicked
-import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.OpenCharacterEpisodes
+import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.*
 import com.jayasuryat.event.EventListener
 
 
@@ -27,8 +26,18 @@ fun CharacterDetailsScreen(
     CharacterDetailsBody(
         character = char,
         onBackClicked = { eventListener.onEvent(OnBackClicked) },
-        onLocationClicked = {},
-        onOriginClicked = {},
+        onLocationClicked = { location ->
+            val locationId = location.id
+                .takeIf { !it.isNullOrEmpty() }?.toLong()
+                ?: return@CharacterDetailsBody
+            eventListener.onEvent(OpenLocation(locationId = locationId))
+        },
+        onOriginClicked = { location ->
+            val locationId = location.id
+                .takeIf { !it.isNullOrEmpty() }?.toLong()
+                ?: return@CharacterDetailsBody
+            eventListener.onEvent(OpenLocation(locationId = locationId))
+        },
         onEpisodesClicked = {
             eventListener.onEvent(OpenCharacterEpisodes(characterId = char.id.toLong()))
         },

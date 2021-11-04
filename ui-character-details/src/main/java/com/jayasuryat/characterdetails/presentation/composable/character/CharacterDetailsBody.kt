@@ -19,14 +19,15 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
+import com.jayasuryat.characterdetails.domain.models.Location
 
 
 @Composable
 internal fun CharacterDetailsBody(
     character: CharacterDetails,
     onBackClicked: () -> Unit,
-    onLocationClicked: () -> Unit,
-    onOriginClicked: () -> Unit,
+    onLocationClicked: (location: Location) -> Unit,
+    onOriginClicked: (location: Location) -> Unit,
     onEpisodesClicked: () -> Unit,
 ) {
 
@@ -78,7 +79,7 @@ internal fun CharacterDetailsBody(
             value = character.location?.name ?: "<Location Unknown>",
             subText = character.location?.dimension ?: "<Dimension Unknown>",
             modifier = Modifier.padding(horizontal = 16.dp),
-            onClick = onLocationClicked,
+            onClick = { character.location?.let(onLocationClicked) },
         )
 
         Spacer(
@@ -92,7 +93,7 @@ internal fun CharacterDetailsBody(
             value = character.origin?.name ?: "<Location Unknown>",
             subText = character.origin?.dimension ?: "<Dimension Unknown>",
             modifier = Modifier.padding(horizontal = 16.dp),
-            onClick = onOriginClicked,
+            onClick = { character.location?.let(onOriginClicked) },
         )
 
         Spacer(

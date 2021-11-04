@@ -30,6 +30,9 @@ import com.jayasuryat.episodelist.presentation.event.EpisodeListEvent
 import com.jayasuryat.event.Event
 import com.jayasuryat.home.composable.Home
 import com.jayasuryat.home.event.HomeEvent
+import com.jayasuryat.locationdetails.presentation.LocationDetailsViewModel
+import com.jayasuryat.locationdetails.presentation.compose.LocationDetailsScreen
+import com.jayasuryat.locationdetails.presentation.event.LocationDetailsEvent
 import com.jayasuryat.locationlist.presentation.LocationListViewModel
 import com.jayasuryat.locationlist.presentation.composables.LocationListScreen
 import com.jayasuryat.locationlist.presentation.event.LocationListEvent
@@ -112,7 +115,10 @@ private fun RickAndMortyNavHost() {
                         val route = Screen.CharacterEpisodes.getNavigableRoute(event.characterId)
                         navController.navigate(route)
                     }
-                    is CharacterDetailsEvent.OpenLocation -> pendingNavigationImpl(event)
+                    is CharacterDetailsEvent.OpenLocation -> {
+                        val route = Screen.LocationsDetails.getNavigableRoute(event.locationId)
+                        navController.navigate(route)
+                    }
                 }
             }
         }
