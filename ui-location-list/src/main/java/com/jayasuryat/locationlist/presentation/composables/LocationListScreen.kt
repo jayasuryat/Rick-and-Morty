@@ -1,8 +1,6 @@
 package com.jayasuryat.locationlist.presentation.composables
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -71,7 +69,7 @@ private fun Screen(
         Locations(
             locations = locations
         ) { location ->
-            postEvent(LocationListEvent.OpenLocation(location = location))
+            postEvent(LocationListEvent.OpenLocation(locationId = location.id))
         }
     }
 }

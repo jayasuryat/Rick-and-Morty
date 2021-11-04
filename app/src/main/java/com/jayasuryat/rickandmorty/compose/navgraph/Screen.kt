@@ -52,4 +52,16 @@ sealed class Screen {
     object LocationsList : Screen() {
         override fun getRoute(): String = "locations"
     }
+
+    object LocationsDetails : Screen() {
+
+        internal const val LOCATION_ID: String = "locationId"
+
+        override fun getRoute(): String = "locationDetails/{$LOCATION_ID}"
+
+        fun getNavigableRoute(
+            locationId: Long,
+        ): String = "locationDetails/$locationId"
+
+    }
 }

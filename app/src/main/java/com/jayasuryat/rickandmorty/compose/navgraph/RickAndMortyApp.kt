@@ -203,7 +203,38 @@ private fun RickAndMortyNavHost() {
                 eventListener = { event ->
                     when (event) {
                         is LocationListEvent.OnBackClicked -> navController.popBackStack()
-                        is LocationListEvent.OpenLocation -> pendingNavigationImpl(event)
+                        is LocationListEvent.OpenLocation -> {
+                            val route = Screen.LocationsDetails.getNavigableRoute(event.locationId)
+                            navController.navigate(route)
+                        }
+                    }
+                }
+            )
+        }
+
+        composable(
+            route = Screen.LocationsDetails.getRoute(),
+            arguments = listOf(
+                navArgument(Screen.LocationsDetails.LOCATION_ID) { type = NavType.LongType }
+            )
+        ) {
+
+            val locationId = it.arguments
+                ?.getLong(Screen.LocationsDetails.LOCATION_ID)
+                ?: throw IllegalArgumentException("Episode id cannot be null")
+
+            val viewModel: LocationDetailsViewModel = hiltViewModel()
+            viewModel.loadLocationDetails(locationId = locationId)
+
+            LocationDetailsScreen(
+                viewModel = viewModel,
+                eventListener = { event ->
+                    when (event) {
+                        is LocationDetailsEvent.OnBackClicked -> navController.popBackStack()
+                        is LocationDetailsEvent.OpenCharacter -> {
+                            val route = Screen.CharacterDetails.getNavigableRoute(event.characterId)
+                            navController.navigate(route)
+                        }
                     }
                 }
             )
