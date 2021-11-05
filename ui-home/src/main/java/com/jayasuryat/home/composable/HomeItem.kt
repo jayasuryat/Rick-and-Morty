@@ -1,5 +1,6 @@
 package com.jayasuryat.home.composable
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,11 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.jayasuryat.home.R
-import com.jayasuryat.themepreview.PreviewThemeParamProvider
-import com.jayasuryat.themepreview.PreviewThemeProvider
+import com.jayasuryat.themepreview.PreviewTheme
 
 @Composable
 internal fun HomeItem(
@@ -66,13 +65,15 @@ internal fun HomeItem(
     }
 }
 
-@Preview
+@Preview(name = "Home item [light]")
+@Preview(
+    name = "Home item [dark]",
+    uiMode = UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Home_Item(
-    @PreviewParameter(PreviewThemeParamProvider::class) themeProvider: PreviewThemeProvider,
-) {
+private fun Preview() {
 
-    themeProvider.Theme {
+    PreviewTheme {
 
         HomeItem(
             modifier = Modifier

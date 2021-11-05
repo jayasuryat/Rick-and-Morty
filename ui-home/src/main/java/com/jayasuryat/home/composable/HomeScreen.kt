@@ -1,5 +1,6 @@
 package com.jayasuryat.home.composable
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,14 +9,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.jayasuryat.event.EventListener
 import com.jayasuryat.event.noOpEventListener
 import com.jayasuryat.home.R
 import com.jayasuryat.home.event.HomeEvent
-import com.jayasuryat.themepreview.PreviewThemeParamProvider
-import com.jayasuryat.themepreview.PreviewThemeProvider
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -61,12 +60,15 @@ fun HomeScreen(
     }
 }
 
-@Preview
+@Preview(name = "Home screen [light]")
+@Preview(
+    name = "Home screen [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Preview(
-    @PreviewParameter(PreviewThemeParamProvider::class) themeProvider: PreviewThemeProvider,
-) {
-    themeProvider.Theme {
+private fun Preview() {
+
+    PreviewTheme {
         HomeScreen(noOpEventListener())
     }
 }
