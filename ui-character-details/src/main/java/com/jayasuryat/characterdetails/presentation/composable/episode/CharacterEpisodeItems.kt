@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -46,7 +45,7 @@ internal fun CharacterEpisodeItem(
             modifier = Modifier
                 .wrapContentSize()
                 .align(Alignment.CenterVertically)
-                .clip(RoundedCornerShape(8.dp))
+                .clip(shape = MaterialTheme.shapes.small)
                 .background(color = MaterialTheme.colors.background)
                 .padding(
                     horizontal = 16.dp,
@@ -65,7 +64,7 @@ internal fun CharacterEpisodeItem(
             modifier = Modifier
                 .wrapContentSize()
                 .align(Alignment.CenterVertically)
-                .clip(RoundedCornerShape(8.dp))
+                .clip(shape = MaterialTheme.shapes.small)
                 .background(color = MaterialTheme.colors.background)
                 .padding(
                     horizontal = 16.dp,
@@ -97,7 +96,7 @@ internal fun CharacterSeasonDivider(
             .padding(bottom = 8.dp)
             .fillMaxWidth()
             .height(8.dp)
-            .clip(RoundedCornerShape(8.dp))
+            .clip(shape = MaterialTheme.shapes.small)
             .background(color = MaterialTheme.colors.secondary)
     )
 }

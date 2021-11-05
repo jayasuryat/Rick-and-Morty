@@ -31,7 +31,7 @@ internal fun HomeItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 12.dp)
-            .clip(MaterialTheme.shapes.large)
+            .clip(shape = MaterialTheme.shapes.large)
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colors.secondary,

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -98,7 +97,7 @@ internal fun EpisodeDetailsBody(
                     modifier = Modifier
                         .wrapContentSize()
                         .align(Alignment.CenterVertically)
-                        .clip(RoundedCornerShape(8.dp))
+                        .clip(shape = MaterialTheme.shapes.small)
                         .background(color = MaterialTheme.colors.background)
                         .padding(
                             horizontal = 12.dp,
@@ -115,7 +114,7 @@ internal fun EpisodeDetailsBody(
                     modifier = Modifier
                         .wrapContentSize()
                         .align(Alignment.CenterVertically)
-                        .clip(RoundedCornerShape(8.dp))
+                        .clip(shape = MaterialTheme.shapes.small)
                         .background(color = MaterialTheme.colors.background)
                         .padding(
                             horizontal = 12.dp,
@@ -154,7 +153,7 @@ internal fun EpisodeDetailsBody(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .clip(RoundedCornerShape(32.dp))
+                .clip(shape = MaterialTheme.shapes.large)
                 .background(color = MaterialTheme.colors.primary)
                 .padding(16.dp),
         ) {
@@ -182,12 +181,12 @@ internal fun EpisodeDetailsBody(
                         modifier = Modifier
                             .aspectRatio(1f)
                             .padding(4.dp)
-                            .clip(RoundedCornerShape(32.dp))
+                            .clip(shape = MaterialTheme.shapes.large)
                             .clickable { onCharacterClicked(character) }
                             .border(
                                 width = 1.dp,
                                 color = MaterialTheme.colors.secondary,
-                                shape = RoundedCornerShape(32.dp),
+                                shape = MaterialTheme.shapes.large,
                             )
                     ) {
 

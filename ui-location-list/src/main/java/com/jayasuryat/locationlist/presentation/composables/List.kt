@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -53,7 +52,7 @@ private fun LocationItem(
             .padding(bottom = 8.dp)
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(RoundedCornerShape(32.dp))
+            .clip(shape = MaterialTheme.shapes.large)
             .clickable { onClick(location) }
             .background(color = MaterialTheme.colors.primary)
             .padding(
@@ -65,7 +64,7 @@ private fun LocationItem(
         Surface(
             color = MaterialTheme.colors.background,
             contentColor = MaterialTheme.colors.background,
-            shape = RoundedCornerShape(8.dp),
+            shape = MaterialTheme.shapes.small,
             modifier = Modifier
                 .align(alignment = Alignment.CenterVertically)
                 .wrapContentSize()
