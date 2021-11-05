@@ -114,7 +114,7 @@ internal fun CharacterDetailsBody(
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .clip(RoundedCornerShape(32.dp))
+                .clip(shape = MaterialTheme.shapes.large)
                 .background(color = MaterialTheme.colors.primary)
                 .clickable { onEpisodesClicked() }
                 .padding(16.dp)

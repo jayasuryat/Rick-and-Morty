@@ -32,7 +32,7 @@ internal fun InfoChip(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(shape = RoundedCornerShape(32.dp))
+            .clip(shape = MaterialTheme.shapes.large)
             .background(color = MaterialTheme.colors.primary)
             .clickable { onClick() }
             .padding(16.dp)

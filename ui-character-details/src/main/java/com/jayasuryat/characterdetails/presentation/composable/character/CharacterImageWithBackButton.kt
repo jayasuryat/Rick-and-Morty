@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -67,11 +66,11 @@ private fun CharacterImage(
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(1f)
-            .clip(RoundedCornerShape(32.dp))
+            .clip(shape = MaterialTheme.shapes.large)
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colors.secondary,
-                shape = RoundedCornerShape(32.dp),
+                shape = MaterialTheme.shapes.large,
             )
     )
 }

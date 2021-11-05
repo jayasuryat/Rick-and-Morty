@@ -42,12 +42,12 @@ internal fun CharacterInfo(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(RoundedCornerShape(32.dp))
+            .clip(shape = MaterialTheme.shapes.large)
             .background(color = MaterialTheme.colors.primary)
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colors.secondary,
-                shape = RoundedCornerShape(32.dp),
+                shape = MaterialTheme.shapes.large,
             )
             .padding(16.dp)
     ) {

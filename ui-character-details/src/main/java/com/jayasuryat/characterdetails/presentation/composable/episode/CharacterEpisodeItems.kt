@@ -31,7 +31,7 @@ internal fun CharacterEpisodeItem(
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(bottom = 8.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .clip(shape = MaterialTheme.shapes.medium)
             .background(color = MaterialTheme.colors.primary)
             .clickable { onEpisodeClicked(episode) }
             .padding(12.dp),
