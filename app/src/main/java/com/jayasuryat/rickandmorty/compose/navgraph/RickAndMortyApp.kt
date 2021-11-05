@@ -28,7 +28,7 @@ import com.jayasuryat.episodelist.presentation.EpisodesListViewModel
 import com.jayasuryat.episodelist.presentation.composable.EpisodeListScreen
 import com.jayasuryat.episodelist.presentation.event.EpisodeListEvent
 import com.jayasuryat.event.Event
-import com.jayasuryat.home.composable.Home
+import com.jayasuryat.home.composable.HomeScreen
 import com.jayasuryat.home.event.HomeEvent
 import com.jayasuryat.locationdetails.presentation.LocationDetailsViewModel
 import com.jayasuryat.locationdetails.presentation.compose.LocationDetailsScreen
@@ -63,7 +63,7 @@ private fun RickAndMortyNavHost() {
         composable(
             route = Screen.Home.getRoute(),
         ) {
-            Home { event ->
+            HomeScreen { event ->
                 when (event) {
                     HomeEvent.OpenCharacters -> navController.navigate(Screen.CharacterList.getRoute())
                     HomeEvent.OpenEpisodes -> navController.navigate(Screen.EpisodeList.getRoute())

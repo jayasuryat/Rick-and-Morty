@@ -3,8 +3,8 @@ package com.jayasuryat.rickandmorty.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.jayasuryat.theme.RickAndMortyTheme
 import com.jayasuryat.rickandmorty.compose.navgraph.RickAndMortyApp
-import com.jayasuryat.rickandmorty.compose.ui.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 

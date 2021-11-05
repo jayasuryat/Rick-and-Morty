@@ -91,6 +91,7 @@ dependencies {
     implementation(project(Dependency.Module.episodeDetails))
     implementation(project(Dependency.Module.locationList))
     implementation(project(Dependency.Module.locationDetils))
+    implementation(project(Dependency.Module.theme))
 
     implementation(Dependency.Compose.activity)
     implementation(Dependency.Compose.material)
