@@ -4,6 +4,8 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -39,7 +41,7 @@ internal fun LocationScreenBody(
 
         TopBar(
             title = stringResource(R.string.locations),
-            icon = R.drawable.icon_back,
+            icon = Icons.Filled.KeyboardArrowLeft,
             onIconClicked = onBackClicked
         )
 

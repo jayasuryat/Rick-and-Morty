@@ -82,7 +82,7 @@ internal fun CharacterItem(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
 )
 @Composable
-private fun Prev_Episode_Details(
+private fun Preview(
     @PreviewParameter(EpisodeParameterProvider::class) episodeData: EpisodeData,
 ) {
 

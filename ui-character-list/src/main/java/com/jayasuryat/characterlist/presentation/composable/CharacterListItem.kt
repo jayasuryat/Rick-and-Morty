@@ -30,7 +30,7 @@ internal fun CharacterListItem(
             .padding(bottom = 16.dp)
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(shape = MaterialTheme.shapes.medium)
+            .clip(shape = MaterialTheme.shapes.large)
             .clickable { onCharacterClicked() }
             .background(color = MaterialTheme.colors.primary)
             .padding(16.dp),
@@ -41,11 +41,11 @@ internal fun CharacterListItem(
             contentDescription = "${character.name} image",
             modifier = Modifier
                 .size(100.dp)
-                .clip(shape = MaterialTheme.shapes.medium)
+                .clip(shape = MaterialTheme.shapes.large)
                 .border(
                     width = 1.dp,
                     color = MaterialTheme.colors.secondary,
-                    shape = MaterialTheme.shapes.medium,
+                    shape = MaterialTheme.shapes.large,
                 )
         )
 

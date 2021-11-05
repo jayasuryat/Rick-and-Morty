@@ -54,6 +54,11 @@ dependencies {
     testImplementation(Dependency.Test.junit)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
+    androidTestImplementation(Dependency.Compose.Test.junit)
+
+    implementation(Dependency.material)
+
+    implementation(project(Dependency.Module.themePreview))
 
     implementation(Dependency.Compose.material)
     debugImplementation(Dependency.Compose.tooling)
