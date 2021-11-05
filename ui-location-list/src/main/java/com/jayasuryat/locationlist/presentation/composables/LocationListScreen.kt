@@ -1,21 +1,17 @@
 package com.jayasuryat.locationlist.presentation.composables
 
-import androidx.compose.foundation.layout.*
+import android.content.res.Configuration
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jayasuryat.event.EventListener
-import com.jayasuryat.event.noOpEventListener
-import com.jayasuryat.locationlist.R
 import com.jayasuryat.locationlist.domain.model.Location
 import com.jayasuryat.locationlist.presentation.LocationListViewModel
 import com.jayasuryat.locationlist.presentation.event.LocationListEvent
-import com.jayasuryat.sharedcomposable.composable.TopBar
+import com.jayasuryat.locationlist.presentation.event.LocationListEvent.OnBackClicked
+import com.jayasuryat.themepreview.PreviewTheme
 import kotlinx.coroutines.flow.flowOf
 
 
@@ -27,62 +23,32 @@ fun LocationListScreen(
 
     val locations: LazyPagingItems<Location> = viewModel.locationList.collectAsLazyPagingItems()
 
-    Screen(
+    LocationScreenBody(
         locations = locations,
-        eventListener = eventListener,
+        onBackClicked = { eventListener.onEvent(OnBackClicked) },
+        onLocationClicked = { location ->
+            val event = LocationListEvent.OpenLocation(locationId = location.id)
+            eventListener.onEvent(event = event)
+        }
     )
 }
 
+@Preview(name = "Location list screen [light]")
+@Preview(
+    "Location list screen [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Screen(
-    locations: LazyPagingItems<Location>,
-    eventListener: EventListener<LocationListEvent>,
-) {
-
-    fun postEvent(event: LocationListEvent) {
-        eventListener.onEvent(event = event)
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                top = 16.dp,
-                start = 24.dp,
-                end = 24.dp,
-            ),
-    ) {
-
-        TopBar(
-            title = stringResource(R.string.locations),
-            icon = R.drawable.icon_back,
-        ) {
-            postEvent(LocationListEvent.OnBackClicked)
-        }
-
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(16.dp),
-        )
-
-        Locations(
-            locations = locations
-        ) { location ->
-            postEvent(LocationListEvent.OpenLocation(locationId = location.id))
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun Prev_Screen() {
+private fun Preview() {
 
     val data: List<Location> = listOf()
     val items = flowOf(PagingData.from(data)).collectAsLazyPagingItems()
 
-    Screen(
-        locations = items,
-        eventListener = noOpEventListener(),
-    )
+    PreviewTheme {
+        LocationScreenBody(
+            locations = items,
+            onBackClicked = {},
+            onLocationClicked = {},
+        )
+    }
 }

@@ -1,9 +1,9 @@
 package com.jayasuryat.locationlist.presentation.composables
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -13,38 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.items
 import com.jayasuryat.locationlist.domain.model.Location
+import com.jayasuryat.themepreview.PreviewTheme
+
 
 @Composable
-internal fun Locations(
-    modifier: Modifier = Modifier,
-    locations: LazyPagingItems<Location>,
-    onClick: (location: Location) -> Unit,
-) {
-
-    LazyColumn(
-        modifier = modifier,
-    ) {
-        items(
-            items = locations,
-            key = { location -> location.id },
-        ) { location ->
-            location?.let {
-
-                LocationItem(location = it) { location ->
-                    onClick(location)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun LocationItem(
+internal fun LocationItem(
     location: Location,
-    onClick: (location: Location) -> Unit,
+    onLocationClicked: () -> Unit,
 ) {
 
     Row(
@@ -53,7 +29,7 @@ private fun LocationItem(
             .fillMaxWidth()
             .wrapContentHeight()
             .clip(shape = MaterialTheme.shapes.large)
-            .clickable { onClick(location) }
+            .clickable { onLocationClicked() }
             .background(color = MaterialTheme.colors.primary)
             .padding(
                 vertical = 16.dp,
@@ -100,16 +76,25 @@ private fun LocationItem(
     }
 }
 
-
-@Preview
+@Preview(name = "Location item [light]")
+@Preview(
+    "Location item [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Location_Item() {
-    LocationItem(
-        location = Location(
-            id = 1,
-            name = "Location name",
-            type = "Location type",
-            dimension = "Location dimension",
+private fun Preview() {
+
+    val location = Location(
+        id = 1,
+        name = "Anatomy Park",
+        type = "Micro verse",
+        dimension = "Dimension C-137"
+    )
+
+    PreviewTheme {
+        LocationItem(
+            location = location,
+            onLocationClicked = {},
         )
-    ) {}
+    }
 }
