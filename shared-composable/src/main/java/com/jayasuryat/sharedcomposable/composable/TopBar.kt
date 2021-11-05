@@ -38,6 +38,7 @@ public fun TopBar(
             modifier = Modifier
                 .align(alignment = CenterVertically)
                 .size(60.dp)
+                .padding(end = 16.dp)
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(bounded = false),
