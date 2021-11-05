@@ -1,92 +1,37 @@
 package com.jayasuryat.characterlist.presentation.composable
 
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.jayasuryat.characterlist.R
+import androidx.paging.compose.items
 import com.jayasuryat.characterlist.presentation.CharacterDef
-import com.jayasuryat.characterlist.presentation.CharacterListViewModel
-import com.jayasuryat.characterlist.presentation.event.CharacterListEvent
-import com.jayasuryat.event.EventListener
-import com.jayasuryat.event.noOpEventListener
-import com.jayasuryat.sharedcomposable.composable.TopBar
-import kotlinx.coroutines.flow.flowOf
 
 
 @Composable
-fun CharacterListScreen(
-    viewModel: CharacterListViewModel,
-    eventListener: EventListener<CharacterListEvent>,
-) {
-
-    val characters: LazyPagingItems<CharacterDef> =
-        viewModel.charactersList.collectAsLazyPagingItems()
-
-    Screen(
-        characters = characters,
-        eventListener = eventListener,
-    )
-}
-
-@Composable
-private fun Screen(
+internal fun CharacterList(
+    modifier: Modifier = Modifier,
     characters: LazyPagingItems<CharacterDef>,
-    eventListener: EventListener<CharacterListEvent>,
+    onClick: (character: CharacterDef) -> Unit,
 ) {
 
-    fun postEvent(event: CharacterListEvent) {
-        eventListener.onEvent(event = event)
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(
-                top = 16.dp,
-                start = 24.dp,
-                end = 24.dp,
-            ),
+    LazyColumn(
+        modifier = modifier,
     ) {
 
-        TopBar(
-            title = stringResource(R.string.characters),
-            icon = R.drawable.icon_back,
-        ) {
-            postEvent(CharacterListEvent.OnBackClicked)
-        }
-
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(16.dp),
-        )
-
-        Characters(
-            characters = characters
+        items(
+            items = characters,
+            key = { character -> character.id },
         ) { character ->
-            postEvent(CharacterListEvent.OpenCharacter(characterId = character.id))
+
+            if (character == null) return@items
+
+            CharacterListItem(
+                character = character,
+                onCharacterClicked = { onClick(character) }
+            )
         }
     }
-}
-
-@Preview
-@Composable
-private fun Prev_Screen() {
-
-    val data: List<CharacterDef> = listOf()
-    val items = flowOf(PagingData.from(data)).collectAsLazyPagingItems()
-
-    Screen(
-        characters = items,
-        eventListener = noOpEventListener(),
-    )
 }
