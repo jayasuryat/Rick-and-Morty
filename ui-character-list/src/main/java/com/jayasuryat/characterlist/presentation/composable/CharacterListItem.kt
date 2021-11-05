@@ -1,5 +1,6 @@
 package com.jayasuryat.characterlist.presentation.composable
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,12 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.jayasuryat.characterlist.presentation.CharacterDef
-import com.jayasuryat.themepreview.PreviewThemeParamProvider
-import com.jayasuryat.themepreview.PreviewThemeProvider
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -68,14 +67,15 @@ internal fun CharacterListItem(
     }
 }
 
-
-@Preview
+@Preview(name = "Character list item [light]")
+@Preview(
+    name = "Character list item [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Character_Item(
-    @PreviewParameter(PreviewThemeParamProvider::class) themeProvider: PreviewThemeProvider,
-) {
+private fun Preview() {
 
-    themeProvider.Theme {
+    PreviewTheme {
 
         val character = CharacterDef(
             id = 1,
