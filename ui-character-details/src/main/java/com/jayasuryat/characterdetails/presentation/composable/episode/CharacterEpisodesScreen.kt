@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.episode
 
+import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -9,6 +10,7 @@ import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodeDat
 import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodesViewModel
 import com.jayasuryat.characterdetails.presentation.event.CharacterEpisodesEvent
 import com.jayasuryat.event.EventListener
+import com.jayasuryat.themepreview.PreviewTheme
 
 @Composable
 fun CharacterEpisodesScreen(
@@ -31,14 +33,20 @@ fun CharacterEpisodesScreen(
     )
 }
 
-@Preview
+@Preview(name = "Character episode screen [light]")
+@Preview(
+    name = "Character episode screen [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Character_Episodes(
+private fun Preview(
     @PreviewParameter(CharacterEpisodeParameterProvider::class) episodes: List<CharacterEpisodeData>,
 ) {
-    CharacterEpisodesBody(
-        episodes = episodes,
-        onBackClicked = {},
-        onEpisodeClicked = {},
-    )
+    PreviewTheme {
+        CharacterEpisodesBody(
+            episodes = episodes,
+            onBackClicked = {},
+            onEpisodeClicked = {},
+        )
+    }
 }

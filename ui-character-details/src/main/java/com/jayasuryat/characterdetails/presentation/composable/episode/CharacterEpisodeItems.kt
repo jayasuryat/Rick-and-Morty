@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.episode
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,6 +17,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodeData
+import com.jayasuryat.themepreview.PreviewTheme
 
 @Composable
 internal fun CharacterEpisodeItem(
@@ -100,24 +102,43 @@ internal fun CharacterSeasonDivider(
     )
 }
 
-@Preview
+@Preview(
+    name = "Character episode item [light]",
+    group = "light",
+)
+@Preview(
+    name = "Character episode item [dark]",
+    group = "dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Character_Episode_Item(
+private fun PreviewCharacterEpisodeItem(
     @PreviewParameter(CharacterEpisodeParameterProvider::class) episodes: List<CharacterEpisodeData>,
 ) {
 
     val episode = episodes.filterIsInstance<CharacterEpisodeData.EpisodeData>()
         .firstOrNull() ?: return
 
-    CharacterEpisodeItem(
-        episode = episode,
-        onEpisodeClicked = {},
-    )
+    PreviewTheme {
+        CharacterEpisodeItem(
+            episode = episode,
+            onEpisodeClicked = {},
+        )
+    }
 }
 
-@Preview
+@Preview(
+    name = "Season divider [light]",
+    group = "light",
+)
+@Preview(
+    name = "Season divider [dark]",
+    group = "dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Character_Season_Divider() {
-
-    CharacterSeasonDivider()
+private fun PreviewDivider() {
+    PreviewTheme {
+        CharacterSeasonDivider()
+    }
 }

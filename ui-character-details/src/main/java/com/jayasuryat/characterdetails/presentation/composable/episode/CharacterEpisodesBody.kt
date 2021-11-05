@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.episode
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -12,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodeData
 import com.jayasuryat.sharedcomposable.composable.TopBar
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -24,6 +26,7 @@ internal fun CharacterEpisodesBody(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = MaterialTheme.colors.background)
             .padding(
                 top = 16.dp,
                 start = 24.dp,
@@ -47,14 +50,20 @@ internal fun CharacterEpisodesBody(
     }
 }
 
-@Preview
+@Preview(name = "Character episode screen [light]")
+@Preview(
+    name = "Character episode screen [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Character_Episodes(
+private fun Preview(
     @PreviewParameter(CharacterEpisodeParameterProvider::class) episodes: List<CharacterEpisodeData>,
 ) {
-    CharacterEpisodesBody(
-        episodes = episodes,
-        onBackClicked = {},
-        onEpisodeClicked = {},
-    )
+    PreviewTheme {
+        CharacterEpisodesBody(
+            episodes = episodes,
+            onBackClicked = {},
+            onEpisodeClicked = {},
+        )
+    }
 }
