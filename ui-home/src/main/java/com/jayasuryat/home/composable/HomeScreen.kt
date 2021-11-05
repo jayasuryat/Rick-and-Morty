@@ -8,20 +8,24 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.jayasuryat.event.EventListener
 import com.jayasuryat.event.noOpEventListener
 import com.jayasuryat.home.R
 import com.jayasuryat.home.event.HomeEvent
+import com.jayasuryat.themepreview.PreviewThemeParamProvider
+import com.jayasuryat.themepreview.PreviewThemeProvider
 
 
 @Composable
-fun Home(
+fun HomeScreen(
     eventListener: EventListener<HomeEvent>,
 ) {
 
     Column(
         modifier = Modifier
+            .background(color = MaterialTheme.colors.background)
             .padding(
                 horizontal = 24.dp,
                 vertical = 12.dp,
@@ -59,6 +63,10 @@ fun Home(
 
 @Preview
 @Composable
-private fun Preview() {
-    Home(noOpEventListener())
+private fun Preview(
+    @PreviewParameter(PreviewThemeParamProvider::class) themeProvider: PreviewThemeProvider,
+) {
+    themeProvider.Theme {
+        HomeScreen(noOpEventListener())
+    }
 }

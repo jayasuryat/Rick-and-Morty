@@ -17,6 +17,8 @@ object Dependency {
         const val event = ":event"
         const val baseData = ":base-data"
         const val sharedComposable = ":shared-composable"
+        const val theme = ":theme"
+        const val themePreview = ":theme-preview"
 
         const val home = ":ui-home"
         const val characterList = ":ui-character-list"

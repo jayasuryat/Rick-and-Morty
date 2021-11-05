@@ -14,8 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.jayasuryat.home.R
+import com.jayasuryat.themepreview.PreviewThemeParamProvider
+import com.jayasuryat.themepreview.PreviewThemeProvider
 
 @Composable
 internal fun HomeItem(
@@ -65,14 +68,19 @@ internal fun HomeItem(
 
 @Preview
 @Composable
-private fun Prev_Home_Item() {
+private fun Prev_Home_Item(
+    @PreviewParameter(PreviewThemeParamProvider::class) themeProvider: PreviewThemeProvider,
+) {
 
-    HomeItem(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp),
-        title = "Characters",
-        image = R.drawable.img_rick,
-        onClick = { },
-    )
+    themeProvider.Theme {
+
+        HomeItem(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            title = "Characters",
+            image = R.drawable.img_rick,
+            onClick = { },
+        )
+    }
 }

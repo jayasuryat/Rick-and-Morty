@@ -74,6 +74,7 @@ dependencies {
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.event))
+    implementation(project(Dependency.Module.themePreview))
 
     implementation(Dependency.Compose.material)
     debugImplementation(Dependency.Compose.tooling)
