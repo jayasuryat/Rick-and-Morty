@@ -86,6 +86,7 @@ dependencies {
     implementation(project(Dependency.Module.baseData))
     implementation(project(Dependency.Module.event))
     implementation(project(Dependency.Module.sharedComposable))
+    implementation(project(Dependency.Module.themePreview))
 
     implementation(Dependency.Compose.material)
     implementation(Dependency.Compose.liveData)

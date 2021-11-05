@@ -1,5 +1,6 @@
 package com.jayasuryat.episodelist.presentation.composable
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jayasuryat.episodelist.R
 import com.jayasuryat.episodelist.presentation.EpisodeListData
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -118,33 +120,52 @@ internal fun EpisodeListItemEpisodeSeason(
     }
 }
 
-
-@Preview
+@Preview(
+    name = "Item season [light]",
+    group = "light",
+)
+@Preview(
+    name = "Item season [dark]",
+    group = "dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Episode_List_Item(
-    @PreviewParameter(EpisodesParameterProvider::class) episodes: List<EpisodeListData>,
-) {
-
-    val episode = episodes.filterIsInstance<EpisodeListData.Episode>()
-        .firstOrNull() ?: return
-
-    EpisodeListItemEpisode(
-        episode = episode,
-        onEpisodeClicked = {},
-    )
-}
-
-@Preview
-@Composable
-private fun Prev_Episode_List_Season_Item(
+private fun PreviewSeason(
     @PreviewParameter(EpisodesParameterProvider::class) episodes: List<EpisodeListData>,
 ) {
 
     val season = episodes.filterIsInstance<EpisodeListData.Season>()
         .firstOrNull() ?: return
 
-    EpisodeListItemEpisodeSeason(
-        season = season,
-        onSeasonClicked = {},
-    )
+    PreviewTheme {
+        EpisodeListItemEpisodeSeason(
+            season = season,
+            onSeasonClicked = {},
+        )
+    }
+}
+
+@Preview(
+    name = "Item episode [light]",
+    group = "light",
+)
+@Preview(
+    name = "Item episode [dark]",
+    group = "dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
+@Composable
+private fun PreviewEpisode(
+    @PreviewParameter(EpisodesParameterProvider::class) episodes: List<EpisodeListData>,
+) {
+
+    val episode = episodes.filterIsInstance<EpisodeListData.Episode>()
+        .firstOrNull() ?: return
+
+    PreviewTheme {
+        EpisodeListItemEpisode(
+            episode = episode,
+            onEpisodeClicked = {},
+        )
+    }
 }

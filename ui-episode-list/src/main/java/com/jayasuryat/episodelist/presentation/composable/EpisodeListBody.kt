@@ -1,5 +1,6 @@
 package com.jayasuryat.episodelist.presentation.composable
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.jayasuryat.episodelist.R
 import com.jayasuryat.episodelist.presentation.EpisodeListData
 import com.jayasuryat.sharedcomposable.composable.TopBar
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -30,6 +32,7 @@ internal fun EpisodeListBody(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = MaterialTheme.colors.background)
             .padding(
                 top = 16.dp,
                 start = 24.dp,
@@ -95,18 +98,23 @@ private fun EpisodeList(
     }
 }
 
-@Preview
+@Preview(name = "Episode list screen [light]")
+@Preview(
+    name = "Episode list screen [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Episode_List(
+private fun Preview(
     @PreviewParameter(EpisodesParameterProvider::class) episodes: List<EpisodeListData>,
 ) {
-
-    EpisodeListBody(
-        episodes = episodes,
-        onBackClicked = {},
-        onEpisodeClicked = {},
-        onSeasonClicked = {},
-    )
+    PreviewTheme {
+        EpisodeListBody(
+            episodes = episodes,
+            onBackClicked = {},
+            onEpisodeClicked = {},
+            onSeasonClicked = {},
+        )
+    }
 }
 
 
