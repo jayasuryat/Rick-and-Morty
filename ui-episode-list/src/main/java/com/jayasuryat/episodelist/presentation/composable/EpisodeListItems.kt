@@ -34,7 +34,7 @@ internal fun EpisodeListItemEpisode(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(RoundedCornerShape(percent = 100))
+            .clip(shape = MaterialTheme.shapes.large)
             .background(color = MaterialTheme.colors.primary)
             .clickable { onEpisodeClicked(episode) }
             .padding(
@@ -83,11 +83,11 @@ internal fun EpisodeListItemEpisodeSeason(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(RoundedCornerShape(percent = 100))
+            .clip(shape = MaterialTheme.shapes.large)
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colors.secondary,
-                shape = RoundedCornerShape(percent = 100)
+                shape = MaterialTheme.shapes.large,
             )
             .background(color = MaterialTheme.colors.primary)
             .clickable { onSeasonClicked(season) }

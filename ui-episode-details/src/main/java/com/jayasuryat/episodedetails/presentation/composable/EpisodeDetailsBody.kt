@@ -66,7 +66,7 @@ internal fun EpisodeDetailsBody(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .clip(RoundedCornerShape(percent = 100))
+                .clip(shape = MaterialTheme.shapes.large)
                 .background(color = MaterialTheme.colors.primary)
                 .padding(24.dp)
         )
@@ -77,7 +77,7 @@ internal fun EpisodeDetailsBody(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .clip(RoundedCornerShape(percent = 100))
+                .clip(shape = MaterialTheme.shapes.large)
                 .background(color = MaterialTheme.colors.primary)
                 .padding(
                     horizontal = 24.dp,
