@@ -1,5 +1,6 @@
 package com.jayasuryat.locationdetails.presentation.compose
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -11,6 +12,7 @@ import com.jayasuryat.locationdetails.presentation.LocationDetailsViewModel
 import com.jayasuryat.locationdetails.presentation.event.LocationDetailsEvent
 import com.jayasuryat.locationdetails.presentation.event.LocationDetailsEvent.OnBackClicked
 import com.jayasuryat.locationdetails.presentation.event.LocationDetailsEvent.OpenCharacter
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -33,15 +35,21 @@ fun LocationDetailsScreen(
     )
 }
 
-@Preview
+@Preview(name = "Location details screen [light]")
+@Preview(
+    name = "Location details screen [dark]",
+    uiMode = UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Location_Details(
+private fun Preview(
     @PreviewParameter(LocationParameterProvider::class) locationDetails: LocationDetails,
 ) {
 
-    LocationDetailsBody(
-        locationDetails = locationDetails,
-        onBackClicked = {},
-        onCharacterClicked = {},
-    )
+    PreviewTheme {
+        LocationDetailsBody(
+            locationDetails = locationDetails,
+            onBackClicked = {},
+            onCharacterClicked = {},
+        )
+    }
 }
