@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 import com.jayasuryat.characterdetails.domain.models.Location
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -34,6 +36,7 @@ internal fun CharacterDetailsBody(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .background(color = MaterialTheme.colors.background)
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top,
     ) {
@@ -119,17 +122,23 @@ internal fun CharacterDetailsBody(
     }
 }
 
-@Preview
+@Preview(name = "Character details screen [light]")
+@Preview(
+    name = "Character details screen [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Screen(
+private fun Preview(
     @PreviewParameter(CharacterParameterProvider::class) character: CharacterDetails,
 ) {
 
-    CharacterDetailsBody(
-        character = character,
-        onBackClicked = {},
-        onLocationClicked = {},
-        onOriginClicked = {},
-        onEpisodesClicked = {},
-    )
+    PreviewTheme {
+        CharacterDetailsBody(
+            character = character,
+            onBackClicked = {},
+            onLocationClicked = {},
+            onOriginClicked = {},
+            onEpisodesClicked = {},
+        )
+    }
 }

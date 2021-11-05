@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.compose.foundation.background
@@ -28,6 +29,7 @@ import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Gender.*
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Species
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Status.Alive
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails.Status.Dead
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -234,13 +236,19 @@ private fun StatusIcon(
 }
 
 
-@Preview
+@Preview(name = "Character info [light]")
+@Preview(
+    name = "Character info [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
 private fun PrevCharacter_Info(
     @PreviewParameter(CharacterParameterProvider::class) character: CharacterDetails,
 ) {
 
-    CharacterInfo(
-        character = character,
-    )
+    PreviewTheme {
+        CharacterInfo(
+            character = character,
+        )
+    }
 }

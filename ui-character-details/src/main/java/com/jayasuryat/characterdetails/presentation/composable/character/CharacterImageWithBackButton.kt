@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
+import com.jayasuryat.themepreview.PreviewTheme
 
 @Composable
 internal fun CharacterImageWithBackButton(
@@ -41,7 +43,8 @@ internal fun CharacterImageWithBackButton(
 
         BackButton(
             modifier = Modifier
-                .align(alignment = Alignment.TopStart),
+                .align(alignment = Alignment.TopStart)
+                .padding(start = 8.dp, top = 8.dp),
             onBackClicked = onBackClicked,
         )
     }
@@ -82,7 +85,6 @@ private fun BackButton(
     IconButton(
         modifier = modifier
             .size(60.dp)
-            .padding(start = 8.dp, top = 8.dp)
             .clip(CircleShape)
             .background(color = MaterialTheme.colors.primary)
             .border(
@@ -107,28 +109,46 @@ private fun BackButton(
     }
 }
 
-@Preview
+@Preview(name = "Character image w/ back button [light]")
+@Preview(
+    name = "Character image w/ back button [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_CharacterImage(
+private fun PreviewCharacterImageWithBackButton(
     @PreviewParameter(CharacterParameterProvider::class) character: CharacterDetails,
 ) {
 
-    CharacterImageWithBackButton(
-        character = character,
-        onBackClicked = {},
-    )
+    PreviewTheme {
+        CharacterImageWithBackButton(
+            character = character,
+            onBackClicked = {},
+        )
+    }
 }
 
-@Preview
+@Preview(name = "Back button [light]")
+@Preview(
+    name = "Back button [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Back_Button() {
-    BackButton {}
+private fun PreviewBackButton() {
+    PreviewTheme {
+        BackButton {}
+    }
 }
 
-@Preview
+@Preview(name = "Character image [light]")
+@Preview(
+    name = "Character image [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Image(
+private fun PreviewImage(
     @PreviewParameter(CharacterParameterProvider::class) character: CharacterDetails,
 ) {
-    CharacterImage(character = character)
+    PreviewTheme {
+        CharacterImage(character = character)
+    }
 }

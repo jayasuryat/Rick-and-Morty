@@ -1,5 +1,6 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -68,15 +70,20 @@ internal fun InfoChip(
     }
 }
 
-@Preview
+@Preview(name = "Info chip [light]")
+@Preview(
+    name = "Info chip [dark]",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Info_Chip() {
+private fun Preview() {
 
-    InfoChip(
-        title = "Title",
-        value = "Value",
-        subText = "Sub Text",
-    ) {
-
+    PreviewTheme {
+        InfoChip(
+            title = "Title",
+            value = "Value",
+            subText = "Sub Text",
+            onClick = {},
+        )
     }
 }

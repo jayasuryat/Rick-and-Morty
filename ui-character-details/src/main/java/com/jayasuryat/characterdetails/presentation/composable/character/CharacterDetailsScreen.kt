@@ -1,6 +1,7 @@
 package com.jayasuryat.characterdetails.presentation.composable.character
 
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -11,6 +12,7 @@ import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsVi
 import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent
 import com.jayasuryat.characterdetails.presentation.event.CharacterDetailsEvent.*
 import com.jayasuryat.event.EventListener
+import com.jayasuryat.themepreview.PreviewTheme
 
 
 @Composable
@@ -44,17 +46,24 @@ fun CharacterDetailsScreen(
     )
 }
 
-@Preview
+@Preview(name = "Character details screen [light]")
+@Preview(
+    name = "Character details screen [dark]",
+    uiMode = UI_MODE_NIGHT_YES,
+)
 @Composable
-private fun Prev_Screen(
+private fun Preview(
     @PreviewParameter(CharacterParameterProvider::class) character: CharacterDetails,
 ) {
 
-    CharacterDetailsBody(
-        character = character,
-        onBackClicked = {},
-        onLocationClicked = {},
-        onOriginClicked = {},
-        onEpisodesClicked = {},
-    )
+    PreviewTheme {
+
+        CharacterDetailsBody(
+            character = character,
+            onBackClicked = {},
+            onLocationClicked = {},
+            onOriginClicked = {},
+            onEpisodesClicked = {},
+        )
+    }
 }
