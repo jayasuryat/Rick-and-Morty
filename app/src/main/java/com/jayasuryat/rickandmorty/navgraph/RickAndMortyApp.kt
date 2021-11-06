@@ -12,30 +12,30 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsViewModel
-import com.jayasuryat.characterdetails.presentation.character.composable.CharacterDetailsScreen
-import com.jayasuryat.characterdetails.presentation.episodes.composable.CharacterEpisodesScreen
-import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodesViewModel
 import com.jayasuryat.characterdetails.event.CharacterDetailsEvent
 import com.jayasuryat.characterdetails.event.CharacterEpisodesEvent
-import com.jayasuryat.characterlist.presentation.CharacterListViewModel
-import com.jayasuryat.characterlist.presentation.CharacterListScreen
+import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsViewModel
+import com.jayasuryat.characterdetails.presentation.character.composable.CharacterDetailsScreen
+import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodesViewModel
+import com.jayasuryat.characterdetails.presentation.episodes.composable.CharacterEpisodesScreen
 import com.jayasuryat.characterlist.event.CharacterListEvent
-import com.jayasuryat.episodedetails.presentation.EpisodeDetailsViewModel
-import com.jayasuryat.episodedetails.presentation.EpisodeDetailsScreen
+import com.jayasuryat.characterlist.presentation.CharacterListScreen
+import com.jayasuryat.characterlist.presentation.CharacterListViewModel
 import com.jayasuryat.episodedetails.event.EpisodeDetailsEvent
-import com.jayasuryat.episodelist.presentation.EpisodesListViewModel
-import com.jayasuryat.episodelist.presentation.EpisodeListScreen
+import com.jayasuryat.episodedetails.presentation.EpisodeDetailsScreen
+import com.jayasuryat.episodedetails.presentation.EpisodeDetailsViewModel
 import com.jayasuryat.episodelist.event.EpisodeListEvent
+import com.jayasuryat.episodelist.presentation.EpisodeListScreen
+import com.jayasuryat.episodelist.presentation.EpisodesListViewModel
 import com.jayasuryat.event.Event
 import com.jayasuryat.home.HomeScreen
 import com.jayasuryat.home.event.HomeEvent
-import com.jayasuryat.locationdetails.presentation.LocationDetailsViewModel
-import com.jayasuryat.locationdetails.presentation.LocationDetailsScreen
 import com.jayasuryat.locationdetails.event.LocationDetailsEvent
-import com.jayasuryat.locationlist.presentation.LocationListViewModel
-import com.jayasuryat.locationlist.presentation.LocationListScreen
+import com.jayasuryat.locationdetails.presentation.LocationDetailsScreen
+import com.jayasuryat.locationdetails.presentation.LocationDetailsViewModel
 import com.jayasuryat.locationlist.event.LocationListEvent
+import com.jayasuryat.locationlist.presentation.LocationListScreen
+import com.jayasuryat.locationlist.presentation.LocationListViewModel
 
 @Composable
 fun RickAndMortyApp() {

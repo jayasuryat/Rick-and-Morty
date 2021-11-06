@@ -3,7 +3,7 @@ package com.jayasuryat.basedata.models
 public sealed class KResult<T> {
 
     public data class Success<T> internal constructor(
-        val data: T
+        val data: T,
     ) : KResult<T>()
 
     public data class Error<T> internal constructor(

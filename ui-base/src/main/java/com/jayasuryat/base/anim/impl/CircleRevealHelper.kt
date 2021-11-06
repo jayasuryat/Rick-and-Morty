@@ -9,7 +9,7 @@ import android.view.animation.Interpolator
 import kotlin.math.hypot
 
 public class CircleRevealHelper private constructor(
-    public val animation: Animator
+    public val animation: Animator,
 ) {
 
     public fun start(): Unit = animation.start()
