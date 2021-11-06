@@ -9,11 +9,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -59,7 +61,6 @@ private fun CharacterImage(
             data = character.image,
             builder = {
                 crossfade(true)
-                placeholder(R.drawable.drawable_left)
             }
         ),
         contentDescription = "${character.name} image",
@@ -101,8 +102,8 @@ private fun BackButton(
                     bottom = 8.dp,
                 )
                 .fillMaxSize(),
-            painter = painterResource(id = R.drawable.icon_back),
-            contentDescription = "Back",
+            imageVector = Icons.Filled.KeyboardArrowLeft,
+            contentDescription = stringResource(id = R.string.cb_back),
             tint = MaterialTheme.colors.onBackground,
         )
     }

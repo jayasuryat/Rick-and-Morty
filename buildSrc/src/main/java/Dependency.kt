@@ -55,19 +55,11 @@ object Dependency {
 
     const val appCompat = "androidx.appcompat:appcompat:1.3.1"
     const val material = "com.google.android.material:material:1.4.0"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.1"
-    const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
-    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
-    const val navigationUi = "androidx.navigation:navigation-ui-ktx:2.3.5"
 
     const val lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
 
     const val hilt = "com.google.dagger:hilt-android:2.38.1"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:2.38.1"
-
-    const val eventBus = "org.greenrobot:eventbus:3.2.0"
-
-    const val recyclerviewAnimators = "jp.wasabeef:recyclerview-animators:4.0.2"
 
     const val apolloVersion = "2.5.10"
     const val apolloRuntime = "com.apollographql.apollo:apollo-runtime:$apolloVersion"

@@ -47,7 +47,6 @@ internal fun CharacterItem(
                 data = character.image,
                 builder = {
                     crossfade(true)
-                    placeholder(R.drawable.drawable_left)
                 }
             ),
             contentDescription = "${character.name} image",

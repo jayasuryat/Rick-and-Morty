@@ -55,9 +55,6 @@ dependencies {
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
 
-    // Arch components
-    implementation(Dependency.navigationFragment)
-
     // Coroutines
     implementation(Dependency.coroutinesAndroid)
 

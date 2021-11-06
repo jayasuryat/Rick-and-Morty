@@ -4,4 +4,6 @@
     <string name="origin">Origin</string>
     <string name="episodes">Episodes</string>
 
+    <string name="cb_back">Back</string>
+
 </resources>

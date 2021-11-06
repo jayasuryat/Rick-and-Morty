@@ -66,10 +66,8 @@ dependencies {
     // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
-    implementation(Dependency.recyclerView)
 
     // Arch components
-    implementation(Dependency.navigationFragment)
     implementation(Dependency.lifecycleKtx)
     // Room
     implementation(Dependency.roomRuntime)
@@ -83,9 +81,7 @@ dependencies {
     kapt(Dependency.hiltCompiler)
 
     // Others
-    implementation(Dependency.eventBus)
     implementation(Dependency.coil)
-    implementation(Dependency.recyclerviewAnimators)
     // Apollo
     implementation(Dependency.apolloRuntime)
     implementation(Dependency.apolloCoroutines)

@@ -65,18 +65,10 @@ dependencies {
     // UI
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
-    implementation(Dependency.constraintLayout)
-
-    // Arch components
-    implementation(Dependency.navigationFragment)
-    implementation(Dependency.navigationUi)
 
     // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
-
-    // Others
-    implementation(Dependency.eventBus)
 
     // Features
     implementation(project(Dependency.Module.baseData))

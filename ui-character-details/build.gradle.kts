@@ -64,8 +64,6 @@ dependencies {
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
 
-    // Arch components
-    implementation(Dependency.navigationFragment)
     // Arch
     implementation(Dependency.roomRuntime)
     implementation(Dependency.roomKtx)
@@ -79,8 +77,7 @@ dependencies {
 
     // Others
     implementation(Dependency.coil)
-    implementation(Dependency.eventBus)
-    implementation(Dependency.recyclerviewAnimators)
+
     // Apollo
     implementation(Dependency.apolloRuntime)
     implementation(Dependency.apolloCoroutines)

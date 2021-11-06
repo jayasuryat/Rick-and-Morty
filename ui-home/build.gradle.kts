@@ -60,17 +60,11 @@ dependencies {
     implementation(Dependency.appCompat)
     implementation(Dependency.material)
 
-    // Arch components
-    implementation(Dependency.navigationFragment)
-
     implementation(Dependency.coroutinesAndroid)
 
     // Hilt
     implementation(Dependency.hilt)
     kapt(Dependency.hiltCompiler)
-
-    // Others
-    implementation(Dependency.eventBus)
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.event))
