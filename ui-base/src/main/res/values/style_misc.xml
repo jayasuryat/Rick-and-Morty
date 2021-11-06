@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="RM.Button.Back" parent="">
-        <item name="android:layout_width">60dp</item>
-        <item name="android:layout_height">60dp</item>
-        <item name="android:src">@drawable/icon_back</item>
-        <item name="iconTint">?attr/text_value_color</item>
-        <item name="android:foreground">@drawable/custom_ripple</item>
-        <item name="android:padding">8dp</item>
-    </style>
-
 </resources>
