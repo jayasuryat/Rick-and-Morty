@@ -1,5 +1,7 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="cd_back">Back</string>
+
     <string name="locations">Locations</string>
+
+    <string name="cd_back">Back</string>
+
 </resources>

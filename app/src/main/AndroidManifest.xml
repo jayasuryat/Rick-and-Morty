@@ -14,18 +14,7 @@
         android:theme="@style/Theme.RickAndMorty">
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="Rick and Morty - View"
-            android:theme="@style/Theme.RickAndMorty">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".compose.ComposeActivity"
+            android:name=".ComposeActivity"
             android:exported="true"
             android:label="Rick and Morty - JC"
             android:theme="@style/Theme.RickAndMorty">

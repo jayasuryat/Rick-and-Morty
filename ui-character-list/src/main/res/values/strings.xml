@@ -1,8 +1,8 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="characters">Characters</string>
 
     <string name="cd_character_image">Character image</string>
     <string name="cd_back">Back</string>
-    <string name="characters">Characters</string>
 
 </resources>

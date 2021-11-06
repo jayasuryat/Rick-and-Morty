@@ -1,6 +1,8 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="cd_back">Back</string>
+
     <string name="episodes">Episodes</string>
     <string name="cd_expand">Expand</string>
+
+    <string name="cd_back">Back</string>
+
 </resources>

@@ -1,8 +1,10 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="cd_back">Back</string>
+
     <string name="episode">Episode</string>
     <string name="aired_on">Aired on :</string>
     <string name="characters">Characters</string>
+
+    <string name="cd_back">Back</string>
     <string name="cd_character">Character</string>
+
 </resources>

@@ -1,8 +1,9 @@
 <resources>
 
-
-    <string name="cd_back">Back</string>
     <string name="location">Location</string>
     <string name="characters">Characters</string>
     <string name="character">Character</string>
+
+    <string name="cd_back">Back</string>
+
 </resources>

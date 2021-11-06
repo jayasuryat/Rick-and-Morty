@@ -16,7 +16,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jayasuryat.characterlist.R
 import com.jayasuryat.characterlist.presentation.CharacterDef
-import com.jayasuryat.characterlist.presentation.event.CharacterListEvent
+import com.jayasuryat.characterlist.event.CharacterListEvent
 import com.jayasuryat.event.EventListener
 import com.jayasuryat.event.noOpEventListener
 import com.jayasuryat.sharedcomposable.composable.TopBar

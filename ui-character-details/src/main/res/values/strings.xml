@@ -1,12 +1,12 @@
 <resources>
 
+    <string name="location">Location</string>
+    <string name="origin">Origin</string>
+    <string name="episodes">Episodes</string>
+
     <string name="cd_back">Back</string>
     <string name="cd_character_image">Character image</string>
     <string name="cd_gender">Gender</string>
     <string name="cd_species">Species</string>
-    <string name="location">Location</string>
-    <string name="origin">Origin</string>
-    <string name="episodes">Episodes</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
