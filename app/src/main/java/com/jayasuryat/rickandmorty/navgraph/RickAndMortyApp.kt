@@ -1,6 +1,5 @@
 package com.jayasuryat.rickandmorty.navgraph
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -14,10 +13,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.jayasuryat.characterdetails.event.CharacterDetailsEvent
 import com.jayasuryat.characterdetails.event.CharacterEpisodesEvent
+import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsScreen
 import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsViewModel
-import com.jayasuryat.characterdetails.presentation.character.composable.CharacterDetailsScreen
+import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodesScreen
 import com.jayasuryat.characterdetails.presentation.episodes.CharacterEpisodesViewModel
-import com.jayasuryat.characterdetails.presentation.episodes.composable.CharacterEpisodesScreen
 import com.jayasuryat.characterlist.event.CharacterListEvent
 import com.jayasuryat.characterlist.presentation.CharacterListScreen
 import com.jayasuryat.characterlist.presentation.CharacterListViewModel
@@ -27,7 +26,6 @@ import com.jayasuryat.episodedetails.presentation.EpisodeDetailsViewModel
 import com.jayasuryat.episodelist.event.EpisodeListEvent
 import com.jayasuryat.episodelist.presentation.EpisodeListScreen
 import com.jayasuryat.episodelist.presentation.EpisodesListViewModel
-import com.jayasuryat.event.Event
 import com.jayasuryat.home.HomeScreen
 import com.jayasuryat.home.event.HomeEvent
 import com.jayasuryat.locationdetails.event.LocationDetailsEvent
@@ -246,8 +244,4 @@ private fun RickAndMortyNavHost() {
             )
         }
     }
-}
-
-private fun pendingNavigationImpl(event: Event) {
-    Log.e("RickAndMorty", "Navigation impl pending for event : ${event::class.java}")
 }

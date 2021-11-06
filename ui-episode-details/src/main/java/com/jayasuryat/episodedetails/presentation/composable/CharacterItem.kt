@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.jayasuryat.episodedetails.R
 import com.jayasuryat.episodedetails.domain.model.Character
 import com.jayasuryat.episodedetails.presentation.EpisodeData
 import com.jayasuryat.themepreview.PreviewTheme

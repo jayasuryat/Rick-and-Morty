@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.jayasuryat.locationdetails.R
 import com.jayasuryat.locationdetails.domain.models.Character
 import com.jayasuryat.locationdetails.domain.models.LocationDetails
 import com.jayasuryat.themepreview.PreviewTheme

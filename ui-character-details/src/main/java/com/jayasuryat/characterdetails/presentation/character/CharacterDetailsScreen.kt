@@ -1,4 +1,4 @@
-package com.jayasuryat.characterdetails.presentation.character.composable
+package com.jayasuryat.characterdetails.presentation.character
 
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -10,7 +10,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 import com.jayasuryat.characterdetails.event.CharacterDetailsEvent
 import com.jayasuryat.characterdetails.event.CharacterDetailsEvent.*
-import com.jayasuryat.characterdetails.presentation.character.CharacterDetailsViewModel
+import com.jayasuryat.characterdetails.presentation.character.composable.CharacterDetailsBody
+import com.jayasuryat.characterdetails.presentation.character.composable.CharacterParameterProvider
 import com.jayasuryat.event.EventListener
 import com.jayasuryat.themepreview.PreviewTheme
 
