@@ -79,6 +79,7 @@ class LocationListFragment : BaseAbsFragment<LocationListViewModel,
 
                 locationList.collect { characters ->
                     locationListAdapter.submitData(characters)
+                    (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
                 }
             }
         }

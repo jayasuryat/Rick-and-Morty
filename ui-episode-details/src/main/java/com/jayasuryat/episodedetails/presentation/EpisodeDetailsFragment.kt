@@ -66,6 +66,8 @@ class EpisodeDetailsFragment : BaseAbsFragment<EpisodeDetailsViewModel,
 
     override fun setupObservers(): EpisodeDetailsViewModel.() -> Unit = {
 
+        viewModel.loadEpisodeDetails(episodeId = getEpisodeId())
+
         obsEpisodeData.observe(viewLifecycleOwner) { episode ->
             if (episode == null) return@observe
             binding.apply {
@@ -141,4 +143,9 @@ class EpisodeDetailsFragment : BaseAbsFragment<EpisodeDetailsViewModel,
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
+
+    private fun getEpisodeId(): Long {
+        return arguments?.getLong("episodeId")
+            ?: throw IllegalArgumentException("Episode id nav argument missing")
+    }
 }

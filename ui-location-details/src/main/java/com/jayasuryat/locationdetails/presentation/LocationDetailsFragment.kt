@@ -14,7 +14,6 @@ import com.jayasuryat.base.anim.AnimHelper
 import com.jayasuryat.base.anim.impl.AlphaAnim
 import com.jayasuryat.base.anim.impl.TranslateAnim
 import com.jayasuryat.base.arch.BaseAbsFragment
-import com.jayasuryat.base.show
 import com.jayasuryat.base.shrinkOnClick
 import com.jayasuryat.locationdetails.databinding.FragmentLocationDetailsBinding
 import com.jayasuryat.locationdetails.domain.models.Character
@@ -66,6 +65,8 @@ class LocationDetailsFragment : BaseAbsFragment<LocationDetailsViewModel,
     }
 
     override fun setupObservers(): LocationDetailsViewModel.() -> Unit = {
+
+        viewModel.loadLocationDetails(locationId = getLocationId())
 
         obsLocation.observe(viewLifecycleOwner) { location ->
             if (location == null) return@observe
@@ -141,4 +142,9 @@ class LocationDetailsFragment : BaseAbsFragment<LocationDetailsViewModel,
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
+
+    private fun getLocationId(): Long {
+        return arguments?.getLong("locationId")
+            ?: throw IllegalArgumentException("Location id nav argument missing")
+    }
 }

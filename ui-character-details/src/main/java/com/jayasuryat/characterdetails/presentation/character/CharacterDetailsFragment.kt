@@ -59,6 +59,8 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
 
     override fun setupObservers(): CharacterDetailsViewModel.() -> Unit = {
 
+        viewModel.getCharacterDetails(characterId = getCharacterId())
+
         obsCharacter.observe(viewLifecycleOwner, ::loadUi)
     }
 
@@ -171,4 +173,9 @@ class CharacterDetailsFragment : BaseAbsFragment<CharacterDetailsViewModel,
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
+
+    private fun getCharacterId(): Long {
+        return arguments?.getLong("id")
+            ?: throw IllegalArgumentException("Character id nav argument missing")
+    }
 }

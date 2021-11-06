@@ -53,6 +53,8 @@ class CharacterEpisodesFragment : BaseAbsFragment<CharacterEpisodesViewModel,
 
     override fun setupObservers(): CharacterEpisodesViewModel.() -> Unit = {
 
+        viewModel.loadEpisodes(characterId = getCharacterId())
+
         obsEpisodes.observe(viewLifecycleOwner) { episodes ->
             episodesAdapter.submitList(episodes)
             (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
@@ -123,4 +125,9 @@ class CharacterEpisodesFragment : BaseAbsFragment<CharacterEpisodesViewModel,
     }
 
     private fun navigateBack() = EventBus.getDefault().post(NavigateBack)
+
+    private fun getCharacterId(): Long {
+        return arguments?.getLong("id")
+            ?: throw IllegalArgumentException("Character id nav argument missing")
+    }
 }

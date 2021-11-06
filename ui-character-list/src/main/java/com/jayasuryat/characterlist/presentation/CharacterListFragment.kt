@@ -1,10 +1,12 @@
 package com.jayasuryat.characterlist.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
@@ -70,11 +72,10 @@ class CharacterListFragment : BaseAbsFragment<CharacterListViewModel,
     override fun setupObservers(): CharacterListViewModel.() -> Unit = {
 
         uiScope.launch {
-
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-
                 charactersList.collect { characters ->
                     characterListAdapter.submitData(characters)
+                    (view?.parent as? ViewGroup)?.doOnPreDraw { startPostponedEnterTransition() }
                 }
             }
         }
