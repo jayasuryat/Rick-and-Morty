@@ -10,6 +10,7 @@ Rick-and-Morty is a small demo application to test out and showcase integrations
 * [Apollo](https://github.com/apollographql/apollo-android) - A strongly-typed `GraphQL` client.
 * [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) for pagination.
 * [Room](https://developer.android.com/training/data-storage/room) for local data persistence.
+* [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) - Plugin to determine dependency version updates
 * [Coil](https://github.com/coil-kt/coil) - Image loading library backed by Kotlin Coroutines.
 * [Eventbus](https://github.com/greenrobot/EventBus) for inter-module communication.
 * [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) & [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous operations.
@@ -30,9 +31,9 @@ Rick-and-Morty is a small demo application to test out and showcase integrations
 
 
 ## Branches:
-This project started off initially with the regular view based UI, and after completion of the UI and all of the business logic, 
-piece by piece (module by module) migration to the Jetpack Compose implementation began and has completely been migrated to Jetpack Compose now, 
-and all of the view-based code has been removed.
+This project started off initially with the regular `view` based UI, and after completion of the UI and all of the business logic, 
+piece by piece (module by module) migration to the `Jetpack Compose` implementation began and has completely been migrated to `Jetpack Compose` now, 
+and all of the `view`-based code has been removed.
 
 Each of these stages has been individually tracked in separate respective branches as follows 
 * [view](https://github.com/JayaSuryaT/Rick-and-Morty/tree/view)
@@ -45,11 +46,11 @@ Each of these stages has been individually tracked in separate respective branch
 - [x] Migrate to `buildSrc`
 - [x] Migrate to `GraphQl` client
 - [x] Add pagination for 'list screens'
-- [x] Add shared element transitions for view based implemtation
-- [x] Enhance overall page animations for view based implemtation
+- [x] Add shared element transitions for view based implementation
+- [x] Enhance overall page animations for view based implementation
 - [x] Migrate to `Jetpack Compose`
 - [ ] Improve router implementation
-- [ ] Add animations to the `Jetpack Compose` implemtation
+- [ ] Add animations to the `Jetpack Compose` implementation
 
 ## Getting started
 This project doesn't require setting up any API key and can be built and run using the latest version of Android Studio Arctic Fox (stable channel) (tested with 2020.3.1 Patch 3). You just need to clone the project and are pretty much ready to go.
