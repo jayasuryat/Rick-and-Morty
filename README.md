@@ -15,18 +15,6 @@ Rick-and-Morty is a small demo application to test out and showcase integrations
 * [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) & [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous operations.
 * [Navigation component](https://developer.android.com/guide/navigation) for handling navigation between screens.
 
-
-## Branches:
-This project started off initially with the regular view based UI, and after completion of the UI and all of the business logic, 
-piece by piece (module by module) migration to the Jetpack Compose implementation began and has completely been migrated to Jetpack Compose now, 
-and all of the view-based code has been removed.
-
-Each of these stages has been individually tracked in separate respective branches as follows 
-* [view](https://github.com/JayaSuryaT/Rick-and-Morty/tree/view)
-* [jetpack_compose_and_view](https://github.com/JayaSuryaT/Rick-and-Morty/tree/jetpack_compose_and_view)
-* [jetpack_compose](https://github.com/JayaSuryaT/Rick-and-Morty/tree/jetpack_compose)
-
-
 ## View(Fragment) based implementation 
 
 | Dark mode | Light mode | 
@@ -40,6 +28,19 @@ Each of these stages has been individually tracked in separate respective branch
 | <img src="https://github.com/JayaSuryaT/Rick-and-Morty/raw/jetpack_compose_and_view/gifs/Rick_and_Morty-JC-Dark.gif" alt="Using Jetpack Compose - Dark theme" data-canonical-src="https://github.com/JayaSuryaT/Rick-and-Morty/raw/jetpack_compose_and_view/gifs/Rick_and_Morty-JC-Dark.gif" width="270" height="585" />| <img src="https://github.com/JayaSuryaT/Rick-and-Morty/raw/jetpack_compose_and_view/gifs/Rick_and_Morty-JC-Light.gif" alt="Using Jetpack Compose - Light theme" data-canonical-src="https://github.com/JayaSuryaT/Rick-and-Morty/raw/jetpack_compose_and_view/gifs/Rick_and_Morty-JC-Light.gif" width="270" height="585" />|
 
 
+
+## Branches:
+This project started off initially with the regular view based UI, and after completion of the UI and all of the business logic, 
+piece by piece (module by module) migration to the Jetpack Compose implementation began and has completely been migrated to Jetpack Compose now, 
+and all of the view-based code has been removed.
+
+Each of these stages has been individually tracked in separate respective branches as follows 
+* [view](https://github.com/JayaSuryaT/Rick-and-Morty/tree/view)
+* [jetpack_compose_and_view](https://github.com/JayaSuryaT/Rick-and-Morty/tree/jetpack_compose_and_view)
+* [jetpack_compose](https://github.com/JayaSuryaT/Rick-and-Morty/tree/jetpack_compose)
+
+
+
 ## TODO
 - [x] Migrate to `buildSrc`
 - [x] Migrate to `GraphQl` client
@@ -49,3 +50,10 @@ Each of these stages has been individually tracked in separate respective branch
 - [x] Migrate to `Jetpack Compose`
 - [ ] Improve router implementation
 - [ ] Add animations to the `Jetpack Compose` implemtation
+
+## Getting started
+This project doesn't require setting up any API key and can be built and run using the latest version of Android Studio Arctic Fox (stable channel) (tested with 2020.3.1 Patch 3). You just need to clone the project and are pretty much ready to go.
+
+## API
+All of the data and images presented in this app are sourced from [The Rick and Morty API](https://rickandmortyapi.com/). Huge thanks to [Axel Fuhrmann](https://github.com/afuh) for this.
+
