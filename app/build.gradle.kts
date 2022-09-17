@@ -54,6 +54,13 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("org.antlr:antlr4-runtime:4.9.2")
+        force("org.antlr:antlr4-tool:4.9.2")
+    }
+}
+
 dependencies {
 
     // Test
