@@ -46,7 +46,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    // namespace = "com.jayasuryat.episodelist"
+    namespace = "com.jayasuryat.episodelist"
 }
 
 kapt {

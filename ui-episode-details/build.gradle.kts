@@ -47,7 +47,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    // namespace = "com.jayasuryat.episodedetails"
+    namespace = "com.jayasuryat.episodedetails"
 }
 
 kapt {
@@ -59,7 +59,7 @@ apollo {
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }
 
 dependencies {

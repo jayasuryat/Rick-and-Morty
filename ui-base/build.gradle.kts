@@ -38,6 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "com.jayasuryat.base"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
