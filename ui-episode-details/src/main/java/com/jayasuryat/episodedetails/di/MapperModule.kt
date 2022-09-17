@@ -21,7 +21,7 @@ internal object MapperModule {
     internal const val E_D_DTO_TO_ENTITY: String = "EpisodeDetailsDtoToEntity"
     internal const val E_D_ENTITY_TO_DOMAIN: String = "EpisodeDetailsEntityToDomain"
 
-    @Provides
+  /*  @Provides
     @Singleton
     @Named(E_D_DTO_TO_ENTITY)
     internal fun providesCharacterDtoToEntityMapper():
@@ -35,5 +35,5 @@ internal object MapperModule {
     internal fun providesCharacterEntityToDtoMapper():
             Mapper<@JvmSuppressWildcards EpisodeDetailsEntity,
                     @JvmSuppressWildcards EpisodeDetails> =
-        EpisodeDetailsEntityToDomainMapper()
+        EpisodeDetailsEntityToDomainMapper()*/
 }

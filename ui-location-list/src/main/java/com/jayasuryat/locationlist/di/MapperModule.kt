@@ -21,17 +21,17 @@ internal object MapperModule {
     internal const val L_DTO_TO_ENTITY: String = "LocationDtoToEntity"
     internal const val L_ENTITY_TO_DOMAIN: String = "LocationEntityToDomain"
 
-    @Provides
+    /*@Provides
     @Singleton
     @Named(L_DTO_TO_ENTITY)
     internal fun providesLocationDtoToEntityMapper():
             Mapper<@JvmSuppressWildcards LocationListQuery.Result,
-                    @JvmSuppressWildcards LocationEntity> = LocationDtoToEntityMapper()
+                    @JvmSuppressWildcards LocationEntity> = LocationDtoToEntityMapper()*/
 
-    @Provides
+/*    @Provides
     @Singleton
     @Named(L_ENTITY_TO_DOMAIN)
     internal fun providesLocationEntityToDtoMapper():
             Mapper<@JvmSuppressWildcards LocationEntity,
-                    @JvmSuppressWildcards Location> = LocationEntityToDomainMapper()
+                    @JvmSuppressWildcards Location> = LocationEntityToDomainMapper()*/
 }

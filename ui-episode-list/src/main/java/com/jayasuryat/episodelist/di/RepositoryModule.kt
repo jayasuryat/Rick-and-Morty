@@ -3,6 +3,8 @@ package com.jayasuryat.episodelist.di
 import com.jayasuryat.basedata.mappers.Mapper
 import com.jayasuryat.basedata.providers.DispatcherProvider
 import com.jayasuryat.episodelist.EpisodeListQuery
+import com.jayasuryat.episodelist.data.mappers.EpisodeDtoToEntityMapper
+import com.jayasuryat.episodelist.data.mappers.EpisodeEntityToDomainMapper
 import com.jayasuryat.episodelist.data.repos.EpisodeListRepo
 import com.jayasuryat.episodelist.data.sources.local.definitions.EpisodeListLocalDataSource
 import com.jayasuryat.episodelist.data.sources.local.entities.EpisodeEntity
@@ -30,18 +32,18 @@ internal object RepositoryModule {
         networkDataSource: EpisodeListRemoteDataSource,
         localDataSource: EpisodeListLocalDataSource,
 
-        @Named(E_L_DTO_TO_ENTITY)
+      /*  @Named(E_L_DTO_TO_ENTITY)
         episodeDtoToEntityMapper:
         Mapper<@JvmSuppressWildcards EpisodeListQuery.EpisodesById, @JvmSuppressWildcards EpisodeEntity>,
 
         @Named(E_L_ENTITY_TO_DOMAIN)
         episodeEntityToDomainMapper:
-        Mapper<@JvmSuppressWildcards EpisodeEntity, @JvmSuppressWildcards Episode>,
+        Mapper<@JvmSuppressWildcards EpisodeEntity, @JvmSuppressWildcards Episode>,*/
     ): EpisodeListRepository = EpisodeListRepo(
         dispatcher = dispatcherProvider,
         remoteClient = networkDataSource,
         cacheClient = localDataSource,
-        episodeDtoToEntityMapper = episodeDtoToEntityMapper,
-        episodeEntityToDomainMapper = episodeEntityToDomainMapper,
+        episodeDtoToEntityMapper = EpisodeDtoToEntityMapper(),
+        episodeEntityToDomainMapper = EpisodeEntityToDomainMapper(),
     )
 }

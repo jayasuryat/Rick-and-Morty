@@ -2,6 +2,8 @@ package com.jayasuryat.locationlist.di
 
 import com.jayasuryat.basedata.mappers.Mapper
 import com.jayasuryat.locationlist.LocationListQuery
+import com.jayasuryat.locationlist.data.mappers.LocationDtoToEntityMapper
+import com.jayasuryat.locationlist.data.mappers.LocationEntityToDomainMapper
 import com.jayasuryat.locationlist.data.repos.LocationListRemoteMediator
 import com.jayasuryat.locationlist.data.repos.LocationListRepo
 import com.jayasuryat.locationlist.data.sources.local.definitions.LocationListLocalDataSource
@@ -27,13 +29,13 @@ internal object RepositoryModule {
     fun providesRemoteMediator(
         networkDataSource: LocationListRemoteDataSource,
         localDataSource: LocationListLocalDataSource,
-        @Named(L_DTO_TO_ENTITY)
-        locationDtoToEntityMapper:
-        Mapper<@JvmSuppressWildcards LocationListQuery.Result, @JvmSuppressWildcards LocationEntity>,
+        /* @Named(L_DTO_TO_ENTITY)
+         locationDtoToEntityMapper:
+         Mapper<@JvmSuppressWildcards LocationListQuery.Result, @JvmSuppressWildcards LocationEntity>,*/
     ): LocationListRemoteMediator = LocationListRemoteMediator(
         networkClient = networkDataSource,
         cacheClient = localDataSource,
-        locationDtoToEntityMapper = locationDtoToEntityMapper
+        locationDtoToEntityMapper =  LocationDtoToEntityMapper()
     )
 
     @Provides
@@ -41,12 +43,12 @@ internal object RepositoryModule {
     fun test(
         remoteMediator: LocationListRemoteMediator,
         localDataSource: LocationListLocalDataSource,
-        @Named(MapperModule.L_ENTITY_TO_DOMAIN)
+        /*@Named(MapperModule.L_ENTITY_TO_DOMAIN)
         locationEntityToDomainMapper:
-        Mapper<@JvmSuppressWildcards LocationEntity, @JvmSuppressWildcards Location>,
+        Mapper<@JvmSuppressWildcards LocationEntity, @JvmSuppressWildcards Location>,*/
     ): LocationListRepository = LocationListRepo(
         mediator = remoteMediator,
         cacheClient = localDataSource,
-        locationEntityToDomainMapper = locationEntityToDomainMapper,
+        locationEntityToDomainMapper = LocationEntityToDomainMapper(),
     )
 }

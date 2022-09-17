@@ -4,6 +4,10 @@ import com.jayasuryat.basedata.mappers.Mapper
 import com.jayasuryat.basedata.providers.DispatcherProvider
 import com.jayasuryat.characterdetails.CharacterDetailsQuery
 import com.jayasuryat.characterdetails.CharacterEpisodeQuery
+import com.jayasuryat.characterdetails.data.mappers.CharacterDtoToEntityMapper
+import com.jayasuryat.characterdetails.data.mappers.CharacterEntityToDomainMapper
+import com.jayasuryat.characterdetails.data.mappers.CharacterEpisodeDtoToEntityMapper
+import com.jayasuryat.characterdetails.data.mappers.CharacterEpisodeEntityToDomainMapper
 import com.jayasuryat.characterdetails.data.repos.CharacterDetailsRepo
 import com.jayasuryat.characterdetails.data.sources.local.definitons.CharacterDetailsLocalDataSource
 import com.jayasuryat.characterdetails.data.sources.local.entities.CharacterEntity
@@ -33,7 +37,7 @@ internal object RepositoryModule {
         networkDataSource: CharacterDetailsRemoteDataSource,
         localDataSource: CharacterDetailsLocalDataSource,
 
-        @Named(C_D_DTO_TO_ENTITY)
+      /*  @Named(C_D_DTO_TO_ENTITY)
         characterDtoToEntityMapper:
         Mapper<@JvmSuppressWildcards CharacterDetailsQuery.Character,
                 @JvmSuppressWildcards CharacterEntity>,
@@ -51,15 +55,15 @@ internal object RepositoryModule {
         @Named(C_E_ENTITY_TO_DOMAIN)
         characterEpisodeEntityToDomainMapper:
         Mapper<@JvmSuppressWildcards EpisodeEntity,
-                @JvmSuppressWildcards Episode>,
+                @JvmSuppressWildcards Episode>,*/
 
         ): CharacterDetailsRepository = CharacterDetailsRepo(
         dispatcher = dispatcherProvider,
         networkClient = networkDataSource,
         cacheClient = localDataSource,
-        characterDtoToEntityMapper = characterDtoToEntityMapper,
-        characterEntityToDomainMapper = characterEntityToDomainMapper,
-        episodeDtoToEntityMapper = characterEpisodeDtoToEntityMapper,
-        episodeEntityToDomainMapper = characterEpisodeEntityToDomainMapper,
+        characterDtoToEntityMapper = CharacterDtoToEntityMapper(),
+        characterEntityToDomainMapper = CharacterEntityToDomainMapper(),
+        episodeDtoToEntityMapper = CharacterEpisodeDtoToEntityMapper(),
+        episodeEntityToDomainMapper = CharacterEpisodeEntityToDomainMapper(),
     )
 }

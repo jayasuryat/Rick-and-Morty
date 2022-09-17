@@ -45,6 +45,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
     }
+    // namespace = "com.jayasuryat.home"
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {

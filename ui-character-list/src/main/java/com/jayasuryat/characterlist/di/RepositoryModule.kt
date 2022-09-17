@@ -2,6 +2,8 @@ package com.jayasuryat.characterlist.di
 
 import com.jayasuryat.basedata.mappers.Mapper
 import com.jayasuryat.characterlist.CharacterListQuery
+import com.jayasuryat.characterlist.data.mappers.CharacterDtoToEntityMapper
+import com.jayasuryat.characterlist.data.mappers.CharacterEntityToDomainMapper
 import com.jayasuryat.characterlist.data.repositories.CharacterListRemoteMediator
 import com.jayasuryat.characterlist.data.repositories.CharacterListRepo
 import com.jayasuryat.characterlist.data.sources.local.definitions.CharacterListLocalDataSource
@@ -27,13 +29,13 @@ internal object RepositoryModule {
     fun providesRemoteMediator(
         networkDataSource: CharacterListNetworkDataSource,
         localDataSource: CharacterListLocalDataSource,
-        @Named(C_D_DTO_TO_ENTITY)
+        /*@Named(C_D_DTO_TO_ENTITY)
         characterDtoToEntityMapper:
-        Mapper<@JvmSuppressWildcards CharacterListQuery.Result, @JvmSuppressWildcards CharacterEntity>,
+        Mapper<@JvmSuppressWildcards CharacterListQuery.Result, @JvmSuppressWildcards CharacterEntity>,*/
     ): CharacterListRemoteMediator = CharacterListRemoteMediator(
         networkClient = networkDataSource,
         cacheClient = localDataSource,
-        characterDtoToEntityMapper = characterDtoToEntityMapper
+        characterDtoToEntityMapper = CharacterDtoToEntityMapper()
     )
 
     @Provides
@@ -41,12 +43,12 @@ internal object RepositoryModule {
     fun test(
         remoteMediator: CharacterListRemoteMediator,
         localDataSource: CharacterListLocalDataSource,
-        @Named(MapperModule.C_D_ENTITY_TO_DOMAIN)
+       /* @Named(MapperModule.C_D_ENTITY_TO_DOMAIN)
         characterEntityToDomainMapper:
-        Mapper<@JvmSuppressWildcards CharacterEntity, @JvmSuppressWildcards Character>,
+        Mapper<@JvmSuppressWildcards CharacterEntity, @JvmSuppressWildcards Character>,*/
     ): CharacterListRepository = CharacterListRepo(
         mediator = remoteMediator,
         cacheClient = localDataSource,
-        characterEntityToDomainMapper = characterEntityToDomainMapper,
+        characterEntityToDomainMapper = CharacterEntityToDomainMapper(),
     )
 }

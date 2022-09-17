@@ -21,7 +21,7 @@ internal object MapperModule {
     internal const val L_D_DTO_TO_ENTITY: String = "LocationDetailsDtoToEntity"
     internal const val L_D_ENTITY_TO_DOMAIN: String = "LocationDetailsEntityToDomain"
 
-    @Provides
+  /*  @Provides
     @Singleton
     @Named(L_D_DTO_TO_ENTITY)
     internal fun providesLocationDtoToEntityMapper():
@@ -35,5 +35,5 @@ internal object MapperModule {
     internal fun providesLocationEntityToDtoMapper():
             Mapper<@JvmSuppressWildcards LocationDetailsEntity,
                     @JvmSuppressWildcards LocationDetails> =
-        LocationDetailsEntityToDomainMapper()
+        LocationDetailsEntityToDomainMapper()*/
 }

@@ -47,6 +47,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    // namespace = "com.jayasuryat.characterdetails"
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 apollo {
