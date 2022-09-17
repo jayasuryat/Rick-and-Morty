@@ -24,14 +24,6 @@ internal object RepositoryModule {
         dispatcherProvider: DispatcherProvider,
         networkDataSource: EpisodeDetailsRemoteDataSource,
         localDataSource: EpisodeDetailsLocalDataSource,
-
-        /*  @Named(E_D_DTO_TO_ENTITY)
-          characterDtoToEntityMapper:
-          Mapper<@JvmSuppressWildcards EpisodeDetailQuery.Episode, @JvmSuppressWildcards EpisodeDetailsEntity>,
-
-          @Named(E_D_ENTITY_TO_DOMAIN)
-          characterEntityToDtoMapper:
-          Mapper<@JvmSuppressWildcards EpisodeDetailsEntity, @JvmSuppressWildcards EpisodeDetails>,*/
     ): EpisodeDetailsRepository = EpisodeDetailsRepo(
         dispatcher = dispatcherProvider,
         remoteClient = networkDataSource,
