@@ -9,5 +9,5 @@ public class ViewModelFactory<VM : BaseViewModel>(
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = creator() as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = creator() as T
 }

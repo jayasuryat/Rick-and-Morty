@@ -36,12 +36,13 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
     }
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "com.jayasuryat.theme"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {

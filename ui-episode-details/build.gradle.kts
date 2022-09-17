@@ -41,12 +41,17 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
     }
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "com.jayasuryat.episodedetails"
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 apollo {
@@ -54,7 +59,7 @@ apollo {
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile::class).all {
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }
 
 dependencies {

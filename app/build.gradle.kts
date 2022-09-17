@@ -44,7 +44,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
     }
 
     packagingOptions {
@@ -52,6 +52,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    namespace = "com.jayasuryat.rickandmorty"
 }
 
 dependencies {

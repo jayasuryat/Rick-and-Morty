@@ -41,12 +41,17 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
     }
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "com.jayasuryat.characterdetails"
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 apollo {

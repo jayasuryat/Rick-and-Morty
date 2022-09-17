@@ -15,11 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.jayasuryat.characterdetails.R
 import com.jayasuryat.characterdetails.domain.models.CharacterDetails
 import com.jayasuryat.themepreview.PreviewTheme
@@ -57,12 +59,10 @@ private fun CharacterImage(
 ) {
 
     Image(
-        painter = rememberImagePainter(
-            data = character.image,
-            builder = {
-                crossfade(true)
-            }
-        ),
+        painter = rememberAsyncImagePainter(ImageRequest.Builder(LocalContext.current)
+            .data(data = character.image)
+            .apply(block = fun ImageRequest.Builder.() { crossfade(true) })
+            .build()),
         contentDescription = "${character.name} image",
         modifier = Modifier
             .fillMaxWidth()
