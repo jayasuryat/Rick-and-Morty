@@ -40,17 +40,12 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    namespace = "com.jayasuryat.episodelist"
-}
-
-kapt {
-    correctErrorTypes = true
 }
 
 apollo {

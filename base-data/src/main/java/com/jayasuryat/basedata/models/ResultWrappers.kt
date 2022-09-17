@@ -4,7 +4,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 
-@Suppress("REDUNDANT_INLINE_SUSPEND_FUNCTION_TYPE")
 public suspend inline fun <T> wrapAsResult(
     logic: suspend () -> T,
 ): KResult<T> {

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.jayasuryat.characterlist.presentation.CharacterDef
 import com.jayasuryat.themepreview.PreviewTheme
 
@@ -37,7 +37,7 @@ internal fun CharacterListItem(
     ) {
 
         Image(
-            painter = rememberAsyncImagePainter(character.imageUrl),
+            painter = rememberImagePainter(character.imageUrl),
             contentDescription = "${character.name} image",
             modifier = Modifier
                 .size(100.dp)
