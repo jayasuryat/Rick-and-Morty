@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -41,9 +43,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Dependency.Compose.composeCompilerVersion
+        kotlinCompilerExtensionVersion = Dependency.Compose.composeVersion
     }
-    namespace = "com.jayasuryat.home"
 }
 
 dependencies {
@@ -60,6 +61,10 @@ dependencies {
     implementation(Dependency.material)
 
     implementation(Dependency.coroutinesAndroid)
+
+    // Hilt
+    implementation(Dependency.hilt)
+    kapt(Dependency.hiltCompiler)
 
     implementation(project(Dependency.Module.baseUi))
     implementation(project(Dependency.Module.event))
