@@ -4,9 +4,9 @@ import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +24,6 @@ import com.jayasuryat.episodedetails.presentation.EpisodeData
 import com.jayasuryat.themepreview.PreviewTheme
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun CharacterList(
     characters: List<Character>,
@@ -50,7 +49,7 @@ internal fun CharacterList(
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyVerticalGrid(
-            cells = GridCells.Fixed(3),
+            columns = GridCells.Fixed(3),
             modifier = Modifier.fillMaxSize(),
         ) {
 

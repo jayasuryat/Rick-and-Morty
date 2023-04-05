@@ -5,8 +5,8 @@ object Dependency {
     object Test {
 
         const val junit = "junit:junit:4.13.2"
-        const val androidJunit = "androidx.test.ext:junit:1.1.3"
-        const val espresso = "androidx.test.espresso:espresso-core:3.4.0"
+        const val androidJunit = "androidx.test.ext:junit:1.1.5"
+        const val espresso = "androidx.test.espresso:espresso-core:3.5.1"
     }
 
     object Module {
@@ -31,48 +31,51 @@ object Dependency {
 
     object Compose {
 
-        const val composeVersion = "1.0.1"
+        private const val composeVersion = "1.4.1"
+        const val composeCompilerVersion = "1.4.4"
 
-        const val activity = "androidx.activity:activity-compose:1.4.0"
-        const val material = "androidx.compose.material:material:1.0.4"
-        const val animation = "androidx.compose.animation:animation:1.0.4"
-        const val tooling = "androidx.compose.ui:ui-tooling:1.0.4"
-        const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
-        const val paging = "androidx.paging:paging-compose:1.0.0-alpha14"
-        const val coil = "io.coil-kt:coil-compose:1.4.0"
+        const val activity = "androidx.activity:activity-compose:1.7.0"
+        const val material = "androidx.compose.material:material:$composeVersion"
+        const val animation = "androidx.compose.animation:animation:$composeVersion"
+        const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
+        const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
+        const val paging = "androidx.paging:paging-compose:1.0.0-alpha18"
+        const val coil = "io.coil-kt:coil-compose:2.3.0"
 
-        const val liveData = "androidx.compose.runtime:runtime-livedata:1.0.4"
-        const val navigation = "androidx.navigation:navigation-compose:2.4.0-beta01"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01"
+        const val liveData = "androidx.compose.runtime:runtime-livedata:$composeVersion"
+        const val navigation = "androidx.navigation:navigation-compose:2.5.3"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
         object Test {
 
-            const val junit = "androidx.compose.ui:ui-test-junit4:1.0.4"
+            const val junit = "androidx.compose.ui:ui-test-junit4:1.4.1"
         }
     }
 
-    const val coreKtx = "androidx.core:core-ktx:1.6.0"
+    const val coreKtx = "androidx.core:core-ktx:1.9.0"
 
-    const val appCompat = "androidx.appcompat:appcompat:1.3.1"
-    const val material = "com.google.android.material:material:1.4.0"
+    const val appCompat = "androidx.appcompat:appcompat:1.6.1"
+    const val material = "com.google.android.material:material:1.8.0"
 
-    const val lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    const val lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 
-    const val hilt = "com.google.dagger:hilt-android:2.38.1"
-    const val hiltCompiler = "com.google.dagger:hilt-compiler:2.38.1"
+    const val hilt = "com.google.dagger:hilt-android:2.45"
+    const val hiltCompiler = "com.google.dagger:hilt-compiler:2.45"
 
-    const val apolloVersion = "2.5.10"
+    const val apolloVersion = "2.5.14"
+
     const val apolloRuntime = "com.apollographql.apollo:apollo-runtime:$apolloVersion"
     const val apolloCoroutines = "com.apollographql.apollo:apollo-coroutines-support:$apolloVersion"
-    const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"
-    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+    const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
-    const val roomRuntime = "androidx.room:room-runtime:2.3.0"
-    const val roomKtx = "androidx.room:room-ktx:2.3.0"
-    const val roomCompiler = "androidx.room:room-compiler:2.3.0"
-    const val roomPaging = "androidx.room:room-paging:2.4.0-beta01"
+    private const val roomVersion = "2.5.1"
+    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
+    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
+    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+    const val roomPaging = "androidx.room:room-paging:$roomVersion"
 
-    const val pagingRuntime = "androidx.paging:paging-runtime:3.1.0-beta01"
+    const val pagingRuntime = "androidx.paging:paging-runtime:3.1.1"
 
-    const val coil = "io.coil-kt:coil:1.4.0"
+    const val coil = "io.coil-kt:coil:2.3.0"
 }
